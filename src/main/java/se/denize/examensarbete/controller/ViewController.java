@@ -1,4 +1,4 @@
-package se.denize.examensarbete;
+package se.denize.examensarbete.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
