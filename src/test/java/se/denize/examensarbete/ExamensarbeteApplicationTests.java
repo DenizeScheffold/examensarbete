@@ -14,8 +14,8 @@ class ExamensarbeteApplicationTests {
 	}
 
 	@Test
-	void doesUserHaveName(){
-		User user = new User("Stina");
+	void userCanBeCreated(){
+		User user = new User("Stina", 1);
 		assertNotNull(user);
 	}
 
