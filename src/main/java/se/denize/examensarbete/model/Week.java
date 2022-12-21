@@ -1,5 +1,9 @@
 package se.denize.examensarbete.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,15 +13,22 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
+@Entity
 @Getter
 @Setter
+@Table(name="weeks")
 public class Week {
 
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+/*
     private Map<Weekday, String> planUserA = new LinkedHashMap<>();
     private List<String> planUserB;
-    private Long weekId;
-
 
 
     public void setPlanUserA() {
@@ -29,6 +40,6 @@ public class Week {
 
         System.out.println(planUserA.entrySet());
 
-    }
+    }*/
 
 }
