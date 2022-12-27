@@ -18,8 +18,9 @@ public class ExamensarbeteApplication {
 	public CommandLineRunner usersMockup(UserRepository repository) {
 		return (args) -> {
 			// mockup data
-			repository.save(new User("Stina@gmail.com", 2));
-			repository.save(new User("Rut@hotmail.com", 1));
+			repository.save(new User("Stina@gmail.com", 2L));
+			repository.save(new User("Rut@hotmail.com", 1L));
 		};
 	}
+
 }

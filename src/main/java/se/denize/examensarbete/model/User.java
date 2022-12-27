@@ -2,14 +2,11 @@ package se.denize.examensarbete.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+
 
 import java.util.Map;
 
 @Entity
-@Getter
-@Setter
 @Table(name="users")
 public class User {
     @Id
@@ -27,6 +24,23 @@ public class User {
         this.email = email;
         this.otherParentId = otherParentId;
     }
+
+    public User() {
+
+    }
+
+    public long getUserId(){
+        return userId;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public long getOtherParentId() {
+        return otherParentId;
+    }
+
+
 
 
 //private Map<Weekday, String> planUser;

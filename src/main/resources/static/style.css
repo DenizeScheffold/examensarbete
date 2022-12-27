@@ -1,4 +1,43 @@
-.container{
-    cursor: pointer;
-    color: brown;
+.mobile {
+   /* border: 1px solid black;
+    width: 50%;
+    border-radius: 25px;*/
+    text-align: center;
 }
+
+
+.container {
+
+}
+
+.grid-container-element {
+    border-radius: 25px;
+    grid-gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+
+}
+.grid-child-element {
+
+    height: 40px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-top: 25px;
+    background-color: green;
+
+}
+
+.button {
+
+    border: 1px solid black;
+    height: 50px;
+    width: 100px;
+    border-radius: 10px;
+    background-color: sandybrown;
+
+}
+
