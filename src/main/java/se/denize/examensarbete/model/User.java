@@ -4,6 +4,7 @@ package se.denize.examensarbete.model;
 import jakarta.persistence.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,7 @@ public class User {
 
     @ElementCollection
     private List<String> userPlan;
+
 
     public User(String email, long otherParentId, List<String> userPlan) {
         this.email = email;

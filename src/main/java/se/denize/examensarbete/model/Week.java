@@ -17,13 +17,11 @@ public class Week {
     @Column(name = "week_id", nullable = false)
     private Long weekId;
 
-    @ElementCollection
-    private List<String> commonPlan;
-
+/*
     public void comparePlans(List<String> userA, List<String> userB) {
         //TODO use WeekService to compare plans. Return conflicts.
     }
-
+ */
     public void setPlan(List<String> conflicts){
         //TODO
     }

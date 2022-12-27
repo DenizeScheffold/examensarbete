@@ -16,6 +16,7 @@ public class ExamensarbeteApplication {
 		SpringApplication.run(ExamensarbeteApplication.class, args);
 	}
 
+
 	@Bean
 	public CommandLineRunner usersMockup(UserRepository repository) {
 		return (args) -> {
@@ -23,6 +24,7 @@ public class ExamensarbeteApplication {
 			repository.save(new User("Stina@gmail.com", 2L, List.of("MONDAY-RED", "MONDAY-GREEN")));
 			repository.save(new User("Rut@hotmail.com", 1L, List.of("MONDAY-RED", "MONDAY-GREEN")));
 		};
+
 	}
 
 }
