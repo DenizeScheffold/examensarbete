@@ -10,21 +10,23 @@
 <div class="mobile">
 <div class="container">
     <h1>Vecka 4</h1>
-    <div class="grid-container-element">
-        <div class="grid-child-element" >MÅNDAG LÄMNA</div>
-        <div class="grid-child-element" onclick="buttonColor()" id="button-change-color">MÅNDAG HÄMTA</div>
-        <div class="grid-child-element">TISDAG LÄMNA</div>
-        <div class="grid-child-element">TISDAG HÄMTA</div>
-        <div class="grid-child-element">ONSDAG LÄMNA</div>
-        <div class="grid-child-element">ONSDAG HÄMTA</div>
-        <div class="grid-child-element">TORSDAG LÄMNA</div>
-        <div class="grid-child-element">TORSDAG HÄMTA</div>
-        <div class="grid-child-element">FREDAG LÄMNA</div>
-        <div class="grid-child-element">FREDAG HÄMTA</div>
-    </div>
 
+
+    <div id="grid-container-element">
+        <button class="grid-child-element" onclick="buttonColor()" id="button-change-color">MÅNDAG LÄMNA</button>
+        <button class="grid-child-element" >MÅNDAG HÄMTA</button>
+        <button class="grid-child-element">TISDAG LÄMNA</button>
+        <button class="grid-child-element">TISDAG HÄMTA</button>
+        <button class="grid-child-element">ONSDAG LÄMNA</button>
+        <button class="grid-child-element">ONSDAG HÄMTA</button>
+        <button class="grid-child-element">TORSDAG LÄMNA</button>
+        <button class="grid-child-element">TORSDAG HÄMTA</button>
+        <button class="grid-child-element">FREDAG LÄMNA</button>
+        <button class="grid-child-element">FREDAG HÄMTA</button>
+    </div>
 </div>
-    <div class="button">KLAR</div>
+
+    <button class="button" onclick="onSubmit()" id="plan">KLAR</button>
 
 </div>
 

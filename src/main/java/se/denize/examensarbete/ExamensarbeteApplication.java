@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
 
+import java.util.List;
+
 @SpringBootApplication
 public class ExamensarbeteApplication {
 
@@ -18,8 +20,8 @@ public class ExamensarbeteApplication {
 	public CommandLineRunner usersMockup(UserRepository repository) {
 		return (args) -> {
 			// mockup data
-			repository.save(new User("Stina@gmail.com", 2L));
-			repository.save(new User("Rut@hotmail.com", 1L));
+			repository.save(new User("Stina@gmail.com", 2L, List.of("MONDAY-RED", "MONDAY-GREEN")));
+			repository.save(new User("Rut@hotmail.com", 1L, List.of("MONDAY-RED", "MONDAY-GREEN")));
 		};
 	}
 

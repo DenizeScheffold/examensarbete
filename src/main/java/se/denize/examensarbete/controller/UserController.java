@@ -28,9 +28,6 @@ public class UserController {
         return "userPage";
     }
 
-
-
-
     /*
     @GetMapping("/ws/user")
     public ResponseEntity<List<User>> getAllUsers(){
