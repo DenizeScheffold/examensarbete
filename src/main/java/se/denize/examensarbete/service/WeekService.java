@@ -25,16 +25,6 @@ public class WeekService {
             if (userA.get(i).equals(userB.get(i))) {
              solveConflict(userA.get(i), userB.get(i));
 
-             /*   //See if conflict is RED-RED
-                if (userA.get(i).equals("MONDAY-RED")) {
-                    solveRedRed(userA.get(i), userB.get(i));
-                }
-                //See if conflict is GREEN-GREEN
-                if (userA.get(0).equals("MONDAY-GREEN")) {
-                    solveGreenGreen(userA.get(i), userB.get(i));
-                }
-              */
-
                 //No conflict - save to plan:
             } else {
                 saveToCommonPlan();
@@ -71,39 +61,6 @@ public class WeekService {
 
         // saveToCommonPlan();
     }
-
-    /*
-    public void solveGreenGreen(String userA, String userB) {
-        int countA;
-        int countB;
-
-        Map<Weekday, String> userAContainsY = db.userAdb().entrySet().stream()
-                .filter(p -> p.getValue().startsWith("Y"))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        countA = userAContainsY.size();
-        System.out.println(countA);
-
-        Map<Weekday, String> userBContainsY = db.userBdb().entrySet().stream()
-                .filter(p -> p.getValue().startsWith("Y"))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        countB = userBContainsY.size();
-        System.out.println(countB);
-
-
-        if (countA < countB) {
-            System.out.println("UserA" + countA);
-            // saveToCommonPlan();
-        } else {
-            System.out.println("UserB" + countB);
-        }
-
-        // saveToCommonPlan();
-
-    }
-
-     */
 
     public void saveToCommonPlan() {
 
