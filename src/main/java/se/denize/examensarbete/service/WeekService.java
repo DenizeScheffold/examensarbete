@@ -34,23 +34,12 @@ public class WeekService {
 
     public void solveConflict(String userA, String userB) {
         //TODO get statistics from database/JSON from last 7 days.
-        int countA;
-        int countB;
 
-        Map<Weekday, String> userAContainsY = db.userAdb().entrySet().stream()
-                .filter(p -> p.getValue().startsWith("Y"))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        countA = userAContainsY.size();
+       int countA = calculateUserAFromDb();
+       int countB = calculateUserBFromDb();
         System.out.println(countA);
-
-        Map<Weekday, String> userBContainsY = db.userBdb().entrySet().stream()
-                .filter(p -> p.getValue().startsWith("Y"))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        countB = userBContainsY.size();
         System.out.println(countB);
-
 
         if (countA < countB) {
             System.out.println("UserA" + countA);
@@ -64,5 +53,24 @@ public class WeekService {
 
     public void saveToCommonPlan() {
 
+    }
+
+    //TODO make a common calculator for all users
+    public int calculateUserAFromDb(){
+
+        Map<Weekday, String> userADb = db.userAdb().entrySet().stream()
+                .filter(p -> p.getValue().startsWith("Y"))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+       return userADb.size();
+    }
+
+    public int calculateUserBFromDb(){
+
+        Map<Weekday, String> userBDb = db.userBdb().entrySet().stream()
+                .filter(p -> p.getValue().startsWith("Y"))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+       return userBDb.size();
     }
 }
