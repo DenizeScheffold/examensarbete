@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 public class MockDatabase {
 
+
     public Map<Weekday, String> userAdb(){
         return Stream.of(new Object[][] {
                 {Weekday.MONDAY, "Y"},

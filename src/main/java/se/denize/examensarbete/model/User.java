@@ -1,10 +1,6 @@
 package se.denize.examensarbete.model;
 
-
 import jakarta.persistence.*;
-
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,14 +17,11 @@ public class User {
     @Column(name = "other_parent_id")
     private long otherParentId;
 
-    @ElementCollection
-    private List<String> userPlan;
 
 
-    public User(String email, long otherParentId, List<String> userPlan) {
+    public User(String email, long otherParentId) {
         this.email = email;
         this.otherParentId = otherParentId;
-        this.userPlan = userPlan;
     }
 
     public User() {
@@ -48,33 +41,5 @@ public class User {
         return otherParentId;
     }
 
-
-    public void setPlanUser(List<String> JSON){
-//TODO: parse incoming json and set to a List to return.
-    }
-
-    public List<String> getPlanUser(){
-        return userPlan;
-    }
-
-
-//private Map<Weekday, String> planUser;
-
-
-    /*
-    private Map<Weekday, String> planUserA = new LinkedHashMap<>();
-    private List<String> planUserB;
-
-
-    public void setPlanUserA() {
-        Map<Weekday, String> planUserA = Stream.of(new Object[][] {
-
-            {Weekday.MONDAY, "Y"},
-            {Weekday.TUESDAY, "Y"},
-            }).collect(Collectors.toMap(data -> (Weekday) data[0], data -> (String) data[1]));
-
-
-
-    }*/
 
 }

@@ -22,13 +22,21 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/api/users")
-    public String getAllUsersPage(Model model){
-        model.addAttribute("users",userRepository.findAll());
-        return "userPage";
+    @PostMapping("/setPlan")
+    public void setPlan(){
     }
 
-    /*
+
+
+
+   /*
+    @GetMapping("/api/weekPage")
+    public String getWeek(Model model){
+        model.addAttribute("week",userRepository.findAll());
+        return "weekPage";
+    }
+
+
     @GetMapping("/ws/user")
     public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);

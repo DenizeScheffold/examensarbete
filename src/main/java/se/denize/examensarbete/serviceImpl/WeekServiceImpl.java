@@ -14,7 +14,7 @@ public class WeekServiceImpl {
 
     private final WeekRepository weekRepository;
 
-    Week week = new Week();
+   // Week week = new Week();
 
     @Autowired
     public WeekServiceImpl(WeekRepository weekRepository) {
