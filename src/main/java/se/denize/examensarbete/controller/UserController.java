@@ -1,31 +1,38 @@
 package se.denize.examensarbete.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.User;
-import se.denize.examensarbete.repository.UserRepository;
+import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
 public class UserController {
 
-    private final UserRepository userRepository;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserServiceImpl userService) {
+        this.userService = userService;
     }
 
-    @PostMapping("/setPlan")
-    public void setPlan(){
-    }
+    @GetMapping("/api/getUsers")
+    private ResponseEntity<List<User>> getAllUsers(){
+    return userService.getAllUsers();
+   }
 
+   @PostMapping("/api/saveUser")
+    private ResponseEntity<User> saveUser(@RequestBody final User user){
+        return userService.saveUser(user);
+   }
+
+   @DeleteMapping("/api/deleteUserById/{id}")
+    private ResponseEntity<User> deleteUser(@PathVariable("id") long userId){
+        return userService.deleteUser(userId);
+   }
 
 
 

@@ -18,7 +18,6 @@ public class User {
     private long otherParentId;
 
 
-
     public User(String email, long otherParentId) {
         this.email = email;
         this.otherParentId = otherParentId;
