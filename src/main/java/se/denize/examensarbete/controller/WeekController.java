@@ -4,19 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.model.Week;
-import se.denize.examensarbete.service.WeekService;
+import se.denize.examensarbete.serviceImpl.WeekServiceImpl;
 
 import java.util.List;
 
 @Controller
 public class WeekController {
 
-    private final WeekService weekService;
+    private final WeekServiceImpl weekService;
 
     @Autowired
-    public WeekController(WeekService weekService) {
+    public WeekController(WeekServiceImpl weekService) {
         this.weekService = weekService;
     }
 

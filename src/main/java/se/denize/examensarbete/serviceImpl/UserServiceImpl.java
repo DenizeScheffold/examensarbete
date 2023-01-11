@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
+import se.denize.examensarbete.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -21,6 +22,7 @@ public class UserServiceImpl {
         this.userRepository = userRepository;
     }
 
+    @Override
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> employees = new ArrayList<>(userRepository.findAll());
         if (employees.isEmpty()) {
@@ -30,6 +32,7 @@ public class UserServiceImpl {
     }
 
     //TODO check if user already exists
+    @Override
     public ResponseEntity<User> saveUser(@RequestBody User user){
         try {
             User userSaved = userRepository.save(user);
@@ -38,7 +41,8 @@ public class UserServiceImpl {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    
+    @Override
     public ResponseEntity<User> deleteUser(long userId){
         try{
             userRepository.deleteById(userId);
