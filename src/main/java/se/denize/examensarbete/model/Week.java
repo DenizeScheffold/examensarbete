@@ -13,21 +13,19 @@ import java.util.List;
 public class Week {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "week_id", nullable = false)
     private Long weekId;
 
-   // private Long weekNumber;
 
-    @ElementCollection
-    @Column
-    private List<String> userPlan;
+    @Column (name = "userPlanDay" )
+    private String userPlanDay;
 
     @Column(name="user_id")
     private Long userId;
 
-    public Week(List<String> userPlan, Long userId) {
-        this.userPlan = userPlan;
+    public Week(Long weekId, String userPlanDay, Long userId) {
+        this.weekId = weekId;
+        this.userPlanDay = userPlanDay;
         this.userId = userId;
     }
 
@@ -35,33 +33,20 @@ public class Week {
     }
 
 
-/*
     public Long getWeekId() {
         return weekId;
     }
 
     public void setWeekId(Long weekId) {
-        StringBuilder sb = new StringBuilder();
-        weekId = sb.append(userId).append(weekNumber);
         this.weekId = weekId;
     }
 
-    public Long getWeekNumber() {
-        return weekNumber;
+    public String getUserPlanDay() {
+        return userPlanDay;
     }
 
-    public void setWeekNumber(Long weekNumber) {
-        this.weekNumber = weekNumber;
-    }
-  */
-
-    public List<String> getUserPlan() {
-        return userPlan;
-    }
-
-    public void setUserPlan(List<String> userPlan) {
-        //TODO: parse incoming json and set to a List to return.
-        this.userPlan = userPlan;
+    public void setUserPlanDay(String userPlanDay) {
+        this.userPlanDay = userPlanDay;
     }
 
     public Long getUserId() {
@@ -72,24 +57,5 @@ public class Week {
         this.userId = userId;
     }
 
-
-//private Map<Weekday, String> planUser;
-
-
-    /*
-    private Map<Weekday, String> planUserA = new LinkedHashMap<>();
-    private List<String> planUserB;
-
-
-    public void setPlanUserA() {
-        Map<Weekday, String> planUserA = Stream.of(new Object[][] {
-
-            {Weekday.MONDAY, "Y"},
-            {Weekday.TUESDAY, "Y"},
-            }).collect(Collectors.toMap(data -> (Weekday) data[0], data -> (String) data[1]));
-
-
-
-    }*/
 
 }

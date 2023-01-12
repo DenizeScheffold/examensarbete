@@ -28,7 +28,7 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public ResponseEntity<Week> savePlan(Week week) {
         try {
-            weekRepository.save(new Week(week.getUserPlan(), week.getUserId()));
+            weekRepository.save(new Week(week.getWeekId(), week.getUserPlanDay(), week.getUserId()));
             return new ResponseEntity<>(week, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -36,13 +36,13 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public ResponseEntity<List<Week>> getPlans(){
-        List<Week> userPlans = new ArrayList<>(weekRepository.findAll());
+    public ResponseEntity<Week> getPlanDays(){
+        List<Week> userPlanDays = new ArrayList<>(weekRepository.findAll());
 
-        if (userPlans.isEmpty())
+        if (userPlanDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        return new ResponseEntity<>(userPlans, HttpStatus.CREATED);
+        return new ResponseEntity(userPlanDays, HttpStatus.CREATED);
     }
 
     @Override
@@ -55,7 +55,12 @@ public class WeekServiceImpl implements WeekService {
         }
     }
 
+    /*
+
+
+    //TODO implement logic below
     MockDatabase db = new MockDatabase();
+
 
     public void comparePlans(Week fullUserA, Week fullUserB) {
 
@@ -115,5 +120,5 @@ public class WeekServiceImpl implements WeekService {
         return userBDb.size();
     }
 
-
+   */
 }

@@ -27,8 +27,8 @@ public class WeekController {
     }
 
     @GetMapping("api/getPlans")
-    private ResponseEntity<List<Week>> getAllPlans() {
-        return weekService.getPlans();
+    private ResponseEntity<Week> getAllPlanDays() {
+        return weekService.getPlanDays();
     }
 
     @DeleteMapping("api/removePlanByWeekId/{weekId}")
