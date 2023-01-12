@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.Week;
 import se.denize.examensarbete.serviceImpl.WeekServiceImpl;
 
-import java.util.List;
 
 @Controller
 public class WeekController {
@@ -34,5 +33,10 @@ public class WeekController {
     @DeleteMapping("api/removePlanByWeekId/{weekId}")
     private ResponseEntity<Week> removePlanByWeekId(@PathVariable("weekId") long weekId){
         return weekService.deleteByWeekId(weekId);
+    }
+
+    @PatchMapping("/api/editDay/{weekId}")
+    private ResponseEntity editWeek(@RequestBody Week week, @PathVariable long weekId){
+        return weekService.editWeek(week, weekId);
     }
 }

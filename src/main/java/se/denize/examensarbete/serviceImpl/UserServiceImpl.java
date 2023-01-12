@@ -11,6 +11,7 @@ import se.denize.examensarbete.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     //TODO check if user already exists
     @Override
-    public ResponseEntity<User> saveUser(@RequestBody User user){
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         try {
             User userSaved = userRepository.save(user);
             return new ResponseEntity<>(userSaved, HttpStatus.OK);
@@ -41,17 +42,32 @@ public class UserServiceImpl implements UserService {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @Override
-    public ResponseEntity<User> deleteUser(long userId){
-        try{
+    public ResponseEntity<User> deleteUser(long userId) {
+        try {
             userRepository.deleteById(userId);
             return new ResponseEntity("User deleted: " + userId, HttpStatus.OK);
-        } catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity("User not found" + e, HttpStatus.NOT_FOUND);
         }
     }
 
+    @Override
+    public ResponseEntity<User> editUser(User user, long userId) {
 
+        User userInDB = userRepository.findById(userId).get();
+
+        if (Objects.nonNull(user.getEmail()))
+            userInDB.setEmail(user.getEmail());
+
+        if (Objects.nonNull(user.getOtherParentId()))
+            userInDB.setOtherParentId(user.getOtherParentId());
+
+        return new ResponseEntity<>(userRepository.save(userInDB), HttpStatus.OK);
+    }
 
 }
+
+
+

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.model.Week;
 import se.denize.examensarbete.model.Weekday;
 import se.denize.examensarbete.repository.WeekRepository;
@@ -13,6 +14,7 @@ import se.denize.examensarbete.service.WeekService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,7 +30,7 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public ResponseEntity<Week> savePlan(Week week) {
         try {
-            weekRepository.save(new Week(week.getWeekId(), week.getUserPlanDay(), week.getUserId()));
+            weekRepository.save(new Week(week.getWeekId(), week.getWeekNumber(), week.getUserPlanDay(), week.getUserId()));
             return new ResponseEntity<>(week, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -55,6 +57,24 @@ public class WeekServiceImpl implements WeekService {
         }
     }
 
+    @Override
+    public ResponseEntity<User> editWeek(Week week, long weekId) {
+        Week weekInDB = weekRepository.findById(weekId).get();
+
+        if (Objects.nonNull(week.getUserId()))
+           weekInDB.setUserId(week.getUserId());
+
+        if(Objects.nonNull(week.getUserPlanDay()))
+            weekInDB.setUserPlanDay(week.getUserPlanDay());
+
+        if(Objects.nonNull(week.getWeekNumber()))
+            weekInDB.setWeekNumber(week.getWeekNumber());
+
+        if(Objects.nonNull(week.getWeekId()))
+            weekInDB.setWeekId(week.getWeekId());
+
+        return new ResponseEntity(weekRepository.save(weekInDB), HttpStatus.OK);
+    }
     /*
 
 

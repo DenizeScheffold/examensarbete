@@ -26,8 +26,6 @@ public class User {
     public User() {
 
     }
-
-
     public long getUserId(){
         return userId;
     }
@@ -35,6 +33,16 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setOtherParentId(long otherParentId) {
+        this.otherParentId = otherParentId;
+    }
+
+
 
     public long getOtherParentId() {
         return otherParentId;

@@ -29,12 +29,16 @@ public class UserController {
         return userService.saveUser(user);
    }
 
-   @DeleteMapping("/api/deleteUserById/{id}")
-    private ResponseEntity<User> deleteUser(@PathVariable("id") long userId){
+   @DeleteMapping("/api/deleteUserById/{userId}")
+    private ResponseEntity<User> deleteUser(@PathVariable("userId") long userId){
         return userService.deleteUser(userId);
    }
 
 
+   @PatchMapping("/api/editUser/{userId}")
+    private ResponseEntity<User> editUser(@RequestBody User user, @PathVariable("userId")long userId){
+        return userService.editUser(user,userId);
+   }
 
    /*
     @GetMapping("/api/weekPage")

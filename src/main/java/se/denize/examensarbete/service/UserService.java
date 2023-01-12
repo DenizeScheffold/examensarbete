@@ -12,6 +12,6 @@ public interface UserService {
     ResponseEntity<List<User>> getAllUsers();
     ResponseEntity<User> saveUser(@RequestBody User user);
     ResponseEntity<User> deleteUser(long userId);
-
+    ResponseEntity<User> editUser(User user, long userId);
 
 }
