@@ -39,4 +39,9 @@ public class WeekController {
     private ResponseEntity editWeek(@RequestBody Day day, @PathVariable long weekId){
         return weekService.editWeek(day, weekId);
     }
+
+    @GetMapping("api/getFullWeek/{weekNumber}")
+    private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") long weekNumber){
+        return weekService.getFullWeek(weekNumber);
+    }
 }

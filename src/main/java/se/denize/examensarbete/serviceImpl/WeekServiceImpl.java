@@ -30,7 +30,7 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
-            weekRepository.save(new Day(day.getDayId(), day.getWeekNumber(), day.getUserPlanDay(), day.getUserId()));
+            weekRepository.save(new Day(day.getDayId(), day.getWeekNumber(), day.getPlanDay(), day.getUserId()));
             return new ResponseEntity<>(day, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -38,7 +38,7 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public ResponseEntity<Day> getPlanDays(){
+    public ResponseEntity<Day> getPlanDays() {
         List<Day> userPlanDays = new ArrayList<>(weekRepository.findAll());
 
         if (userPlanDays.isEmpty())
@@ -58,88 +58,33 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public ResponseEntity<User> editWeek(Day day, long weekId) {
+    public ResponseEntity<Day> editWeek(Day day, long weekId) {
         Day dayInDB = weekRepository.findById(weekId).get();
 
         if (Objects.nonNull(day.getUserId()))
-           dayInDB.setUserId(day.getUserId());
+            dayInDB.setUserId(day.getUserId());
 
-        if(Objects.nonNull(day.getUserPlanDay()))
-            dayInDB.setUserPlanDay(day.getUserPlanDay());
+        if (Objects.nonNull(day.getPlanDay()))
+            dayInDB.setUserPlanDay(day.getPlanDay());
 
-        if(Objects.nonNull(day.getWeekNumber()))
+        if (Objects.nonNull(day.getWeekNumber()))
             dayInDB.setWeekNumber(day.getWeekNumber());
 
-        if(Objects.nonNull(day.getDayId()))
+        if (Objects.nonNull(day.getDayId()))
             dayInDB.setDayId(day.getDayId());
 
         return new ResponseEntity(weekRepository.save(dayInDB), HttpStatus.OK);
     }
 
 
+    @Override
+    public ResponseEntity<Day> getFullWeek(long weekNumber) {
+        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumber(weekNumber));
 
-    /*
-    //TODO implement logic below, but not based on mock data
-    MockDatabase db = new MockDatabase();
+        if (userWeek.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-
-    public void comparePlans(Week fullUserA, Week fullUserB) {
-
-        List<String> userA = fullUserA.getUserPlan();
-        List<String> userB = fullUserB.getUserPlan();
-        //Loop through all days
-        for (int i = 0; i < userA.size(); i++) {
-            //See if it is any conflict:
-            if (userA.get(i).equals(userB.get(i))) {
-                solveConflict(userA.get(i), userB.get(i));
-
-                //No conflict - save to plan:
-            } else {
-                saveToCommonPlan();
-            }
-        }
+        return new ResponseEntity(userWeek, HttpStatus.CREATED);
     }
 
-    public void solveConflict(String userA, String userB) {
-        //TODO get statistics from database/JSON from last 7 days.
-
-        int countA = calculateUserAFromDb();
-        int countB = calculateUserBFromDb();
-        System.out.println(countA);
-        System.out.println(countB);
-
-        if (countA < countB) {
-            System.out.println("UserA" + countA);
-            // saveToCommonPlan();
-        } else {
-            System.out.println("UserB" + countB);
-        }
-
-        // saveToCommonPlan();
-    }
-
-    public void saveToCommonPlan() {
-
-    }
-
-    //TODO make a common calculator for all users
-    public int calculateUserAFromDb() {
-
-        Map<Weekday, String> userADb = db.userAdb().entrySet().stream()
-                .filter(p -> p.getValue().startsWith("Y"))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        return userADb.size();
-    }
-
-    public int calculateUserBFromDb() {
-
-        Map<Weekday, String> userBDb = db.userBdb().entrySet().stream()
-                .filter(p -> p.getValue().startsWith("Y"))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-        return userBDb.size();
-    }
-
-   */
 }

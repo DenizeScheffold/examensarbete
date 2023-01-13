@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 //TODO: ändra tabellnamn till days och även weekid till dayid
 @Entity
-@Table(name = "weeks")
+@Table(name = "days")
 public class Day {
 
 
@@ -14,19 +14,19 @@ public class Day {
     @Column(name = "week_id", nullable = false)
     private Long dayId;
 
-    @Column (name = "userPlanDay" )
-    private String userPlanDay;
+    @Column (name = "plan_day" )
+    private String planDay;
 
-    @Column (name = "weekNumber")
+    @Column (name = "week_number")
     private Long weekNumber;
 
     @Column(name="user_id")
     private Long userId;
 
-    public Day(Long dayId, Long weekNumber, String userPlanDay, Long userId) {
+    public Day(Long dayId, Long weekNumber, String planDay, Long userId) {
         this.dayId = dayId;
         this.weekNumber = weekNumber;
-        this.userPlanDay = userPlanDay;
+        this.planDay = planDay;
         this.userId = userId;
     }
 
@@ -41,12 +41,12 @@ public class Day {
         this.dayId = dayId;
     }
 
-    public String getUserPlanDay() {
-        return userPlanDay;
+    public String getPlanDay() {
+        return planDay;
     }
 
-    public void setUserPlanDay(String userPlanDay) {
-        this.userPlanDay = userPlanDay;
+    public void setUserPlanDay(String planDay) {
+        this.planDay = planDay;
     }
 
     public Long getWeekNumber() {
