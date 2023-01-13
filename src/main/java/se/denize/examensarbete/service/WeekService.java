@@ -3,15 +3,13 @@ package se.denize.examensarbete.service;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import se.denize.examensarbete.model.User;
-import se.denize.examensarbete.model.Week;
-
-import java.util.List;
+import se.denize.examensarbete.model.Day;
 
 @Service
 public interface WeekService {
 
-    ResponseEntity<Week> savePlan(Week week);
-    ResponseEntity<Week> getPlanDays();
-    ResponseEntity<Week> deleteByWeekId(long weekId);
-    ResponseEntity<User> editWeek(Week week, long weekId);
+    ResponseEntity<Day> savePlan(Day day);
+    ResponseEntity<Day> getPlanDays();
+    ResponseEntity<Day> deleteByWeekId(long weekId);
+    ResponseEntity<User> editWeek(Day day, long weekId);
 }

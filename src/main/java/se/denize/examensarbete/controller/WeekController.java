@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import se.denize.examensarbete.model.Week;
+import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.serviceImpl.WeekServiceImpl;
 
 
@@ -20,23 +20,23 @@ public class WeekController {
 
 
     @PostMapping("/api/setPlan")
-    public ResponseEntity<Week> getPlan(@RequestBody Week week) {
-        return weekService.savePlan(week);
+    public ResponseEntity<Day> getPlan(@RequestBody Day day) {
+        return weekService.savePlan(day);
         //  weekService.comparePlans((new User("Stina@gmail.com", 2L, List.of("MONDAY-RED", "MONDAY-GREEN"))), (new User("Rut@hotmail.com", 1L, List.of("MONDAY-RED", "MONDAY-GREEN"))));
     }
 
     @GetMapping("api/getPlans")
-    private ResponseEntity<Week> getAllPlanDays() {
+    private ResponseEntity<Day> getAllPlanDays() {
         return weekService.getPlanDays();
     }
 
     @DeleteMapping("api/removePlanByWeekId/{weekId}")
-    private ResponseEntity<Week> removePlanByWeekId(@PathVariable("weekId") long weekId){
+    private ResponseEntity<Day> removePlanByWeekId(@PathVariable("weekId") long weekId){
         return weekService.deleteByWeekId(weekId);
     }
 
     @PatchMapping("/api/editDay/{weekId}")
-    private ResponseEntity editWeek(@RequestBody Week week, @PathVariable long weekId){
-        return weekService.editWeek(week, weekId);
+    private ResponseEntity editWeek(@RequestBody Day day, @PathVariable long weekId){
+        return weekService.editWeek(day, weekId);
     }
 }

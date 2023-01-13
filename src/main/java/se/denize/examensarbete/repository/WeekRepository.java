@@ -2,8 +2,8 @@ package se.denize.examensarbete.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import se.denize.examensarbete.model.Week;
-import se.denize.examensarbete.model.Weekday;
+import se.denize.examensarbete.model.Day;
+
 @Repository
-public interface WeekRepository extends JpaRepository<Week, Long> {
+public interface WeekRepository extends JpaRepository<Day, Long> {
 }
