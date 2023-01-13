@@ -12,6 +12,9 @@ public interface WeekRepository extends JpaRepository<Day, Long> {
 
     @Query(value = "SELECT d FROM Day d WHERE d.weekNumber = ?1")
     List<Day> findByWeekNumber(long weekNumber);
+
+    @Query(value = "SELECT d FROM Day d WHERE d.weekNumber = ?1 AND d.userId = ?2 ")
+    List<Day> findByWeekNumberAndUser(long weekNumber, long userId);
 }
 
 

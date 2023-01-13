@@ -8,6 +8,7 @@ import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.serviceImpl.WeekServiceImpl;
 
 
+
 @Controller
 public class WeekController {
 
@@ -44,4 +45,10 @@ public class WeekController {
     private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") long weekNumber){
         return weekService.getFullWeek(weekNumber);
     }
+
+    @GetMapping("api/getUserFullWeek/{weekNumber}/{userId}")
+    private ResponseEntity<Day> getUserFullWeek(@PathVariable("weekNumber") long weekNumber, @PathVariable("userId") long userId) {
+       return weekService.getUserFullWeek(weekNumber, userId);
+    }
+
 }

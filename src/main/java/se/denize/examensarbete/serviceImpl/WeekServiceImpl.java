@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.model.Day;
-import se.denize.examensarbete.repository.UserRepository;
 import se.denize.examensarbete.repository.WeekRepository;
 import se.denize.examensarbete.service.WeekService;
 
@@ -18,13 +16,10 @@ import java.util.Objects;
 public class WeekServiceImpl implements WeekService {
 
     private final WeekRepository weekRepository;
-    private final UserRepository userRepository;
 
     @Autowired
-    public WeekServiceImpl(WeekRepository weekRepository,
-                           UserRepository userRepository) {
+    public WeekServiceImpl(WeekRepository weekRepository) {
         this.weekRepository = weekRepository;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -80,6 +75,16 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public ResponseEntity<Day> getFullWeek(long weekNumber) {
         List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumber(weekNumber));
+
+        if (userWeek.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity(userWeek, HttpStatus.CREATED);
+    }
+
+   @Override
+    public ResponseEntity<Day> getUserFullWeek(long weekNumber, long userId) {
+        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
 
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
