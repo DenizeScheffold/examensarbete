@@ -10,6 +10,7 @@ import java.util.List;
 public interface WeekService {
 
     ResponseEntity<Day> savePlan(Day day);
+    public ResponseEntity<List<Day>> savePlans(List<Day> days);
     ResponseEntity<Day> getPlanDays();
     ResponseEntity<Day> deleteByWeekId(long weekId);
     ResponseEntity<Day> editWeek(Day day, long weekId);

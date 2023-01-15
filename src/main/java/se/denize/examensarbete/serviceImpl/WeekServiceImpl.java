@@ -37,6 +37,18 @@ public class WeekServiceImpl implements WeekService {
         }
     }
 
+    public ResponseEntity<List<Day>> savePlans(List<Day> days){
+
+            for (Day day : days) {
+                try {
+                weekRepository.save(new Day(day.getDayId(), day.getWeekNumber(), day.getPlanDay(), day.getUserId()));
+            } catch(Exception e){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+            return new ResponseEntity<>(days, HttpStatus.OK);
+    }
     @Override
     public ResponseEntity<Day> getPlanDays() {
         List<Day> userPlanDays = new ArrayList<>(weekRepository.findAll());

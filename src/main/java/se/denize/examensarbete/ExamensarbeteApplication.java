@@ -48,15 +48,26 @@ public class ExamensarbeteApplication {
         return (args) -> {
             // mockup data
             weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
-            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED",  2L));
+            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
             weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
-            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN",  2L));
+            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
+            weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
+            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
+            weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
+            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
+            weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
+            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
+            weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
+            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
+            weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
+            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
+            weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
+            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
+
 
         };
 
-   }
-
-
+    }
 
  */
 }
