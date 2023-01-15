@@ -79,17 +79,26 @@ public class WeekServiceImpl implements WeekService {
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        return new ResponseEntity(userWeek, HttpStatus.CREATED);
+        return new ResponseEntity(userWeek, HttpStatus.OK);
     }
 
    @Override
-    public ResponseEntity<Day> getUserFullWeek(long weekNumber, long userId) {
-        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
+    public ResponseEntity<List<Day>> getUser1FullWeek(long weekNumber, long userId) {
+       List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
 
+       if (userWeek.isEmpty())
+           return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+       return new ResponseEntity<>(userWeek, HttpStatus.OK);
+   }
+
+    @Override
+    public ResponseEntity<List<Day>> getUser2FullWeek(long weekNumber, long userId) {
+        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        return new ResponseEntity(userWeek, HttpStatus.CREATED);
+        return new ResponseEntity<>(userWeek, HttpStatus.OK);
     }
 
 }

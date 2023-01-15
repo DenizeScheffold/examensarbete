@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import se.denize.examensarbete.model.Day;
 
+import java.util.List;
+
 @Service
 public interface WeekService {
 
@@ -13,5 +15,8 @@ public interface WeekService {
     ResponseEntity<Day> editWeek(Day day, long weekId);
     ResponseEntity<Day> getFullWeek(long weekNumber);
 
-    ResponseEntity<Day> getUserFullWeek(long weekNumber, long userId);
+    ResponseEntity<List<Day>> getUser1FullWeek(long weekNumber, long userId);
+    ResponseEntity<List<Day>> getUser2FullWeek(long weekNumber, long userId);
+
+
 }

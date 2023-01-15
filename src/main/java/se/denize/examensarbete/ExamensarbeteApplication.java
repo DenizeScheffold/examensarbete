@@ -16,6 +16,7 @@ public class ExamensarbeteApplication {
         SpringApplication.run(ExamensarbeteApplication.class, args);
     }
 
+
     /*
     @Bean
     public WebMvcConfigurer corsConfigurer() {

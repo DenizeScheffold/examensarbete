@@ -4,19 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import se.denize.examensarbete.model.CalculatePlans;
 import se.denize.examensarbete.model.Day;
-import se.denize.examensarbete.serviceImpl.WeekServiceImpl;
+import se.denize.examensarbete.service.WeekService;
+import se.denize.examensarbete.serviceImpl.CalculatePlansServiceImpl;
 
+import java.util.List;
 
 
 @Controller
 public class WeekController {
 
-    private final WeekServiceImpl weekService;
-
+    private final WeekService weekService;
+    private final CalculatePlansServiceImpl calculatePlansService;
     @Autowired
-    public WeekController(WeekServiceImpl weekService) {
+    public WeekController(WeekService weekService, CalculatePlansServiceImpl calculatePlansService) {
         this.weekService = weekService;
+        this.calculatePlansService = calculatePlansService;
     }
 
 
@@ -32,23 +36,45 @@ public class WeekController {
     }
 
     @DeleteMapping("api/removePlanByWeekId/{weekId}")
-    private ResponseEntity<Day> removePlanByWeekId(@PathVariable("weekId") long weekId){
+    private ResponseEntity<Day> removePlanByWeekId(@PathVariable("weekId") long weekId) {
         return weekService.deleteByWeekId(weekId);
     }
 
     @PatchMapping("/api/editDay/{weekId}")
-    private ResponseEntity editWeek(@RequestBody Day day, @PathVariable long weekId){
+    private ResponseEntity editWeek(@RequestBody Day day, @PathVariable long weekId) {
         return weekService.editWeek(day, weekId);
     }
 
     @GetMapping("api/getFullWeek/{weekNumber}")
-    private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") long weekNumber){
+    private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") long weekNumber) {
         return weekService.getFullWeek(weekNumber);
     }
-
+/*
     @GetMapping("api/getUserFullWeek/{weekNumber}/{userId}")
-    private ResponseEntity<Day> getUserFullWeek(@PathVariable("weekNumber") long weekNumber, @PathVariable("userId") long userId) {
+    private List<Day> getUserFullWeek(@PathVariable("weekNumber") long weekNumber, @PathVariable("userId") long userId) {
        return weekService.getUserFullWeek(weekNumber, userId);
     }
 
+ */
+
+
+    @GetMapping("api/getPlanForUser1/{weekNumber}")
+    private  ResponseEntity<List<Day>> getUser1FullWeek(@PathVariable("weekNumber") long weekNumber) {
+        return weekService.getUser1FullWeek(weekNumber, 1);
+        //calculatePlansService.setDaysForUser1(daysForUser1);
+
+
+    }
+
+    @GetMapping("api/getPlanForUser2/{weekNumber}")
+    private ResponseEntity<List<Day>> getUser2FullWeek(@PathVariable("weekNumber") long weekNumber) {
+        //List<Day> daysForUser2 = weekService.getUser2FullWeek(weekNumber, 2);
+        //calculatePlansService.setDaysForUser2(daysForUser2);
+        return weekService.getUser2FullWeek(weekNumber, 2);
+    }
+
+    @GetMapping("/api/startCalculation")
+    private void startCalc(){
+        calculatePlansService.setPlans();
+    }
 }
