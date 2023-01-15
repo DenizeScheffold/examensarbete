@@ -16,6 +16,8 @@ import java.util.Objects;
 @Service
 public class WeekServiceImpl implements WeekService {
 
+
+    //TODO: see if this is convention?
     private final CalculatePlans calculatePlans;
     private final WeekRepository weekRepository;
 

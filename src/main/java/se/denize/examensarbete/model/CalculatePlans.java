@@ -49,35 +49,37 @@ public class CalculatePlans {
 
         List<Day> daysForUser1 = getDaysForUser1();
         List<Day> daysForUser2 = getDaysForUser2();
-        List<String> savedDayPlans = new ArrayList<>();
+        List<String> savedDayPlansUser1 = new ArrayList<>();
+        List<String> savedDayPlansUser2 = new ArrayList<>();
 
         for (Day day : daysForUser1) {
-            savedDayPlans.add(day.getPlanDay());
+            savedDayPlansUser1.add(day.getPlanDay());
         }
 
-        for(String savedDayUser1: savedDayPlans){
-            System.out.println("saved days: " + savedDayUser1);
+        for (String savedDayUser1 : savedDayPlansUser1) {
+            System.out.println("saved days för user1: " + savedDayUser1);
         }
 
         for (Day day : daysForUser2) {
-            savedDayPlans.add(day.getPlanDay());
+            savedDayPlansUser2.add(day.getPlanDay());
         }
 
-        for(String savedDayUser2: savedDayPlans){
-            System.out.println("saved days: " + savedDayUser2);
+        for (String savedDayUser2 : savedDayPlansUser2) {
+            System.out.println("saved days for user2: " + savedDayUser2);
         }
 
-
-/*
-        System.out.println("inne i compare plans");
+//TODO: opitmize loop
         //Loop through all days
-        for (Day dayUser1 : daysForUser1) {
-            for (Day dayUser2 : daysForUser2)
-                //See if it is any conflict:
-                if (daysForUser1. (daysForUser1.get(i))){
-                System.out.println(i);
-                // solveConflict(daysForUser1.get(i), daysForUser2.get(i));
+        for (int i = 0; i < savedDayPlansUser1.size(); i++) {
+            for (int j = 0; j < savedDayPlansUser2.size(); j++) {
+                if (savedDayPlansUser1.get(i).equals(savedDayPlansUser2.get(j))) {
+                    System.out.println("one match: user1 " + savedDayPlansUser1.get(i) + " and User2 " + savedDayPlansUser1.get(i));
+                    //solveConflict(daysForUser1.get(i), daysForUser2.get(i));
 
+                }
+            }
+        }
+/*
                 //No conflict - save to plan:
             } else{
                 // saveToCommonPlan();
@@ -86,5 +88,32 @@ public class CalculatePlans {
 
 
  */
+        /*
+    }
+    public void solveConflict(String userA, String userB) {
+        //TODO get statistics from database/JSON from last 7 days.
+
+      //  int countA = calculateUserAFromDb();
+       // int countB = calculateUserBFromDb();
+        System.out.println(countA);
+        System.out.println(countB);
+
+        if (countA < countB) {
+            System.out.println("UserA" + countA);
+            // saveToCommonPlan();
+        } else {
+            System.out.println("UserB" + countB);
+        }
+
+        // saveToCommonPlan();
+    }
+
+    public void saveToCommonPlan() {
+
+    }
+
+
+
+         */
     }
 }
