@@ -73,8 +73,4 @@ public class WeekController {
         return weekService.getUser2FullWeek(weekNumber, 2);
     }
 
-    @GetMapping("/api/startCalculation")
-    private void startCalc(){
-        calculatePlansService.setPlans();
-    }
 }

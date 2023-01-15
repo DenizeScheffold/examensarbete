@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import se.denize.examensarbete.model.CalculatePlans;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.repository.WeekRepository;
 import se.denize.examensarbete.service.WeekService;
@@ -15,11 +16,13 @@ import java.util.Objects;
 @Service
 public class WeekServiceImpl implements WeekService {
 
+    private final CalculatePlans calculatePlans;
     private final WeekRepository weekRepository;
 
     @Autowired
     public WeekServiceImpl(WeekRepository weekRepository) {
         this.weekRepository = weekRepository;
+        calculatePlans = new CalculatePlans();
     }
 
     @Override
@@ -82,15 +85,21 @@ public class WeekServiceImpl implements WeekService {
         return new ResponseEntity(userWeek, HttpStatus.OK);
     }
 
-   @Override
+    //TODO: start calculation when both weeks are submitted. Now user 1 has to submit before user2
+    @Override
     public ResponseEntity<List<Day>> getUser1FullWeek(long weekNumber, long userId) {
-       List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
+        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
 
-       if (userWeek.isEmpty())
-           return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        if (userWeek.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-       return new ResponseEntity<>(userWeek, HttpStatus.OK);
-   }
+        try {
+            calculatePlans.setDaysForUser1(userWeek);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(userWeek, HttpStatus.OK);
+    }
 
     @Override
     public ResponseEntity<List<Day>> getUser2FullWeek(long weekNumber, long userId) {
@@ -98,6 +107,8 @@ public class WeekServiceImpl implements WeekService {
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
+        calculatePlans.setDaysForUser2(userWeek);
+        calculatePlans.comparePlans();
         return new ResponseEntity<>(userWeek, HttpStatus.OK);
     }
 
