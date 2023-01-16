@@ -1,5 +1,5 @@
 package se.denize.examensarbete.login;
-
+/*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -16,7 +16,7 @@ public class AppSecurityConfig implements WebMvcConfigurer {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http.authorizeHttpRequests ()
-                    .requestMatchers ("/", "/error", "/login", "/api/getPlans","/api/getPlans","/api/getPlanForUser1/*", "/api/getPlanForUser2/*").permitAll()
+                    .requestMatchers ("/", "/error", "/login", "/api/getPlans","/api/getPlans","/api/getPlanForUser1/*", "/api/getPlanForUser2/*", "/api/*", "/api/setPlans").permitAll()
                     .requestMatchers ("/adminPage" ).hasRole("ADMIN")
                     .anyRequest().authenticated ()
                     .and()
@@ -26,3 +26,6 @@ public class AppSecurityConfig implements WebMvcConfigurer {
     }
 
 }
+
+
+ */

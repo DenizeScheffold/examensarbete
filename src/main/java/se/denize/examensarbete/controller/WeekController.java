@@ -30,7 +30,7 @@ public class WeekController {
     }
 
     @PostMapping("/api/setPlans")
-    public ResponseEntity<List<Day>> setPlans(@RequestBody List<Day> days){
+    public ResponseEntity<List<Day>> setPlans(@RequestBody List<Day> days) {
         return weekService.savePlans(days);
     }
 
@@ -63,7 +63,7 @@ public class WeekController {
 
 
     @GetMapping("api/getPlanForUser1/{weekNumber}")
-    private  ResponseEntity<List<Day>> getUser1FullWeek(@PathVariable("weekNumber") long weekNumber) {
+    private ResponseEntity<List<Day>> getUser1FullWeek(@PathVariable("weekNumber") long weekNumber) {
         return weekService.getUser1FullWeek(weekNumber, 1);
         //calculatePlansService.setDaysForUser1(daysForUser1);
 
@@ -77,4 +77,8 @@ public class WeekController {
         return weekService.getUser2FullWeek(weekNumber, 2);
     }
 
+    @GetMapping("/api/getWeekFromBefore/weekNumber/userId")
+    private List<Day> getWeekFromBeforeDB(@PathVariable("weekNumber") long weekNumber, @PathVariable("userId") long userId) {
+        return weekService.getWeekBeforeFromDB(weekNumber, userId);
+    }
 }

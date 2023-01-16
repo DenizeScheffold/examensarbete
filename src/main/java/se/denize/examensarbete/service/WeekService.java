@@ -19,5 +19,5 @@ public interface WeekService {
     ResponseEntity<List<Day>> getUser1FullWeek(long weekNumber, long userId);
     ResponseEntity<List<Day>> getUser2FullWeek(long weekNumber, long userId);
 
-
+    List<Day> getWeekBeforeFromDB(long weekNumber, long userId);
 }

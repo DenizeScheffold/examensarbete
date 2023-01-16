@@ -1,6 +1,9 @@
 package se.denize.examensarbete.model;
 
 import jakarta.persistence.ElementCollection;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,28 +41,31 @@ public class CalculatePlans {
         this.daysForUser2 = daysForUser2;
     }
 
+/*
 
-    //TODO implement logic below, but not based on mock data
-    //  MockDatabase db = new MockDatabase();
-
-
-    public void comparePlans() {
+    public void comparePlans(long weekNumber) {
 
         Iterator<Day> user1 = daysForUser1.iterator();
         Iterator<Day> user2 = daysForUser2.iterator();
 
-
-        while(user1.hasNext()){
+        while (user1.hasNext()) {
             Day dayUser1 = user1.next();
             Day dayUser2 = user2.next();
-          if(dayUser1.getPlanDay().equals(dayUser2.getPlanDay())){
-              System.out.println("one match: user1 " + dayUser1.getPlanDay() + " and user2: " + dayUser2.getPlanDay());
-             // solveConflict(List<Day> daysForUser1, List<Day> daysForUser2);
+            if (dayUser1.getPlanDay().equals(dayUser2.getPlanDay())) {
+                System.out.println("one match: user1 " + dayUser1.getPlanDay() + " and user2: " + dayUser2.getPlanDay());
+                solveConflict(weekNumber, dayUser1, dayUser2);
             }
         }
 
+    }
 
-/*
+       public void solveConflict(long weekNumber, Day dayUser1, Day dayUser2){
+        long weekToRetrieve = weekNumber-1;
+
+       }
+
+
+
                 //No conflict - save to plan:
             } else{
                 // saveToCommonPlan();
@@ -97,4 +103,3 @@ public class CalculatePlans {
          */
 
     }
-}
