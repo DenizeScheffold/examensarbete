@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.CalculatePlans;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.service.WeekService;
-import se.denize.examensarbete.serviceImpl.CalculatePlansServiceImpl;
+
 
 import java.util.List;
 
@@ -16,11 +16,10 @@ import java.util.List;
 public class WeekController {
 
     private final WeekService weekService;
-    private final CalculatePlansServiceImpl calculatePlansService;
+
     @Autowired
-    public WeekController(WeekService weekService, CalculatePlansServiceImpl calculatePlansService) {
+    public WeekController(WeekService weekService) {
         this.weekService = weekService;
-        this.calculatePlansService = calculatePlansService;
     }
 
 
