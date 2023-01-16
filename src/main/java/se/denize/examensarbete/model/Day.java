@@ -64,4 +64,15 @@ public class Day {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Day{" +
+                "dayId=" + dayId +
+                ", planDay='" + planDay + '\'' +
+                ", weekNumber=" + weekNumber +
+                ", userId=" + userId +
+                '}';
+    }
 }
+

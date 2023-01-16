@@ -30,7 +30,7 @@ public class WeekController {
         //  weekService.comparePlans((new User("Stina@gmail.com", 2L, List.of("MONDAY-RED", "MONDAY-GREEN"))), (new User("Rut@hotmail.com", 1L, List.of("MONDAY-RED", "MONDAY-GREEN"))));
     }
 
-    @PostMapping("/api/setplans")
+    @PostMapping("/api/setPlans")
     public ResponseEntity<List<Day>> setPlans(@RequestBody List<Day> days){
         return weekService.savePlans(days);
     }
