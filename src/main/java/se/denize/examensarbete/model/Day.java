@@ -23,6 +23,8 @@ public class Day {
     @Column(name="user_id")
     private Long userId;
 
+    private String dayName;
+
     public Day(Long dayId, Long weekNumber, String planDay, Long userId) {
         this.dayId = dayId;
         this.weekNumber = weekNumber;
@@ -45,7 +47,7 @@ public class Day {
         return planDay;
     }
 
-    public void setUserPlanDay(String planDay) {
+    public void setPlanDay(String planDay) {
         this.planDay = planDay;
     }
 
@@ -63,6 +65,15 @@ public class Day {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+
+    public String getDayName() {
+        return dayName;
+    }
+
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
     }
 
     @Override

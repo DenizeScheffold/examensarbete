@@ -25,6 +25,10 @@ class ExamensarbeteApplicationTests {
 		assertNotNull(day);
 	}
 
+	//TODO: add test to solveConflict
+
+
+
 
 	/*
 @ExtendWith(SpringExtension.class)
