@@ -1,5 +1,5 @@
 package se.denize.examensarbete.login;
-/*
+
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -33,4 +33,3 @@ public enum UserRoles {
     }
 
 }
-*/
