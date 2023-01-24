@@ -1,6 +1,9 @@
 package se.denize.examensarbete.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -21,8 +24,12 @@ public class User implements UserDetails {
     @Column(name = "other_parent_id")
     private long otherParentId;
 
-
+    @NotEmpty
+    @Size(min = 2, max = 40)
     private String username;
+
+    @NotEmpty
+    @Size(min = 6, max = 200)
     private String password;
     private List<String> authorities;
     private boolean isAccountNonExpired;
@@ -35,6 +42,7 @@ public class User implements UserDetails {
         this.email = email;
         this.otherParentId = otherParentId;
     }
+
     public User() {
     }
 

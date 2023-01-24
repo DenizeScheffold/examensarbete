@@ -16,7 +16,7 @@ import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 @RestController
 @RequestMapping("/rest")
-public class TestController {
+public class TestRestController {
 
 
     private final AppPasswordConfig bcrypt;
@@ -24,7 +24,7 @@ public class TestController {
     private final UserServiceImpl userService;
 
     @Autowired
-    public TestController(AppPasswordConfig bcrypt, UserRepository userRepository, UserServiceImpl userService) {
+    public TestRestController(AppPasswordConfig bcrypt, UserRepository userRepository, UserServiceImpl userService) {
         this.bcrypt = bcrypt;
         this.userRepository = userRepository;
         this.userService = userService;
