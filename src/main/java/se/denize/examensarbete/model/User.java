@@ -22,31 +22,34 @@ public class User implements UserDetails {
     private long otherParentId;
 
 
-    public User(String email, long otherParentId) {
-        this.email = email;
-        this.otherParentId = otherParentId;
-    }
-
-    public User() {
-    }
-
     private String username;
     private String password;
-    // TODO - FIX
-    // private Collection<? extends GrantedAuthority> authorities;
+    private List<String> authorities;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
 
-    public User(String username, String password, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled) {
+
+    public User(String email, long otherParentId) {
+        this.email = email;
+        this.otherParentId = otherParentId;
+    }
+    public User() {
+    }
+
+    public User(String email, long otherParentId, String username, String password, List<String> authorities, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled) {
+        this.email = email;
+        this.otherParentId = otherParentId;
         this.username = username;
         this.password = password;
+        this.authorities = authorities;
         this.isAccountNonExpired = isAccountNonExpired;
         this.isAccountNonLocked = isAccountNonLocked;
         this.isCredentialsNonExpired = isCredentialsNonExpired;
         this.isEnabled = isEnabled;
     }
+
 
     public long getUserId() {
         return userId;
@@ -80,6 +83,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        //TODO - convert
         return null;
     }
 

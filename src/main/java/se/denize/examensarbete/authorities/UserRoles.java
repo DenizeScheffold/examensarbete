@@ -24,13 +24,12 @@ public enum UserRoles {
         return permissions;
     }
 
-    public List<SimpleGrantedAuthority> getGrantedAuthorities() {
-        List<SimpleGrantedAuthority> permissions = new
+    public List<String> getGrantedAuthorities() {
+        List<String> permissionList = new
                 ArrayList<>(getPermissions().stream().map(
-                index -> new SimpleGrantedAuthority(index.getPermission())
-        ).toList());
-        permissions.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
-        return permissions;
+   UserPermissions::getPermission).toList());
+        permissionList.add(("ROLE_" + this.name()));
+        return permissionList;
     }
 
 }

@@ -4,10 +4,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import se.denize.examensarbete.model.Day;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import se.denize.examensarbete.authorities.UserRoles;
+import se.denize.examensarbete.configurations.AppPasswordConfig;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
-import se.denize.examensarbete.repository.WeekRepository;
 
 @SpringBootApplication
 public class ExamensarbeteApplication {
@@ -17,7 +19,7 @@ public class ExamensarbeteApplication {
     }
 
 
-    /*
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -28,20 +30,32 @@ public class ExamensarbeteApplication {
             }
         };
 }
-*/
 
-/*
+
+
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
+        AppPasswordConfig bcrypt = new AppPasswordConfig();
         return (args) -> {
             // mockup data
-            repository.save(new User("Stina@gmail.com", 2L));
-            repository.save(new User("Rut@hotmail.com", 1L));
+            repository.save(new User(
+                    "Katja@gmail.com",
+                    2L,
+                    "Kattis",
+                    bcrypt.bCryptPasswordEncoder().encode("123"),
+                    UserRoles.ADMIN.getGrantedAuthorities(),
+                    true,
+                    true,
+                    true,
+                    true));
+
         };
     }
 
 
 
+
+/*
 
     @Bean
     public CommandLineRunner weekMockup(WeekRepository weekRepository) {

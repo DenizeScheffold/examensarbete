@@ -3,6 +3,9 @@ package se.denize.examensarbete.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import se.denize.examensarbete.model.User;
@@ -14,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -25,11 +28,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<List<User>> getAllUsers() {
-        List<User> employees = new ArrayList<>(userRepository.findAll());
-        if (employees.isEmpty()) {
+        List<User> users = new ArrayList<>(userRepository.findAll());
+        if (users.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(employees, HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     //TODO check if user already exists
@@ -67,6 +70,10 @@ public class UserServiceImpl implements UserService {
         return new ResponseEntity<>(userRepository.save(userInDB), HttpStatus.OK);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username);
+    }
 }
 
 
