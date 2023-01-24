@@ -1,4 +1,4 @@
-package se.denize.examensarbete.login;
+package se.denize.examensarbete.authorities;
 
 public enum UserPermissions {
 

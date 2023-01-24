@@ -1,4 +1,4 @@
-package se.denize.examensarbete.login;
+package se.denize.examensarbete.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
