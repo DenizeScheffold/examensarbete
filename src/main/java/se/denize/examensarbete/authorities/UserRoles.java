@@ -11,6 +11,7 @@ import static se.denize.examensarbete.authorities.UserPermissions.*;
 
 public enum UserRoles {
 
+    //TODO: if not working check out spring boot login that I made before..
     USER(List.of(USER_READ)),
     ADMIN(List.of(ADMIN_READ, ADMIN_WRITE));
 

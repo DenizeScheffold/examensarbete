@@ -8,8 +8,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.configurations.AppPasswordConfig;
+import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
+import se.denize.examensarbete.repository.WeekRepository;
 
 @SpringBootApplication
 public class ExamensarbeteApplication {
@@ -48,40 +50,73 @@ public class ExamensarbeteApplication {
                     true,
                     true,
                     true));
-
+            repository.save(new User(
+                    "Rut@gmail.com",
+                    1L,
+                    "Rutis",
+                    bcrypt.bCryptPasswordEncoder().encode("123"),
+                    UserRoles.ADMIN.getGrantedAuthorities(),
+                    true,
+                    true,
+                    true,
+                    true));
         };
     }
 
 
 
 
-/*
+
 
     @Bean
     public CommandLineRunner weekMockup(WeekRepository weekRepository) {
         return (args) -> {
             // mockup data
-            weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
-            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
-            weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
-            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
-            weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
-            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
-            weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
-            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
-            weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
-            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
-            weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
-            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
-            weekRepository.save(new Day(1202301091L, 2L, "MONDAY-RED", 1L));
-            weekRepository.save(new Day(2202301091L, 2L, "MONDAY-RED", 2L));
-            weekRepository.save(new Day(1202301092L, 2L, "MONDAY-GREEN", 1L));
-            weekRepository.save(new Day(2202301092L, 2L, "MONDAY-GREEN", 2L));
+            weekRepository.save(new Day(2,1L,"2023-01-09",1,false));
+            weekRepository.save(new Day(2,1L,"2023-01-10",1,true));
+            weekRepository.save(new Day(2,1L,"2023-01-11",1,false));
+            weekRepository.save(new Day(2,1L,"2023-01-12",1,false));
+            weekRepository.save(new Day(2,1L,"2023-01-13",1,true));
+            weekRepository.save(new Day(2,2L,"2023-01-09",1,false));
+            weekRepository.save(new Day(2,2L,"2023-01-10",1,false));
+            weekRepository.save(new Day(2,2L,"2023-01-11",1,true));
+            weekRepository.save(new Day(2,2L,"2023-01-12",1,false));
+            weekRepository.save(new Day(2,2L,"2023-01-13",1,false));
+            weekRepository.save(new Day(2,1L,"2023-01-09",2,false));
+            weekRepository.save(new Day(2,1L,"2023-01-10",2,true));
+            weekRepository.save(new Day(2,1L,"2023-01-11",2,false));
+            weekRepository.save(new Day(2,1L,"2023-01-12",2,false));
+            weekRepository.save(new Day(2,1L,"2023-01-13",2,false));
+            weekRepository.save(new Day(2,2L,"2023-01-09",2,false));
+            weekRepository.save(new Day(2,2L,"2023-01-10",2,true));
+            weekRepository.save(new Day(2,2L,"2023-01-11",2,false));
+            weekRepository.save(new Day(2,2L,"2023-01-12",2,false));
+            weekRepository.save(new Day(2,2L,"2023-01-13",2,true));
+            weekRepository.save(new Day(3,1L,"2023-01-16",1,true));
+            weekRepository.save(new Day(3,1L,"2023-01-17",1,false));
+            weekRepository.save(new Day(3,1L,"2023-01-18",1,true));
+            weekRepository.save(new Day(3,1L,"2023-01-19",1,false));
+            weekRepository.save(new Day(3,1L,"2023-01-20",1,false));
+            weekRepository.save(new Day(3,2L,"2023-01-16",1,true));
+            weekRepository.save(new Day(3,2L,"2023-01-17",1,false));
+            weekRepository.save(new Day(3,2L,"2023-01-18",1,false));
+            weekRepository.save(new Day(3,2L,"2023-01-19",1,true));
+            weekRepository.save(new Day(3,2L,"2023-01-20",1,false));
+            weekRepository.save(new Day(3,1L,"2023-01-16",2,false));
+            weekRepository.save(new Day(3,1L,"2023-01-17",2,true));
+            weekRepository.save(new Day(3,1L,"2023-01-18",2,false));
+            weekRepository.save(new Day(3,1L,"2023-01-19",2,true));
+            weekRepository.save(new Day(3,1L,"2023-01-20",2,false));
+            weekRepository.save(new Day(3,2L,"2023-01-16",2,true));
+            weekRepository.save(new Day(3,2L,"2023-01-17",2,false));
+            weekRepository.save(new Day(3,2L,"2023-01-18",2,true));
+            weekRepository.save(new Day(3,2L,"2023-01-19",2,false));
+            weekRepository.save(new Day(3,2L,"2023-01-20",2,false));
 
 
         };
 
     }
 
- */
+
 }

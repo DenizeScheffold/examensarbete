@@ -2,34 +2,39 @@ package se.denize.examensarbete.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Date;
 
-//TODO: ändra tabellnamn till days och även weekid till dayid
 @Entity
 @Table(name = "days")
 public class Day {
 
-
-    //TODO: make weekId calculate from userId + date + 1 for hämta/2 for lämna Ex: 12301091
     @Id
-    @Column(name = "week_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "dayid", nullable = false)
     private Long dayId;
 
-    @Column (name = "plan_day" )
-    private String planDay;
-
     @Column (name = "week_number")
-    private Long weekNumber;
+    private Integer weekNumber;
 
-    @Column(name="user_id")
+    @Column(name="userid")
     private Long userId;
 
-    private String dayName;
+    @Column(name = "date")
+    private String date;
 
-    public Day(Long dayId, Long weekNumber, String planDay, Long userId) {
-        this.dayId = dayId;
+    @Column(name= "activity")
+    private Integer activity;
+
+    @Column(name = "possible")
+    private Boolean possible;
+
+
+    public Day(Integer weekNumber, Long userId, String date, Integer activity, Boolean possible) {
         this.weekNumber = weekNumber;
-        this.planDay = planDay;
         this.userId = userId;
+        this.date = date;
+        this.activity = activity;
+        this.possible = possible;
     }
 
     public Day() {
@@ -39,23 +44,11 @@ public class Day {
         return dayId;
     }
 
-    public void setDayId(Long dayId) {
-        this.dayId = dayId;
-    }
-
-    public String getPlanDay() {
-        return planDay;
-    }
-
-    public void setPlanDay(String planDay) {
-        this.planDay = planDay;
-    }
-
-    public Long getWeekNumber() {
+    public Integer getWeekNumber() {
         return weekNumber;
     }
 
-    public void setWeekNumber(Long weekNumber) {
+    public void setWeekNumber(Integer weekNumber) {
         this.weekNumber = weekNumber;
     }
 
@@ -67,23 +60,28 @@ public class Day {
         this.userId = userId;
     }
 
-
-    public String getDayName() {
-        return dayName;
+    public String getDate() {
+        return date;
     }
 
-    public void setDayName(String dayName) {
-        this.dayName = dayName;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Day{" +
-                "dayId=" + dayId +
-                ", planDay='" + planDay + '\'' +
-                ", weekNumber=" + weekNumber +
-                ", userId=" + userId +
-                '}';
+    public Integer getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Integer activity) {
+        this.activity = activity;
+    }
+
+    public Boolean getPossible() {
+        return possible;
+    }
+
+    public void setPossible(Boolean possible) {
+        this.possible = possible;
     }
 }
 

@@ -32,7 +32,7 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
-            weekRepository.save(new Day(day.getDayId(), day.getWeekNumber(), day.getPlanDay(), day.getUserId()));
+            weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDate(), day.getActivity(), day.getPossible()));
             return new ResponseEntity<>(day, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,7 +43,7 @@ public class WeekServiceImpl implements WeekService {
 
         for (Day day : days) {
             try {
-                weekRepository.save(new Day(day.getDayId(), day.getWeekNumber(), day.getPlanDay(), day.getUserId()));
+                weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDate(), day.getActivity(), day.getPossible()));
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -61,11 +61,11 @@ public class WeekServiceImpl implements WeekService {
 
         return new ResponseEntity(userPlanDays, HttpStatus.CREATED);
     }
-
+/*
     @Override
-    public ResponseEntity<Day> deleteByWeekId(long weekId) {
+    public ResponseEntity<Day> deleteByDayId(long dayId) {
         try {
-            weekRepository.deleteById(weekId);
+            weekRepository.deleteById(dayId);
             return new ResponseEntity("Item deleted", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("Item not found: " + e, HttpStatus.NOT_FOUND);
@@ -73,27 +73,34 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public ResponseEntity<Day> editWeek(Day day, long weekId) {
-        Day dayInDB = weekRepository.findById(weekId).get();
+    public ResponseEntity<Day> editWeek(Day day, long dayId) {
+        Day dayInDB = weekRepository.findById(dayId).get();
 
         if (Objects.nonNull(day.getUserId()))
             dayInDB.setUserId(day.getUserId());
 
-        if (Objects.nonNull(day.getPlanDay()))
-            dayInDB.setPlanDay(day.getPlanDay());
-
         if (Objects.nonNull(day.getWeekNumber()))
             dayInDB.setWeekNumber(day.getWeekNumber());
 
-        if (Objects.nonNull(day.getDayId()))
-            dayInDB.setDayId(day.getDayId());
+        if (Objects.nonNull(day.getDate()))
+            dayInDB.setDate(day.getDate());
+
+        if (Objects.nonNull(day.getActivity()))
+            dayInDB.setActivity(day.getActivity());
+
+        if (Objects.nonNull(day.getPossible()))
+            dayInDB.setPossible(day.getPossible());
 
         return new ResponseEntity(weekRepository.save(dayInDB), HttpStatus.OK);
     }
 
 
+
+
+
+
     @Override
-    public ResponseEntity<Day> getFullWeek(long weekNumber) {
+    public ResponseEntity<Day> getFullWeek(int weekNumber) {
         List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumber(weekNumber));
 
         if (userWeek.isEmpty())
@@ -104,7 +111,7 @@ public class WeekServiceImpl implements WeekService {
 
     //TODO: start calculation when both weeks are submitted. Now user 1 has to submit before user2
     @Override
-    public ResponseEntity<List<Day>> getUser1FullWeek(long weekNumber, long userId) {
+    public ResponseEntity<List<Day>> getUser1FullWeek(int weekNumber, long userId) {
         List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
 
         if (userWeek.isEmpty())
@@ -119,32 +126,35 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public ResponseEntity<List<Day>> getUser2FullWeek(long weekNumber, long userId) {
+    public ResponseEntity<List<Day>> getUser2FullWeek(int weekNumber, long userId) {
         List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         calculatePlans.setDaysForUser2(userWeek);
-        comparePlans(weekNumber);
+        //comparePlans(weekNumber);
         return new ResponseEntity<>(userWeek, HttpStatus.OK);
     }
 
     @Override
-    public List<Day> getWeekBeforeFromDB(long weekNumber, long userId) {
+    public List<Day> getWeekBeforeFromDB(int weekNumber, long userId) {
         List<Day> userWeekDB = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
         return userWeekDB;
     }
-
-
+ */
+/*
     public void comparePlans(long weekNumber) {
 
         Iterator<Day> user1 = calculatePlans.getDaysForUser1().iterator();
         Iterator<Day> user2 = calculatePlans.getDaysForUser2().iterator();
+        Predicate<String> g = day -> day.endsWith("GREEN");
+        Predicate<String> r = day -> day.endsWith("RED");
 
         while (user1.hasNext()) {
             Day dayUser1 = user1.next();
             Day dayUser2 = user2.next();
-            if (dayUser1.getPlanDay().equals(dayUser2.getPlanDay())) {
+            if((g.test(dayUser1.getPlanDay())&& g.test(dayUser2.getPlanDay())) || (r.test(dayUser1.getPlanDay())&& r.test(dayUser2.getPlanDay()))) {
+           // if (dayUser1.getPlanDay().equals(dayUser2.getPlanDay())) {
                 System.out.println("one match: user1 " + dayUser1.getPlanDay() + " and user2: " + dayUser2.getPlanDay());
                 solveConflict(weekNumber, dayUser1, dayUser2);
             }
@@ -160,26 +170,25 @@ public class WeekServiceImpl implements WeekService {
 
         Predicate<String> d = day -> day.endsWith("GREEN");
         Predicate<String> i =  dayId -> dayId.endsWith("1");
-      //  Predicate<String> k =  dayPlan -> dayPlan.startsWith("");
-        Predicate<String> j =  dayId -> dayId.startsWith("1");
         List<Day> user1WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 1);
         List<Day> user2WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 2);
         String dayHL = Long.toString(dayUser1.getDayId());
 
-        if(i.test(dayHL)){
-            //TODO: see if user already has activity the same day  //get the activity from hämta, the same day
-         /*
-           String dayName = dayHL.substring(1,9);
 
+        //TODO: see if user already has activity the same day  //get the activity from hämta, the same day
+        /*
+        Predicate<String> j =  dayId -> dayId.startsWith("1");
+        if(i.test(dayHL)){
+           String dayName = dayHL.substring(1,9);
            if(j.test(dayHL))
             dayUser1.setDayName(date);
            else{
                dayUser2.getDayName()
            }
-
-          */
         }
+         */
 
+       /*
         Iterator<Day> user1 = user1WeekFromDB.iterator();
         Iterator<Day> user2 = user2WeekFromDB.iterator();
 
@@ -193,24 +202,25 @@ public class WeekServiceImpl implements WeekService {
 
             if (d.test(dayUser2DB.getPlanDay()))
                 count2++;
-
-            System.out.println("user 1 count: " + count1 + " user 2 count: " + count2);
         }
+        System.out.println("user 1 count: " + count1 + " user 2 count: " + count2);
+
 
         if (count1 >= count2) {
             System.out.println("User1 has the most number of activities : " + count1);
-            dayUser1.setPlanDay("RED");
+                    dayUser1.setPlanDay("RED");
             dayUser2.setPlanDay("GREEN");
             // saveToCommonPlan();
-        } if (count1 < count2) {
+        } else {
             System.out.println("User2 has the most number of activities : " + count2);
             dayUser2.setPlanDay("RED");
             dayUser1.setPlanDay("GREEN");
-        } else{
-            System.out.println("no result");
         }
         //TODO: take in the same week´s days that are already set.
 
     }
+    */
+
+
 
 }
