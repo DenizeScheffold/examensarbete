@@ -12,10 +12,10 @@ public interface WeekService {
     ResponseEntity<Day> savePlan(Day day);
      ResponseEntity<List<Day>> savePlans(List<Day> days);
     ResponseEntity<Day> getPlanDays();
-    /*
-    ResponseEntity<Day> deleteByWeekId(int weekId);
-    ResponseEntity<Day> editWeek(Day day, int weekId);
-    ResponseEntity<Day> getFullWeek(long weekNumber);
+
+    ResponseEntity<Day> deleteByDayId(long dayId);
+    ResponseEntity<Day> editDay(Day day, long dayId);
+    ResponseEntity<Day> getFullWeek(int weekNumber);
 
     ResponseEntity<List<Day>> getUser1FullWeek(int weekNumber, long userId);
     ResponseEntity<List<Day>> getUser2FullWeek(int weekNumber, long userId);
@@ -23,5 +23,5 @@ public interface WeekService {
     List<Day> getWeekBeforeFromDB(int weekNumber, long userId);
 
 
-     */
+
 }

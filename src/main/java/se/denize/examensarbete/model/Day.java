@@ -83,5 +83,17 @@ public class Day {
     public void setPossible(Boolean possible) {
         this.possible = possible;
     }
+
+    @Override
+    public String toString() {
+        return "Day{" +
+                "dayId=" + dayId +
+                ", weekNumber=" + weekNumber +
+                ", userId=" + userId +
+                ", date='" + date + '\'' +
+                ", activity=" + activity +
+                ", possible=" + possible +
+                '}';
+    }
 }
 

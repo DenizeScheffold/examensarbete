@@ -16,5 +16,14 @@ public class AppViewConfig implements WebMvcConfigurer {
         registry.addViewController("/admin").setViewName("adminPage");
         registry.addViewController("/weekPage").setViewName("weekPage");
     }
+    /*
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.cors().and()...
+    }
+}
+
+     */
+
 
 }

@@ -4,7 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.configurations.AppPasswordConfig;
@@ -21,18 +23,20 @@ public class ExamensarbeteApplication {
     }
 
 
-
+/*
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedMethods("GET", "PUT", "POST", "DELETE")
+                registry.addMapping("/**").allowedMethods("GET", "PUT", "POST", "DELETE", "PATCH")
                         .allowedOrigins("http://localhost:3000");
             }
         };
 }
 
+ */
+/*
 
 
     @Bean
@@ -41,20 +45,20 @@ public class ExamensarbeteApplication {
         return (args) -> {
             // mockup data
             repository.save(new User(
-                    "Katja@gmail.com",
+                    "Stina@stinis.se",
                     2L,
-                    "Kattis",
-                    bcrypt.bCryptPasswordEncoder().encode("123"),
+                    "Stinis",
+                    bcrypt.bCryptPasswordEncoder().encode("123456789"),
                     UserRoles.ADMIN.getGrantedAuthorities(),
                     true,
                     true,
                     true,
                     true));
-            repository.save(new User(
+          repository.save(new User(
                     "Rut@gmail.com",
                     1L,
                     "Rutis",
-                    bcrypt.bCryptPasswordEncoder().encode("123"),
+                    bcrypt.bCryptPasswordEncoder().encode("123456789"),
                     UserRoles.ADMIN.getGrantedAuthorities(),
                     true,
                     true,
@@ -64,9 +68,10 @@ public class ExamensarbeteApplication {
     }
 
 
+            */
 
 
-
+/*
 
     @Bean
     public CommandLineRunner weekMockup(WeekRepository weekRepository) {
@@ -113,10 +118,10 @@ public class ExamensarbeteApplication {
             weekRepository.save(new Day(3,2L,"2023-01-19",2,false));
             weekRepository.save(new Day(3,2L,"2023-01-20",2,false));
 
+}
+        };*/
 
-        };
 
-    }
 
 
 }

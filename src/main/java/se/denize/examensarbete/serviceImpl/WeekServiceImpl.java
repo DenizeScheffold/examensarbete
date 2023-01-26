@@ -61,7 +61,7 @@ public class WeekServiceImpl implements WeekService {
 
         return new ResponseEntity(userPlanDays, HttpStatus.CREATED);
     }
-/*
+
     @Override
     public ResponseEntity<Day> deleteByDayId(long dayId) {
         try {
@@ -73,7 +73,7 @@ public class WeekServiceImpl implements WeekService {
     }
 
     @Override
-    public ResponseEntity<Day> editWeek(Day day, long dayId) {
+    public ResponseEntity<Day> editDay(Day day, long dayId) {
         Day dayInDB = weekRepository.findById(dayId).get();
 
         if (Objects.nonNull(day.getUserId()))
@@ -93,10 +93,6 @@ public class WeekServiceImpl implements WeekService {
 
         return new ResponseEntity(weekRepository.save(dayInDB), HttpStatus.OK);
     }
-
-
-
-
 
 
     @Override
@@ -141,35 +137,38 @@ public class WeekServiceImpl implements WeekService {
         List<Day> userWeekDB = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
         return userWeekDB;
     }
- */
-/*
-    public void comparePlans(long weekNumber) {
+
+
+    public void comparePlans(int weekNumber) {
 
         Iterator<Day> user1 = calculatePlans.getDaysForUser1().iterator();
         Iterator<Day> user2 = calculatePlans.getDaysForUser2().iterator();
-        Predicate<String> g = day -> day.endsWith("GREEN");
-        Predicate<String> r = day -> day.endsWith("RED");
+        //  Predicate<Boolean> g = day -> day.booleanValue();
+        //Predicate<String> r = day -> day.endsWith("RED");
 
         while (user1.hasNext()) {
             Day dayUser1 = user1.next();
             Day dayUser2 = user2.next();
-            if((g.test(dayUser1.getPlanDay())&& g.test(dayUser2.getPlanDay())) || (r.test(dayUser1.getPlanDay())&& r.test(dayUser2.getPlanDay()))) {
-           // if (dayUser1.getPlanDay().equals(dayUser2.getPlanDay())) {
-                System.out.println("one match: user1 " + dayUser1.getPlanDay() + " and user2: " + dayUser2.getPlanDay());
+            //check if there is conflicts. So if both has boolean Possible == true?
+            if ((dayUser1.getPossible() && dayUser2.getPossible()
+                    || (!dayUser1.getPossible() && !dayUser2.getPossible()))) {
+
+                System.out.println("one match: user1 " + dayUser1.getPossible() + ", " + dayUser1.getDate() + " and user2: " + dayUser2.getPossible() + ", " + dayUser2.getDate());
                 solveConflict(weekNumber, dayUser1, dayUser2);
             }
-        }
 
+
+        }
     }
 
 
     //TODO: retrieve data from same week, days already set.
-    public void solveConflict(long weekNumber, Day dayUser1, Day dayUser2) {
+    public void solveConflict(int weekNumber, Day dayUser1, Day dayUser2) {
         int count1 = 0;
         int count2 = 0;
 
-        Predicate<String> d = day -> day.endsWith("GREEN");
-        Predicate<String> i =  dayId -> dayId.endsWith("1");
+       // Predicate<String> d = day -> day.endsWith("GREEN");
+      //  Predicate<String> i =  dayId -> dayId.endsWith("1");
         List<Day> user1WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 1);
         List<Day> user2WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 2);
         String dayHL = Long.toString(dayUser1.getDayId());
@@ -188,7 +187,7 @@ public class WeekServiceImpl implements WeekService {
         }
          */
 
-       /*
+
         Iterator<Day> user1 = user1WeekFromDB.iterator();
         Iterator<Day> user2 = user2WeekFromDB.iterator();
 
@@ -219,7 +218,7 @@ public class WeekServiceImpl implements WeekService {
         //TODO: take in the same week´s days that are already set.
 
     }
-    */
+
 
 
 

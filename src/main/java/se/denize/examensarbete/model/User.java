@@ -114,4 +114,21 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return isEnabled;
     }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                ", otherParentId=" + otherParentId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", authorities=" + authorities +
+                ", isAccountNonExpired=" + isAccountNonExpired +
+                ", isAccountNonLocked=" + isAccountNonLocked +
+                ", isCredentialsNonExpired=" + isCredentialsNonExpired +
+                ", isEnabled=" + isEnabled +
+                '}';
+    }
 }

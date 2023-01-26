@@ -29,7 +29,7 @@ public class AppSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .requestMatchers("/", "/error", "/login", "/api/**", "/rest/**").permitAll()
+                .requestMatchers("/", "/error", "/login", "/api/**", "/rest/**", "localhost:8080/api/editDay/15").permitAll()
                 .requestMatchers("/adminPage").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
