@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 @Service
 public class WeekServiceImpl implements WeekService {
@@ -193,67 +194,37 @@ public class WeekServiceImpl implements WeekService {
 
         System.out.println(date7DaysBefore);
 
-        List<Day> activitiesFromLast7days = weekRepository.activitiesFromLast7days(date7DaysBefore,dateUser1);
+        List<Day> activitiesFromLast7days = weekRepository.activitiesFromLast7days(date7DaysBefore, dateUser1);
 
-        for(Day day: activitiesFromLast7days){
+        for (Day day : activitiesFromLast7days) {
             System.out.println(day);
         }
 
 //TODO: activitiesFromLast7days from repository
 
-                // Predicate<String> d = day -> day.endsWith("GREEN");
-                //  Predicate<String> i =  dayId -> dayId.endsWith("1");
-       //         List < Day > user1WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 1);
-     //   List<Day> user2WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 2);
-        //String dayHL = Long.toString(dayUser1.getDayId());
-
-
-        //TODO: see if user already has activity the same day  //get the activity from hämta, the same day
-        /*
-        Predicate<String> j =  dayId -> dayId.startsWith("1");
-        if(i.test(dayHL)){
-           String dayName = dayHL.substring(1,9);
-           if(j.test(dayHL))
-            dayUser1.setDayName(date);
-           else{
-               dayUser2.getDayName()
-           }
-        }
-         */
-
-/*
-        Iterator<Day> user1 = user1WeekFromDB.iterator();
-        Iterator<Day> user2 = user2WeekFromDB.iterator();
-
+        Iterator<Day> days = activitiesFromLast7days.iterator();
         //calculate number of GREEN activities.
-        while (user1.hasNext()) {
-            Day dayUser1DB = user1.next();
-            Day dayUser2DB = user2.next();
+        while (days.hasNext()) {
+            Day dayDB = days.next();
 
-            if (d.test(dayUser1DB.getPlanDay()))
-                count1++;
+            Predicate<Long> d = userId -> userId == 1;
 
-            if (d.test(dayUser2DB.getPlanDay()))
-                count2++;
+
+            //IF possible (-> did an activity) set to true
+            if (dayDB.getPossible()) {
+                //IF user is user1
+                if (d.test(dayDB.getUserId())) {
+                    count1++;
+                }
+                //IF user is NOT user1
+                if (!(d.test(dayDB.getUserId()))) {
+                    count2++;
+                }
+            }
+
         }
         System.out.println("user 1 count: " + count1 + " user 2 count: " + count2);
 
-
-        if (count1 >= count2) {
-            System.out.println("User1 has the most number of activities : " + count1);
-            dayUser1.setPlanDay("RED");
-            dayUser2.setPlanDay("GREEN");
-            // saveToCommonPlan();
-        } else {
-            System.out.println("User2 has the most number of activities : " + count2);
-            dayUser2.setPlanDay("RED");
-            dayUser1.setPlanDay("GREEN");
-        }
-        //TODO: take in the same week´s days that are already set.
-
-
-
- */
     }
 
 }
