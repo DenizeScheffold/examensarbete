@@ -168,13 +168,9 @@ public class WeekServiceImpl implements WeekService {
     }
 
 
-    //TODO: retrieve data from same week, days already set.
     public void solveConflict(Day dayUser1, Day dayUser2) {
         int count1 = 0;
         int count2 = 0;
-
-
-        //TODO: take data from last 7 days. Make this a separate method.
 
         Date dateUser1 = dayUser1.getDayDate();
 
@@ -200,15 +196,11 @@ public class WeekServiceImpl implements WeekService {
             System.out.println(day);
         }
 
-//TODO: activitiesFromLast7days from repository
-
+        Predicate<Long> d = userId -> userId == 1;
         Iterator<Day> days = activitiesFromLast7days.iterator();
-        //calculate number of GREEN activities.
+
         while (days.hasNext()) {
             Day dayDB = days.next();
-
-            Predicate<Long> d = userId -> userId == 1;
-
 
             //IF possible (-> did an activity) set to true
             if (dayDB.getPossible()) {
@@ -225,6 +217,17 @@ public class WeekServiceImpl implements WeekService {
         }
         System.out.println("user 1 count: " + count1 + " user 2 count: " + count2);
 
+        if(count1<count2){
+            System.out.println("User2 has more activities. Set false on Possible");
+            dayUser1.setPossible(true);
+            dayUser2.setPossible(false);
+        }else {
+            dayUser2.setPossible(true);
+            dayUser1.setPossible(false);
+        }
+
+        editDay(dayUser1,dayUser1.getDayId());
+        editDay(dayUser2,dayUser2.getDayId());
     }
 
 }
