@@ -9,7 +9,7 @@ import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.repository.WeekRepository;
 import se.denize.examensarbete.service.WeekService;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.text.ParseException;
@@ -159,7 +159,7 @@ public class WeekServiceImpl implements WeekService {
                     || (!dayUser1.getPossible() && !dayUser2.getPossible()))) {
 
                 System.out.println("one match: user1 " + dayUser1.getPossible() + ", " + dayUser1.getDayDate() + " and user2: " + dayUser2.getPossible() + ", " + dayUser2.getDayDate());
-                solveConflict(weekNumber, dayUser1, dayUser2);
+                solveConflict(dayUser1, dayUser2);
             }
 
 
@@ -168,16 +168,18 @@ public class WeekServiceImpl implements WeekService {
 
 
     //TODO: retrieve data from same week, days already set.
-    public void solveConflict(int weekNumber, Day dayUser1, Day dayUser2) {
+    public void solveConflict(Day dayUser1, Day dayUser2) {
         int count1 = 0;
         int count2 = 0;
 
 
-        //TODO: take data from last 7 days.
+        //TODO: take data from last 7 days. Make this a separate method.
 
         Date dateUser1 = dayUser1.getDayDate();
 
         Calendar cal = Calendar.getInstance();
+
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             cal.setTime(sdf.parse(dateUser1.toString()));
@@ -185,19 +187,24 @@ public class WeekServiceImpl implements WeekService {
             e.printStackTrace();
         }
 
+
         cal.add(Calendar.DAY_OF_MONTH, -7);
-        String date7DaysBefore = sdf.format(cal.getTime());
+        Date date7DaysBefore = cal.getTime();
 
         System.out.println(date7DaysBefore);
 
-       // List<Day> activities    FromLast7days =
+        List<Day> activitiesFromLast7days = weekRepository.activitiesFromLast7days(date7DaysBefore,dateUser1);
+
+        for(Day day: activitiesFromLast7days){
+            System.out.println(day);
+        }
 
 //TODO: activitiesFromLast7days from repository
 
                 // Predicate<String> d = day -> day.endsWith("GREEN");
                 //  Predicate<String> i =  dayId -> dayId.endsWith("1");
-                List < Day > user1WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 1);
-        List<Day> user2WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 2);
+       //         List < Day > user1WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 1);
+     //   List<Day> user2WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 2);
         //String dayHL = Long.toString(dayUser1.getDayId());
 
 

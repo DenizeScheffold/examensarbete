@@ -2,7 +2,7 @@ package se.denize.examensarbete.model;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "days")
