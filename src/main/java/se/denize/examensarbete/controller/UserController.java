@@ -34,29 +34,9 @@ public class UserController {
         return userService.deleteUser(userId);
    }
 
-
    @PatchMapping("/api/editUser/{userId}")
     private ResponseEntity<User> editUser(@RequestBody User user, @PathVariable("userId")long userId){
         return userService.editUser(user,userId);
    }
-
-   /*
-    @GetMapping("/api/weekPage")
-    public String getWeek(Model model){
-        model.addAttribute("week",userRepository.findAll());
-        return "weekPage";
-    }
-
-
-    @GetMapping("/ws/user")
-    public ResponseEntity<List<User>> getAllUsers(){
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
-    }
-
-    @PostMapping("/ws/addUser")
-    public ResponseEntity<User> saveUser(@RequestBody User user){
-        return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
-    }
-     */
 
 }

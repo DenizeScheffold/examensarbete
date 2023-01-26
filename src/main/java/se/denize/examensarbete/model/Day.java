@@ -13,16 +13,16 @@ public class Day {
     @Column(name = "dayid", nullable = false)
     private Long dayId;
 
-    @Column (name = "week_number")
+    @Column(name = "week_number")
     private Integer weekNumber;
 
-    @Column(name="userid")
+    @Column(name = "userid")
     private Long userId;
     @Temporal(TemporalType.DATE)
     @Column(name = "date")
     private Date dayDate;
 
-    @Column(name= "activity")
+    @Column(name = "activity")
     private Integer activity;
 
     @Column(name = "possible")

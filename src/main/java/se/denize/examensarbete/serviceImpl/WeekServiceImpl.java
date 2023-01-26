@@ -217,17 +217,17 @@ public class WeekServiceImpl implements WeekService {
         }
         System.out.println("user 1 count: " + count1 + " user 2 count: " + count2);
 
-        if(count1<count2){
+        if (count1 < count2) {
             System.out.println("User2 has more activities. Set false on Possible");
             dayUser1.setPossible(true);
             dayUser2.setPossible(false);
-        }else {
+        } else {
             dayUser2.setPossible(true);
             dayUser1.setPossible(false);
         }
 
-        editDay(dayUser1,dayUser1.getDayId());
-        editDay(dayUser2,dayUser2.getDayId());
+        editDay(dayUser1, dayUser1.getDayId());
+        editDay(dayUser2, dayUser2.getDayId());
     }
 
 }

@@ -10,11 +10,6 @@ public class CalculatePlans {
     private List<Day> daysForUser1;
     private List<Day> daysForUser2;
 
-    public CalculatePlans(List<Day> daysForUser1, List<Day> daysForUser2) {
-        this.daysForUser1 = daysForUser1;
-        this.daysForUser2 = daysForUser2;
-    }
-
     public CalculatePlans() {
     }
 
@@ -37,4 +32,4 @@ public class CalculatePlans {
     }
 
 
-    }
+}
