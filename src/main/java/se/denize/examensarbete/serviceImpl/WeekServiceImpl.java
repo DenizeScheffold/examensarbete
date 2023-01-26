@@ -172,29 +172,7 @@ public class WeekServiceImpl implements WeekService {
         int count1 = 0;
         int count2 = 0;
 
-        Date dateUser1 = dayUser1.getDayDate();
-
-        Calendar cal = Calendar.getInstance();
-
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            cal.setTime(sdf.parse(dateUser1.toString()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        cal.add(Calendar.DAY_OF_MONTH, -7);
-        Date date7DaysBefore = cal.getTime();
-
-        System.out.println(date7DaysBefore);
-
-        List<Day> activitiesFromLast7days = weekRepository.activitiesFromLast7days(date7DaysBefore, dateUser1);
-
-        for (Day day : activitiesFromLast7days) {
-            System.out.println(day);
-        }
+        List<Day>activitiesFromLast7days = getLast7Days(dayUser1);
 
         Predicate<Long> d = userId -> userId == 1;
         Iterator<Day> days = activitiesFromLast7days.iterator();
@@ -230,4 +208,31 @@ public class WeekServiceImpl implements WeekService {
         editDay(dayUser2, dayUser2.getDayId());
     }
 
+    public List<Day> getLast7Days(Day dayUser1){
+
+        Date dateUser1 = dayUser1.getDayDate();
+
+        Calendar cal = Calendar.getInstance();
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            cal.setTime(sdf.parse(dateUser1.toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        cal.add(Calendar.DAY_OF_MONTH, -7);
+        Date date7DaysBefore = cal.getTime();
+
+        System.out.println(date7DaysBefore);
+
+        List<Day> activitiesFromLast7days = weekRepository.activitiesFromLast7days(date7DaysBefore, dateUser1);
+
+        for (Day day : activitiesFromLast7days) {
+            System.out.println(day);
+        }
+        return activitiesFromLast7days;
+    }
 }
