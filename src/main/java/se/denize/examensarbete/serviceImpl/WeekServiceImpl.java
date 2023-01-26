@@ -192,7 +192,7 @@ public class WeekServiceImpl implements WeekService {
 
        // List<Day> activities    FromLast7days =
 
-
+//TODO: activitiesFromLast7days from repository
 
                 // Predicate<String> d = day -> day.endsWith("GREEN");
                 //  Predicate<String> i =  dayId -> dayId.endsWith("1");

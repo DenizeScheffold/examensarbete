@@ -2,6 +2,7 @@ package se.denize.examensarbete.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import se.denize.examensarbete.model.Day;
 
@@ -24,21 +25,10 @@ public interface WeekRepository extends JpaRepository<Day, Long> {
     //@Query(value = "SELECT d FROM Day d WHERE d.weekNumber = ?1 AND d.date = ?2")
     //List<Day> getOneDay(int weekNumber, Date date);
 
-    //@Query(value = "SELECT d FROM Day d WHERE d.date BETWEEN d.date LIKE ?1 AND d.date LIKE ?2")
-    // @Query("select a from Article a where a.creationDateTime <= :creationDateTime")
-    //    List<Article> findAllWithCreationDateTimeBefore(
-    //      @Param("creationDateTime") Date creationDateTime);
-    //List<Day> activitiesFromLast7days(String date7DaysBefore, String date);
+  //  @Query(value = "SELECT d FROM Day d WHERE d.date BETWEEN d.date = ?1 AND d.date = ?2")
+   // List<Day> activitiesFromLast7days(Date date7DaysBefore, Date date);
+
+    @Query(value = "SELECT d from Day d where d.dayDate BETWEEN :startDate AND :endDate")
+    List<Day> activitiesFromLast7days(@Param("startDate")Date date7DaysBefore, @Param("endDate")Date date);
 }
 
-
-
-/*
-Date myDate1 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-04-11");
-Date myDate2 = new SimpleDateFormat("yyyy-MM-dd").parse("2022-05-11");
-
-tutorials = tutorialRepository.findByDateBetween(myDate1, myDate2);
-show(tutorials);
-
-
- */
