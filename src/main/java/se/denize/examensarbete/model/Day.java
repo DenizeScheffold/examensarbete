@@ -18,9 +18,9 @@ public class Day {
 
     @Column(name="userid")
     private Long userId;
-
+    @Temporal(TemporalType.DATE)
     @Column(name = "date")
-    private String date;
+    private Date dayDate;
 
     @Column(name= "activity")
     private Integer activity;
@@ -29,10 +29,10 @@ public class Day {
     private Boolean possible;
 
 
-    public Day(Integer weekNumber, Long userId, String date, Integer activity, Boolean possible) {
+    public Day(Integer weekNumber, Long userId, Date dayDate, Integer activity, Boolean possible) {
         this.weekNumber = weekNumber;
         this.userId = userId;
-        this.date = date;
+        this.dayDate = dayDate;
         this.activity = activity;
         this.possible = possible;
     }
@@ -60,12 +60,12 @@ public class Day {
         this.userId = userId;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDayDate() {
+        return dayDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDayDate(Date dayDate) {
+        this.dayDate = dayDate;
     }
 
     public Integer getActivity() {
@@ -90,7 +90,7 @@ public class Day {
                 "dayId=" + dayId +
                 ", weekNumber=" + weekNumber +
                 ", userId=" + userId +
-                ", date='" + date + '\'' +
+                ", date='" + dayDate + '\'' +
                 ", activity=" + activity +
                 ", possible=" + possible +
                 '}';

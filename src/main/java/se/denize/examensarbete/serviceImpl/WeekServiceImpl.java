@@ -9,6 +9,7 @@ import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.repository.WeekRepository;
 import se.denize.examensarbete.service.WeekService;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.text.ParseException;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 @Service
 public class WeekServiceImpl implements WeekService {
@@ -37,7 +37,7 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
-            weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDate(), day.getActivity(), day.getPossible()));
+            weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
             return new ResponseEntity<>(day, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -48,7 +48,7 @@ public class WeekServiceImpl implements WeekService {
 
         for (Day day : days) {
             try {
-                weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDate(), day.getActivity(), day.getPossible()));
+                weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -87,8 +87,8 @@ public class WeekServiceImpl implements WeekService {
         if (Objects.nonNull(day.getWeekNumber()))
             dayInDB.setWeekNumber(day.getWeekNumber());
 
-        if (Objects.nonNull(day.getDate()))
-            dayInDB.setDate(day.getDate());
+        if (Objects.nonNull(day.getDayDate()))
+            dayInDB.setDayDate(day.getDayDate());
 
         if (Objects.nonNull(day.getActivity()))
             dayInDB.setActivity(day.getActivity());
@@ -148,17 +148,17 @@ public class WeekServiceImpl implements WeekService {
 
         Iterator<Day> user1 = calculatePlans.getDaysForUser1().iterator();
         Iterator<Day> user2 = calculatePlans.getDaysForUser2().iterator();
-        //  Predicate<Boolean> g = day -> day.booleanValue();
-        //Predicate<String> r = day -> day.endsWith("RED");
+
 
         while (user1.hasNext()) {
             Day dayUser1 = user1.next();
             Day dayUser2 = user2.next();
+
             //check if there is conflicts. So if both has boolean Possible == true?
             if ((dayUser1.getPossible() && dayUser2.getPossible()
                     || (!dayUser1.getPossible() && !dayUser2.getPossible()))) {
 
-                System.out.println("one match: user1 " + dayUser1.getPossible() + ", " + dayUser1.getDate() + " and user2: " + dayUser2.getPossible() + ", " + dayUser2.getDate());
+                System.out.println("one match: user1 " + dayUser1.getPossible() + ", " + dayUser1.getDayDate() + " and user2: " + dayUser2.getPossible() + ", " + dayUser2.getDayDate());
                 solveConflict(weekNumber, dayUser1, dayUser2);
             }
 
@@ -175,20 +175,24 @@ public class WeekServiceImpl implements WeekService {
 
         //TODO: take data from last 7 days.
 
-        String dateUser1 = dayUser1.getDate();
+        Date dateUser1 = dayUser1.getDayDate();
 
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            cal.setTime(sdf.parse(dateUser1));
+            cal.setTime(sdf.parse(dateUser1.toString()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         cal.add(Calendar.DAY_OF_MONTH, -7);
-        String daysBefore = sdf.format(cal.getTime());
+        String date7DaysBefore = sdf.format(cal.getTime());
 
-        System.out.println(daysBefore);
+        System.out.println(date7DaysBefore);
+
+       // List<Day> activities    FromLast7days =
+
+
 
                 // Predicate<String> d = day -> day.endsWith("GREEN");
                 //  Predicate<String> i =  dayId -> dayId.endsWith("1");

@@ -5,6 +5,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 
+import java.sql.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -21,7 +23,7 @@ class ExamensarbeteApplicationTests {
 	}
 	@Test
 	void dayCanBeCreated(){
-		Day day = new Day(1202301101L, 2L, "MONDAY-RED", 1L);
+		Day day = new Day(2,1L, Date.valueOf("2023-01-13"),2,false);
 		assertNotNull(day);
 	}
 
