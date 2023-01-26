@@ -9,6 +9,11 @@ import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.repository.WeekRepository;
 import se.denize.examensarbete.service.WeekService;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.text.ParseException;
+
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -128,7 +133,7 @@ public class WeekServiceImpl implements WeekService {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         calculatePlans.setDaysForUser2(userWeek);
-        //comparePlans(weekNumber);
+        comparePlans(weekNumber);
         return new ResponseEntity<>(userWeek, HttpStatus.OK);
     }
 
@@ -167,11 +172,29 @@ public class WeekServiceImpl implements WeekService {
         int count1 = 0;
         int count2 = 0;
 
-       // Predicate<String> d = day -> day.endsWith("GREEN");
-      //  Predicate<String> i =  dayId -> dayId.endsWith("1");
-        List<Day> user1WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 1);
+
+        //TODO: take data from last 7 days.
+
+        String dateUser1 = dayUser1.getDate();
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            cal.setTime(sdf.parse(dateUser1));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        cal.add(Calendar.DAY_OF_MONTH, -7);
+        String daysBefore = sdf.format(cal.getTime());
+
+        System.out.println(daysBefore);
+
+                // Predicate<String> d = day -> day.endsWith("GREEN");
+                //  Predicate<String> i =  dayId -> dayId.endsWith("1");
+                List < Day > user1WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 1);
         List<Day> user2WeekFromDB = weekRepository.getWeekBeforeFromDB(weekNumber - 1, 2);
-        String dayHL = Long.toString(dayUser1.getDayId());
+        //String dayHL = Long.toString(dayUser1.getDayId());
 
 
         //TODO: see if user already has activity the same day  //get the activity from hämta, the same day
@@ -187,7 +210,7 @@ public class WeekServiceImpl implements WeekService {
         }
          */
 
-
+/*
         Iterator<Day> user1 = user1WeekFromDB.iterator();
         Iterator<Day> user2 = user2WeekFromDB.iterator();
 
@@ -207,7 +230,7 @@ public class WeekServiceImpl implements WeekService {
 
         if (count1 >= count2) {
             System.out.println("User1 has the most number of activities : " + count1);
-                    dayUser1.setPlanDay("RED");
+            dayUser1.setPlanDay("RED");
             dayUser2.setPlanDay("GREEN");
             // saveToCommonPlan();
         } else {
@@ -217,9 +240,9 @@ public class WeekServiceImpl implements WeekService {
         }
         //TODO: take in the same week´s days that are already set.
 
+
+
+ */
     }
-
-
-
 
 }
