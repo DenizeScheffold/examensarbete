@@ -2,14 +2,12 @@ package se.denize.examensarbete.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.service.WeekService;
 
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api")
@@ -26,7 +24,6 @@ public class WeekController {
     @PostMapping("/setPlan")
     public ResponseEntity<Day> setPlan(@RequestBody Day day) {
         return weekService.savePlan(day);
-        //  weekService.comparePlans((new User("Stina@gmail.com", 2L, List.of("MONDAY-RED", "MONDAY-GREEN"))), (new User("Rut@hotmail.com", 1L, List.of("MONDAY-RED", "MONDAY-GREEN"))));
     }
 
     @PostMapping("/setPlans")
@@ -53,26 +50,14 @@ public class WeekController {
     private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") int weekNumber) {
         return weekService.getFullWeek(weekNumber);
     }
-/*
-    @GetMapping("api/getUserFullWeek/{weekNumber}/{userId}")
-    private List<Day> getUserFullWeek(@PathVariable("weekNumber") long weekNumber, @PathVariable("userId") long userId) {
-       return weekService.getUserFullWeek(weekNumber, userId);
-    }
-
- */
 
     @GetMapping("/getPlanForUser1/{weekNumber}")
     private ResponseEntity<List<Day>> getUser1FullWeek(@PathVariable("weekNumber") int weekNumber) {
         return weekService.getUser1FullWeek(weekNumber, 1);
-        //calculatePlansService.setDaysForUser1(daysForUser1);
-
-
     }
 
     @GetMapping("getPlanForUser2/{weekNumber}")
     private ResponseEntity<List<Day>> getUser2FullWeek(@PathVariable("weekNumber") int weekNumber) {
-        //List<Day> daysForUser2 = weekService.getUser2FullWeek(weekNumber, 2);
-        //calculatePlansService.setDaysForUser2(daysForUser2);
         return weekService.getUser2FullWeek(weekNumber, 2);
     }
 
