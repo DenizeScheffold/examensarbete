@@ -19,6 +19,7 @@ create database examensarbete;
 
 
 To run frontend: 
+https://github.com/DenizeScheffold/frontend-examensarbete
 
 To login: 
 
