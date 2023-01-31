@@ -1,19 +1,7 @@
 package se.denize.examensarbete;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import se.denize.examensarbete.authorities.UserRoles;
-import se.denize.examensarbete.configurations.AppPasswordConfig;
-import se.denize.examensarbete.model.Day;
-import se.denize.examensarbete.model.User;
-import se.denize.examensarbete.repository.UserRepository;
-import se.denize.examensarbete.repository.WeekRepository;
 
 @SpringBootApplication
 public class ExamensarbeteApplication {

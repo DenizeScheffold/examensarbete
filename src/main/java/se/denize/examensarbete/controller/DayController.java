@@ -4,20 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.Day;
-import se.denize.examensarbete.service.WeekService;
+import se.denize.examensarbete.service.DayService;
 
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class WeekController {
+public class DayController {
 
-    private final WeekService weekService;
+    private final DayService weekService;
 
     @Autowired
-    public WeekController(WeekService weekService) {
-        this.weekService = weekService;
+    public DayController(DayService dayService) {
+        this.weekService = dayService;
     }
 
 

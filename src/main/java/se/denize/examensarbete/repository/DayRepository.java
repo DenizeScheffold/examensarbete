@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface WeekRepository extends JpaRepository<Day, Long> {
+public interface DayRepository extends JpaRepository<Day, Long> {
 
 
     @Query(value = "SELECT d FROM Day d WHERE d.weekNumber = ?1")

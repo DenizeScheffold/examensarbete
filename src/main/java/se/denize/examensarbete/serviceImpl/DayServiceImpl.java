@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import se.denize.examensarbete.model.CalculatePlans;
 import se.denize.examensarbete.model.Day;
-import se.denize.examensarbete.repository.WeekRepository;
-import se.denize.examensarbete.service.WeekService;
+import se.denize.examensarbete.repository.DayRepository;
+import se.denize.examensarbete.service.DayService;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -22,23 +22,23 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 @Service
-public class WeekServiceImpl implements WeekService {
+public class DayServiceImpl implements DayService {
 
 
     //TODO: see if this is convention?
     private final CalculatePlans calculatePlans;
-    private final WeekRepository weekRepository;
+    private final DayRepository dayRepository;
 
     @Autowired
-    public WeekServiceImpl(WeekRepository weekRepository) {
-        this.weekRepository = weekRepository;
+    public DayServiceImpl(DayRepository weekRepository) {
+        this.dayRepository = weekRepository;
         calculatePlans = new CalculatePlans();
     }
 
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
-            weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
+            dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
             return new ResponseEntity<>(day, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -49,7 +49,7 @@ public class WeekServiceImpl implements WeekService {
 
         for (Day day : days) {
             try {
-                weekRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
+                dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -60,7 +60,7 @@ public class WeekServiceImpl implements WeekService {
 
     @Override
     public ResponseEntity<Day> getPlanDays() {
-        List<Day> userPlanDays = new ArrayList<>(weekRepository.findAll());
+        List<Day> userPlanDays = new ArrayList<>(dayRepository.findAll());
 
         if (userPlanDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -71,7 +71,7 @@ public class WeekServiceImpl implements WeekService {
     @Override
     public ResponseEntity<Day> deleteByDayId(long dayId) {
         try {
-            weekRepository.deleteById(dayId);
+            dayRepository.deleteById(dayId);
             return new ResponseEntity("Item deleted", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("Item not found: " + e, HttpStatus.NOT_FOUND);
@@ -80,7 +80,7 @@ public class WeekServiceImpl implements WeekService {
 
     @Override
     public ResponseEntity<Day> editDay(Day day, long dayId) {
-        Day dayInDB = weekRepository.findById(dayId).get();
+        Day dayInDB = dayRepository.findById(dayId).get();
 
         if (Objects.nonNull(day.getUserId()))
             dayInDB.setUserId(day.getUserId());
@@ -97,13 +97,13 @@ public class WeekServiceImpl implements WeekService {
         if (Objects.nonNull(day.getPossible()))
             dayInDB.setPossible(day.getPossible());
 
-        return new ResponseEntity(weekRepository.save(dayInDB), HttpStatus.OK);
+        return new ResponseEntity(dayRepository.save(dayInDB), HttpStatus.OK);
     }
 
 
     @Override
     public ResponseEntity<Day> getFullWeek(int weekNumber) {
-        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumber(weekNumber));
+        List<Day> userWeek = new ArrayList<>(dayRepository.findByWeekNumber(weekNumber));
 
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -114,7 +114,7 @@ public class WeekServiceImpl implements WeekService {
     //TODO: start calculation when both weeks are submitted. Now user 1 has to submit before user2
     @Override
     public ResponseEntity<List<Day>> getUser1FullWeek(int weekNumber, long userId) {
-        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
+        List<Day> userWeek = new ArrayList<>(dayRepository.findByWeekNumberAndUser(weekNumber, userId));
 
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -129,7 +129,7 @@ public class WeekServiceImpl implements WeekService {
 
     @Override
     public ResponseEntity<List<Day>> getUser2FullWeek(int weekNumber, long userId) {
-        List<Day> userWeek = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
+        List<Day> userWeek = new ArrayList<>(dayRepository.findByWeekNumberAndUser(weekNumber, userId));
         if (userWeek.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
@@ -140,7 +140,7 @@ public class WeekServiceImpl implements WeekService {
 
     @Override
     public List<Day> getWeekBeforeFromDB(int weekNumber, long userId) {
-        List<Day> userWeekDB = new ArrayList<>(weekRepository.findByWeekNumberAndUser(weekNumber, userId));
+        List<Day> userWeekDB = new ArrayList<>(dayRepository.findByWeekNumberAndUser(weekNumber, userId));
         return userWeekDB;
     }
 
@@ -228,7 +228,7 @@ public class WeekServiceImpl implements WeekService {
 
         System.out.println(date7DaysBefore);
 
-        List<Day> activitiesFromLast7days = weekRepository.activitiesFromLast7days(date7DaysBefore, dateUser1);
+        List<Day> activitiesFromLast7days = dayRepository.activitiesFromLast7days(date7DaysBefore, dateUser1);
 
         for (Day day : activitiesFromLast7days) {
             System.out.println(day);
