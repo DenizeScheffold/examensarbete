@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 @Configuration
@@ -29,7 +30,7 @@ public class AppSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/error", "/login", "/api/**", "/rest/**", "localhost:8080/api/editDay/15").permitAll()
+                .requestMatchers("/", "/error", "/login", "/api/**", "/rest/**", "localhost:8080/api/editDay/15", "/static/**").permitAll()
                 .requestMatchers("/adminPage").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -37,9 +38,21 @@ public class AppSecurityConfig {
                 .and()
                 .authenticationProvider(authenticationOverride());    //Tell Spring Security to use our implementation
 
-        return http.build();
+        http.cors().configurationSource(request -> {
+            CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+            corsConfiguration.addAllowedMethod("DELETE");
+            corsConfiguration.addAllowedMethod("POST");
+            corsConfiguration.addAllowedMethod("GET");
+            corsConfiguration.addAllowedMethod("PATCH");
+            return corsConfiguration;
 
+        });
+
+
+        return http.build();
     }
+
+
 
 
     public DaoAuthenticationProvider authenticationOverride() {
