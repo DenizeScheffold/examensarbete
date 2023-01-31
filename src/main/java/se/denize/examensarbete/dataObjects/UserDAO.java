@@ -11,12 +11,12 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Component
-public class UserModelDAO implements IUserModelDAO<User>{
+public class UserDAO implements IUserDAO<User> {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserModelDAO(UserRepository userRepository) {
+    public UserDAO(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

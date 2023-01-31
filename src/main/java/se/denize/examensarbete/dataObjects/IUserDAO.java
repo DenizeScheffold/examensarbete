@@ -6,7 +6,7 @@ import se.denize.examensarbete.model.User;
 import java.util.Collection;
 import java.util.Optional;
 
-public interface IUserModelDAO<T> {
+public interface IUserDAO<T> {
 
     Collection<User> findAllUsers();
     User save(User user);
