@@ -2,7 +2,6 @@ package se.denize.examensarbete;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import se.denize.examensarbete.configurations.AppPasswordConfig;
 import se.denize.examensarbete.dataObjects.UserDTO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
-import se.denize.examensarbete.serviceImpl.UserMappingService;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 
