@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.configurations.AppPasswordConfig;
+import se.denize.examensarbete.dataObjects.UserDTO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
+import se.denize.examensarbete.serviceImpl.UserMappingService;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 
@@ -30,9 +32,12 @@ public class TestRestController {
         this.userService = userService;
     }
 
+
+
     @GetMapping("/find/{username}")
-    public UserDetails findByUsername(@PathVariable String username){
-        return userService.loadUserByUsername(username);
+    public UserDTO findByUsername(@PathVariable String username){
+
+       return new UserDTO(userService.loadUserByUsername(username));
     }
 
     @GetMapping("/saveRut")
@@ -74,5 +79,7 @@ public class TestRestController {
     public String testUnknownPermission(){
         return "this should never work";
     }
+
+
 
 }

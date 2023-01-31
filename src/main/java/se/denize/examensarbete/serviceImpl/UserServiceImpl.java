@@ -1,5 +1,6 @@
 package se.denize.examensarbete.serviceImpl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDAO userDao;
 
-    @Autowired
-    public UserServiceImpl(UserDAO userModelDAO) {
-        this.userDao = userModelDAO;
-    }
 
 
     @Override
@@ -72,7 +71,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userDao.loadUserByUsername(username);
     }
 }
