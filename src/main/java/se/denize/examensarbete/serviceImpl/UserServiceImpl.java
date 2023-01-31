@@ -1,10 +1,8 @@
 package se.denize.examensarbete.serviceImpl;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -13,9 +11,11 @@ import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 
 @Service
@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userDao.loadUserByUsername(username);
     }
+
 }
 
 

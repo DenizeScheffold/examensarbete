@@ -45,4 +45,8 @@ public class UserDAO implements IUserDAO<User> {
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
     }
+
+    public User findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
 }
