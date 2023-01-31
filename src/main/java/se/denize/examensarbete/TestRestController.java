@@ -31,10 +31,9 @@ public class TestRestController {
     }
 
 
-
+//Only sends username and role. Because of the DTO.
     @GetMapping("/find/{username}")
     public UserDTO findByUsername(@PathVariable String username){
-
        return new UserDTO(userService.loadUserByUsername(username));
     }
 

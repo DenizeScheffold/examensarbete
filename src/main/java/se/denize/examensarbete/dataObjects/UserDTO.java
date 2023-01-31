@@ -1,11 +1,12 @@
 package se.denize.examensarbete.dataObjects;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import se.denize.examensarbete.model.User;
 
 import java.util.Collection;
 
+
+//can be made into a record.
 public class UserDTO {
     private final String username;
     private final Collection<? extends GrantedAuthority> authorities;
