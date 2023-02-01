@@ -3,12 +3,22 @@ package se.denize.examensarbete.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import se.denize.examensarbete.authorities.UserRoles;
 
 import java.util.Collection;
 import java.util.List;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -30,7 +40,11 @@ public class User implements UserDetails {
     @NotEmpty
     @Size(min = 6, max = 200)
     private String password;
-    private List<String> authorities;
+    @Enumerated(EnumType.STRING)
+    private UserRoles role;
+
+
+
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
@@ -42,15 +56,14 @@ public class User implements UserDetails {
         this.otherParentId = otherParentId;
     }
 
-    public User() {
-    }
 
-    public User(String email, long otherParentId, String username, String password, List<String> authorities, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled) {
+
+    public User(String email, long otherParentId, String username, String password,  UserRoles role, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled) {
         this.email = email;
         this.otherParentId = otherParentId;
         this.username = username;
         this.password = password;
-        this.authorities = authorities;
+        this.role = role;
         this.isAccountNonExpired = isAccountNonExpired;
         this.isAccountNonLocked = isAccountNonLocked;
         this.isCredentialsNonExpired = isCredentialsNonExpired;
@@ -90,8 +103,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //TODO - convert
-        return null;
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
@@ -115,19 +127,4 @@ public class User implements UserDetails {
     }
 
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", email='" + email + '\'' +
-                ", otherParentId=" + otherParentId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", authorities=" + authorities +
-                ", isAccountNonExpired=" + isAccountNonExpired +
-                ", isAccountNonLocked=" + isAccountNonLocked +
-                ", isCredentialsNonExpired=" + isCredentialsNonExpired +
-                ", isEnabled=" + isEnabled +
-                '}';
-    }
 }

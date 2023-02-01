@@ -11,7 +11,6 @@ public class UserDTO {
     private final String username;
     private final Collection<? extends GrantedAuthority> authorities;
 
-
     public UserDTO(User user) {
         this.username = user.getUsername();
         this.authorities = user.getAuthorities();

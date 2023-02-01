@@ -30,7 +30,10 @@ public class AppSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/error", "/login", "/api/**", "/rest/**", "localhost:8080/api/editDay/15", "/static/**").permitAll()
+                .requestMatchers("/", "/error", "/login",
+                        "/api/**", "/rest/**")
+                     //   , "localhost:8080/api/editDay/15", "/static/**")
+                .permitAll()
                 .requestMatchers("/adminPage").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

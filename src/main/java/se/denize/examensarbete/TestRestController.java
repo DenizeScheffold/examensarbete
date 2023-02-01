@@ -45,7 +45,7 @@ public class TestRestController {
                 2L,
                 "rutan",
                 bcrypt.bCryptPasswordEncoder().encode("123"),
-                UserRoles.ADMIN.getGrantedAuthorities(),
+                UserRoles.ADMIN,
                 true,
                 true,
                 true,
