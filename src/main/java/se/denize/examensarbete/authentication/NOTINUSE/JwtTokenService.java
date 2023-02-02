@@ -1,5 +1,5 @@
-package se.denize.examensarbete.authentication;
-
+package se.denize.examensarbete.authentication.NOTINUSE;
+/*
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.stream.Collectors;
@@ -19,6 +19,7 @@ public class JwtTokenService {
     public JwtTokenService(JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
     }
+
 
     public String generateToken(Authentication authentication) {
 
@@ -40,5 +41,8 @@ public class JwtTokenService {
                 .encode(JwtEncoderParameters.from(claims))
                 .getTokenValue();
     }
+
+
 }
 
+        */

@@ -1,6 +1,6 @@
-package se.denize.examensarbete.authentication;
+package se.denize.examensarbete.authentication.NOTINUSE;
 
-
+/*
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -19,3 +19,4 @@ public class TokenController {
         return (CsrfToken) request.getAttribute("_csrf");
     }
 }
+*/

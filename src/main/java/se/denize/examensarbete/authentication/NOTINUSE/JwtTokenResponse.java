@@ -1,5 +1,5 @@
 package se.denize.examensarbete.authentication.NOTINUSE;
-
+/*
 import java.io.Serializable;
 
     public class JwtTokenResponse implements Serializable {
@@ -17,3 +17,6 @@ import java.io.Serializable;
         }
     }
 
+
+
+ */

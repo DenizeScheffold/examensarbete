@@ -1,4 +1,4 @@
-package se.denize.examensarbete.configurations;
+package se.denize.examensarbete.authentication.NOTINUSE;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
