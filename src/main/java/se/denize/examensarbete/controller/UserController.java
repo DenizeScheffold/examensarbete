@@ -1,5 +1,6 @@
 package se.denize.examensarbete.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -27,10 +28,11 @@ public class UserController {
    }
 
 
-   //TODO: Not working in postman when Pre- or PostAuthorize is in use. error 500
+   //TODO: Not working in postman when Pre- or PostAuthorize or RolesAllowed is in use. error 500
     @GetMapping("api/getUser/{username}")
    // @PreAuthorize("hasRole('ADMIN') and #username == authentication.name")
     //@PostAuthorize("returnObject.username == 'Kattis'")
+    //@RolesAllowed({"ADMIN", "USER"})
     private User getUserByUsername(@PathVariable("username") String username)
     {return userService.loadUserByUsername(username);}
 

@@ -26,8 +26,8 @@ public class AppSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/error", "/login",
-                        "/api/**", "/rest/**", "/token/**")
+                .requestMatchers("/", "/error", "/login")
+                      //  "/api/**", "/rest/**", "/token/**")
                 //   , "localhost:8080/api/editDay/15", "/static/**")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
