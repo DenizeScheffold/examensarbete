@@ -1,6 +1,7 @@
 package se.denize.examensarbete.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.Day;
@@ -9,61 +10,62 @@ import se.denize.examensarbete.service.DayService;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api")
 public class DayController {
 
-    private final DayService weekService;
+    private final DayService dayService;
 
-    @Autowired
-    public DayController(DayService dayService) {
-        this.weekService = dayService;
+
+    @GetMapping("/user/{userId}/plan")
+    public List<Day> getPlanFromUser(@PathVariable("userId") long userId) {
+        return dayService.getPlanFromUser(userId);
     }
-
 
     @PostMapping("/setPlan")
     public ResponseEntity<Day> setPlan(@RequestBody Day day) {
-        return weekService.savePlan(day);
+        return dayService.savePlan(day);
     }
 
     @PostMapping("/setPlans")
     public ResponseEntity<List<Day>> setPlans(@RequestBody List<Day> days) {
-        return weekService.savePlans(days);
+        return dayService.savePlans(days);
     }
 
     @GetMapping("/getPlans")
     private ResponseEntity<Day> getAllPlanDays() {
-        return weekService.getPlanDays();
+        return dayService.getPlanDays();
     }
 
     @DeleteMapping("/removePlanByDayId/{dayId}")
     private ResponseEntity<Day> removePlanDayId(@PathVariable("dayId") long dayId) {
-        return weekService.deleteByDayId(dayId);
+        return dayService.deleteByDayId(dayId);
     }
 
     @PatchMapping("/editDay/{dayId}")
     private ResponseEntity<Day> editDay(@RequestBody Day day, @PathVariable long dayId) {
-        return weekService.editDay(day, dayId);
+        return dayService.editDay(day, dayId);
     }
 
     @GetMapping("/getFullWeek/{weekNumber}")
     private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") int weekNumber) {
-        return weekService.getFullWeek(weekNumber);
+        return dayService.getFullWeek(weekNumber);
     }
 
     @GetMapping("/getPlanForUser1/{weekNumber}")
     private ResponseEntity<List<Day>> getUser1FullWeek(@PathVariable("weekNumber") int weekNumber) {
-        return weekService.getUser1FullWeek(weekNumber, 1);
+        return dayService.getUser1FullWeek(weekNumber, 1);
     }
 
     @GetMapping("getPlanForUser2/{weekNumber}")
     private ResponseEntity<List<Day>> getUser2FullWeek(@PathVariable("weekNumber") int weekNumber) {
-        return weekService.getUser2FullWeek(weekNumber, 2);
+        return dayService.getUser2FullWeek(weekNumber, 2);
     }
 
     @GetMapping("/getWeekFromBefore/weekNumber/userId")
     private List<Day> getWeekFromBeforeDB(@PathVariable("weekNumber") int weekNumber, @PathVariable("userId") long userId) {
-        return weekService.getWeekBeforeFromDB(weekNumber, userId);
+        return dayService.getWeekBeforeFromDB(weekNumber, userId);
     }
 
 

@@ -9,7 +9,7 @@ import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
 
     private final UserServiceImpl userService;

@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserDAO userDao;
 
 
-
     @Override
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = new ArrayList<>(userDao.findAllUsers());

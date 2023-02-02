@@ -27,5 +27,6 @@ public interface DayService {
 
     List<Day> getWeekBeforeFromDB(int weekNumber, long userId);
 
+    List<Day> getPlanFromUser(long userId);
 
 }

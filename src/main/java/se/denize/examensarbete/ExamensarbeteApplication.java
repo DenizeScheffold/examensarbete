@@ -1,7 +1,13 @@
 package se.denize.examensarbete;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import se.denize.examensarbete.authorities.UserRoles;
+import se.denize.examensarbete.configurations.AppPasswordConfig;
+import se.denize.examensarbete.model.User;
+import se.denize.examensarbete.repository.UserRepository;
 
 @SpringBootApplication
 public class ExamensarbeteApplication {
@@ -24,8 +30,8 @@ public class ExamensarbeteApplication {
 }
 
  */
-/*
 
+/*
 
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
@@ -37,17 +43,17 @@ public class ExamensarbeteApplication {
                     2L,
                     "Stinis",
                     bcrypt.bCryptPasswordEncoder().encode("123456789"),
-                    UserRoles.ADMIN.getGrantedAuthorities(),
+                    UserRoles.ADMIN,
                     true,
                     true,
                     true,
                     true));
           repository.save(new User(
-                    "Rut@gmail.com",
+                    "Kattis@gmail.com",
                     1L,
-                    "Rutis",
+                    "Kattis",
                     bcrypt.bCryptPasswordEncoder().encode("123456789"),
-                    UserRoles.ADMIN.getGrantedAuthorities(),
+                    UserRoles.ADMIN,
                     true,
                     true,
                     true,
@@ -56,7 +62,9 @@ public class ExamensarbeteApplication {
     }
 
 
-            */
+
+
+ */
 
 
 /*

@@ -35,6 +35,12 @@ public class DayServiceImpl implements DayService {
         calculatePlans = new CalculatePlans();
     }
 
+
+    @Override
+    public List<Day> getPlanFromUser(long userId) {
+       return dayRepository.allDaysFromUser(userId);
+    }
+
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
@@ -172,7 +178,7 @@ public class DayServiceImpl implements DayService {
         int count1 = 0;
         int count2 = 0;
 
-        List<Day>activitiesFromLast7days = getLast7Days(dayUser1);
+        List<Day> activitiesFromLast7days = getLast7Days(dayUser1);
 
         Predicate<Long> d = userId -> userId == 1;
         Iterator<Day> days = activitiesFromLast7days.iterator();
@@ -208,7 +214,7 @@ public class DayServiceImpl implements DayService {
         editDay(dayUser2, dayUser2.getDayId());
     }
 
-    public List<Day> getLast7Days(Day dayUser1){
+    public List<Day> getLast7Days(Day dayUser1) {
 
         Date dateUser1 = dayUser1.getDayDate();
 

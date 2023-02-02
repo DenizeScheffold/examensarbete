@@ -1,5 +1,6 @@
 package se.denize.examensarbete.configurations;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
-
+/*
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -26,12 +27,14 @@ public class AppSecurityConfig {
         this.userServiceImpl = userServiceImpl;
     }
 
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/error", "/login",
-                        "/api/**", "/rest/**")
+                        "/api/**", "/rest/**", "/token/**")
                      //   , "localhost:8080/api/editDay/15", "/static/**")
                 .permitAll()
                 .requestMatchers("/adminPage").hasRole("ADMIN")
@@ -58,6 +61,7 @@ public class AppSecurityConfig {
 
 
 
+
     public DaoAuthenticationProvider authenticationOverride() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 
@@ -66,6 +70,8 @@ public class AppSecurityConfig {
 
         return provider;
     }
-}
+
+
+}*/
 
 
