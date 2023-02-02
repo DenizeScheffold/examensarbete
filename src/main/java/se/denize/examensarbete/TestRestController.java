@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.denize.examensarbete.authorities.UserRoles;
-import se.denize.examensarbete.authentication.NOTINUSE.AppPasswordConfig;
+import se.denize.examensarbete.configurations.AppPasswordConfig;
 import se.denize.examensarbete.dataObjects.UserDTO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;

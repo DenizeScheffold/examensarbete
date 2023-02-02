@@ -17,6 +17,7 @@ public interface UserService {
 
     ResponseEntity<User> editUser(User user, long userId);
 
+    User loadUserByUsername(String username);
 
 
 }

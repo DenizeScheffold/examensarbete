@@ -3,6 +3,7 @@ package se.denize.examensarbete.controller;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.service.DayService;
@@ -34,6 +35,7 @@ public class DayController {
     }
 
     @GetMapping("/getPlans")
+    @PreAuthorize("hasRole('ADMIN')")
     private ResponseEntity<Day> getAllPlanDays() {
         return dayService.getPlanDays();
     }

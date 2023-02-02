@@ -2,6 +2,8 @@ package se.denize.examensarbete.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.User;
@@ -24,7 +26,16 @@ public class UserController {
     return userService.getAllUsers();
    }
 
-   @PostMapping("/api/saveUser")
+
+   //TODO: Not working in postman when Pre- or PostAuthorize is in use. error 500
+    @GetMapping("api/getUser/{username}")
+   // @PreAuthorize("hasRole('ADMIN') and #username == authentication.name")
+    //@PostAuthorize("returnObject.username == 'Kattis'")
+    private User getUserByUsername(@PathVariable("username") String username)
+    {return userService.loadUserByUsername(username);}
+
+
+            @PostMapping("/api/saveUser")
     private ResponseEntity<User> saveUser(@RequestBody final User user){
         return userService.saveUser(user);
    }
