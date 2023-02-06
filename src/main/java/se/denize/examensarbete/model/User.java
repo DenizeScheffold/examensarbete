@@ -15,7 +15,7 @@ import se.denize.examensarbete.authorities.UserRoles;
 import java.util.Collection;
 import java.util.List;
 
-@Data
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
