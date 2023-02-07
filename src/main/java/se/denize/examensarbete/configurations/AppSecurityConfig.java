@@ -26,14 +26,12 @@ public class AppSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/error", "/login")
+                .requestMatchers("/", "/error", "/login", "/authenticate")
                       //  "/api/**", "/rest/**", "/token/**")
                 //   , "localhost:8080/api/editDay/15", "/static/**")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and()
-                .formLogin()
                 .and()
                 .authenticationProvider(authenticationOverride());    //Tell Spring Security to use our implementation
 
@@ -66,6 +64,7 @@ public class AppSecurityConfig {
     }
 
 
+    @Bean
     public DaoAuthenticationProvider authenticationOverride() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 
