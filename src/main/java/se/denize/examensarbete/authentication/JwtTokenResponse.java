@@ -1,4 +1,14 @@
 package se.denize.examensarbete.authentication;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record JwtTokenResponse(String token) {}
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class JwtTokenResponse {
+    private String token;
+}

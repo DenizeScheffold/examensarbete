@@ -38,7 +38,7 @@ public class UserController {
 
 
             @PostMapping("/api/saveUser")
-    private ResponseEntity<User> saveUser(@RequestBody final User user){
+    private ResponseEntity<User> saveUser(@RequestBody User user){
         return userService.saveUser(user);
    }
 
@@ -51,5 +51,6 @@ public class UserController {
     private ResponseEntity<User> editUser(@RequestBody User user, @PathVariable("userId")long userId){
         return userService.editUser(user,userId);
    }
+
 
 }

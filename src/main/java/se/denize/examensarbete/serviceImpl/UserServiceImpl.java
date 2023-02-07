@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import se.denize.examensarbete.configurations.AppPasswordConfig;
 import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.service.UserService;
@@ -23,7 +24,6 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDAO userDao;
-
 
     @Override
     public ResponseEntity<List<User>> getAllUsers() {

@@ -1,5 +1,6 @@
 package se.denize.examensarbete.authentication;
 
+        import lombok.RequiredArgsConstructor;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.ResponseEntity;
         import org.springframework.security.authentication.AuthenticationManager;
@@ -7,21 +8,26 @@ package se.denize.examensarbete.authentication;
         import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
         import org.springframework.web.bind.annotation.PostMapping;
         import org.springframework.web.bind.annotation.RequestBody;
+        import org.springframework.web.bind.annotation.RequestMapping;
         import org.springframework.web.bind.annotation.RestController;
+        import se.denize.examensarbete.model.User;
+        import se.denize.examensarbete.service.AuthService;
+
 
 @RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class JwtAuthenticationController {
 
     private final JwtTokenService tokenService;
 
     private final DaoAuthenticationProvider authenticationOverride;
+    private final AuthService authService;
 
-    @Autowired
-    public JwtAuthenticationController(JwtTokenService tokenService,
-                                     DaoAuthenticationProvider authenticationOverride) {
-        this.tokenService = tokenService;
-        this.authenticationOverride = authenticationOverride;
 
+    @PostMapping("/signup")
+    public void createUser(@RequestBody UserRequest userRequest){
+         authService.createUser(userRequest);
     }
 
     @PostMapping("/authenticate")

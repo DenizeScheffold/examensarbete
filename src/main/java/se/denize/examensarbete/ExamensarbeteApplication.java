@@ -1,7 +1,13 @@
 package se.denize.examensarbete;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import se.denize.examensarbete.authorities.UserRoles;
+import se.denize.examensarbete.configurations.AppPasswordConfig;
+import se.denize.examensarbete.model.User;
+import se.denize.examensarbete.repository.UserRepository;
 
 @SpringBootApplication
 public class ExamensarbeteApplication {
@@ -25,14 +31,14 @@ public class ExamensarbeteApplication {
 
  */
 
-/*
 
+ /*
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
         AppPasswordConfig bcrypt = new AppPasswordConfig();
         return (args) -> {
             // mockup data
-            repository.save(new User(
+           repository.save(new User(
                     "Stina@stinis.se",
                     2L,
                     "Stinis",
@@ -46,19 +52,22 @@ public class ExamensarbeteApplication {
                     "Kattis@gmail.com",
                     1L,
                     "Kattis",
-                    bcrypt.bCryptPasswordEncoder().encode("123456789"),
+                    bcrypt.bCryptPasswordEncoder().encode("abb"),
                     UserRoles.ADMIN,
                     true,
                     true,
                     true,
                     true));
         };
-    }
+
+      }
+  */
 
 
 
 
- */
+
+
 
 
 /*
