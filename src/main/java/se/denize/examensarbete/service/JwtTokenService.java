@@ -1,4 +1,4 @@
-package se.denize.examensarbete.authentication;
+package se.denize.examensarbete.service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;

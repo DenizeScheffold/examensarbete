@@ -1,4 +1,4 @@
-package se.denize.examensarbete.authentication;
+package se.denize.examensarbete.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,16 +1,17 @@
-package se.denize.examensarbete.authentication;
+package se.denize.examensarbete.controller;
 
         import lombok.RequiredArgsConstructor;
-        import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.ResponseEntity;
-        import org.springframework.security.authentication.AuthenticationManager;
         import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
         import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
         import org.springframework.web.bind.annotation.PostMapping;
         import org.springframework.web.bind.annotation.RequestBody;
         import org.springframework.web.bind.annotation.RequestMapping;
         import org.springframework.web.bind.annotation.RestController;
-        import se.denize.examensarbete.model.User;
+        import se.denize.examensarbete.request.JwtTokenRequest;
+        import se.denize.examensarbete.response.JwtTokenResponse;
+        import se.denize.examensarbete.service.JwtTokenService;
+        import se.denize.examensarbete.request.UserRequest;
         import se.denize.examensarbete.service.AuthService;
 
 

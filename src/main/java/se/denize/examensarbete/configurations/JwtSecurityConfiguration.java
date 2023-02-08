@@ -1,4 +1,4 @@
-package se.denize.examensarbete.authentication;
+package se.denize.examensarbete.configurations;
 
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.jwk.JWKSet;
