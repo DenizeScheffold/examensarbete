@@ -7,16 +7,18 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.service.DayService;
+import se.denize.examensarbete.serviceImpl.DayServiceImpl;
 
 
 import java.util.List;
 
-@RequiredArgsConstructor
+
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class DayController {
 
-    private final DayService dayService;
+    private final DayServiceImpl dayService;
 
 
     @GetMapping("/user/{userId}/plan")
