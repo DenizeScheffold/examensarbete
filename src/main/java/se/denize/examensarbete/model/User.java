@@ -34,6 +34,7 @@ public class User implements UserDetails {
     private long otherParentId;
 
     @NotEmpty
+    @Column(unique=true, name="username")
     @Size(min = 2, max = 40)
     private String username;
 

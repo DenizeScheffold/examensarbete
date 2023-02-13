@@ -24,5 +24,9 @@ public interface DayRepository extends JpaRepository<Day, Long> {
 
     @Query(value="SELECT d FROM Day d WHERE d.userId= ?1")
     List<Day>allDaysFromUser(long userId);
+
+    @Query(value="SELECT d FROM Day d WHERE d.possible IS NULL AND userId =?1")
+List<Day>findDaysWithoutResponse(long userId);
+    //TODO: have empty days in db to retrieve to FE and patch from there.
 }
 

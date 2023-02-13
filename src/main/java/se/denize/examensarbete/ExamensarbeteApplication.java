@@ -31,8 +31,8 @@ public class ExamensarbeteApplication {
 
  */
 
+/*
 
- /*
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
         AppPasswordConfig bcrypt = new AppPasswordConfig();
@@ -42,7 +42,7 @@ public class ExamensarbeteApplication {
                     "Stina@stinis.se",
                     2L,
                     "Stinis",
-                    bcrypt.bCryptPasswordEncoder().encode("123456789"),
+                    bcrypt.bCryptPasswordEncoder().encode("abb"),
                     UserRoles.ADMIN,
                     true,
                     true,
@@ -61,8 +61,8 @@ public class ExamensarbeteApplication {
         };
 
       }
-  */
 
+*/
 
 
 

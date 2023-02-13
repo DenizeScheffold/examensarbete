@@ -42,6 +42,11 @@ public class DayServiceImpl implements DayService {
     }
 
     @Override
+    public  List<Day>findDaysWithoutResponse(long userId){
+        return dayRepository.findDaysWithoutResponse(userId);
+    }
+
+    @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
             dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));

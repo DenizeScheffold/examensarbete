@@ -20,7 +20,10 @@ public class DayController {
 
     private final DayServiceImpl dayService;
 
-
+    @GetMapping("/getDaysNotSet/{userId}")
+    public  List<Day>findDaysWithoutResponse(@PathVariable("userId") long userId){
+        return dayService.findDaysWithoutResponse(userId);
+    }
     @GetMapping("/user/{userId}/plan")
     public List<Day> getPlanFromUser(@PathVariable("userId") long userId) {
         return dayService.getPlanFromUser(userId);
