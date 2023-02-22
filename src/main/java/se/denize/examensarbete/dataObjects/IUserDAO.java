@@ -14,7 +14,7 @@ public interface IUserDAO<T> {
 
     void deleteById(long userId);
 
-    Optional<User> findById(long userId);
+    User findUserByUsername(String username);
 
     UserDetails loadUserByUsername(String username);
 

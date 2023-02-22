@@ -26,10 +26,9 @@ public class UserController {
 
 
     //TODO: Not working in postman when Pre- or PostAuthorize or RolesAllowed is in use. error 500
+    @RolesAllowed({"ADMIN", "USER"})
     @GetMapping("api/getUser/{username}")
-    // @PreAuthorize("hasRole('ADMIN') and #username == authentication.name")
-    //@PostAuthorize("returnObject.username == 'Kattis'")
-    //@RolesAllowed({"ADMIN", "USER"})
+    //
     private User getUserByUsername(@PathVariable("username") String username) {
         return userService.loadUserByUsername(username);
     }
@@ -45,9 +44,9 @@ public class UserController {
         return userService.deleteUser(userId);
     }
 
-    @PatchMapping("/api/editUser/{userId}")
-    private ResponseEntity<User> editUser(@RequestBody User user, @PathVariable("userId") long userId) {
-        return userService.editUser(user, userId);
+    @PatchMapping("/api/editUser/{username}")
+    private ResponseEntity<User> editUser(@RequestBody User user, @PathVariable("username") String username ) {
+        return userService.editUser(user, username);
     }
 
 
