@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface DayRepository extends JpaRepository<Day, Long> {
 
+    @Query(value="SELECT d FROM Day d WHERE d.dayId= ?1")
+    Day findDayById(long dayId);
 
     @Query(value = "SELECT d FROM Day d WHERE d.weekNumber = ?1")
     List<Day> findByWeekNumber(int weekNumber);
@@ -25,7 +27,7 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value="SELECT d FROM Day d WHERE d.userId= ?1")
     List<Day>allDaysFromUser(long userId);
 
-    @Query(value="SELECT d FROM Day d WHERE d.possible IS NULL AND userId =?1")
+    @Query(value="SELECT d FROM Day d WHERE d.possible IS NULL AND d.userId =?1")
 List<Day>findDaysWithoutResponse(long userId);
     //TODO: have empty days in db to retrieve to FE and patch from there.
 }
