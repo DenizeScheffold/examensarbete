@@ -63,6 +63,11 @@ public class DayController {
         return dayService.findDaysReadyForProcessPrimaryUser(userId);
     }
 
+    @GetMapping("/getPlanForProcess/{userId}/{otherParentId}")
+    private ResponseEntity<List<Day>> findDaysReadyForProcessBothUser(@PathVariable("userId") long userId, @PathVariable("otherParentId") long otherParentId){
+        return dayService.findDaysReadyForProcessBothUser(userId, otherParentId);
+    }
+
     @GetMapping("/getPlanForProcessSecondaryUser/{userId}")
     private ResponseEntity<List<Day>> findDaysReadyForProcessSecondaryUser(@PathVariable("userId") long userId){
         User otherParent = userService.findOtherParent(userId);

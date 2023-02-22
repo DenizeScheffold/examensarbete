@@ -46,13 +46,27 @@ public class DayServiceImpl implements DayService {
         return dayRepository.findDaysWithoutResponse(userId, weekNumber);
     }
 
-    //TODO: is not working with same input of userId!!
+
+    public ResponseEntity<List<Day>>findDaysReadyForProcessBothUser(long userId, long otherParentId){
+        List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
+        List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(otherParentId));
+        calculatePlans.setDaysForUser1(primaryUserDays);
+        calculatePlans.setDaysForUser2(secondaryUserDays);
+        comparePlans();
+
+
+        if (primaryUserDays.isEmpty()&& secondaryUserDays.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity(primaryUserDays, HttpStatus.OK);
+
+    }
     @Override
     public ResponseEntity<List<Day>>findDaysReadyForProcessPrimaryUser(long userId){
         List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
-       // List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessSecondaryUser(userId));
-      //  calculatePlans.setDaysForUser1(primaryUserDays);
-        //calculatePlans.setDaysForUser2(secondaryUserDays);
+        //List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessSecondaryUser(userId));
+       calculatePlans.setDaysForUser1(primaryUserDays);
+
        // comparePlans();
 
         if (primaryUserDays.isEmpty())
@@ -66,6 +80,8 @@ public class DayServiceImpl implements DayService {
     @Override
     public ResponseEntity<List<Day>> findDaysReadyForProcessSecondaryUser(long userId) {
         List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
+        calculatePlans.setDaysForUser2(secondaryUserDays);
+        comparePlans();
         if (secondaryUserDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
