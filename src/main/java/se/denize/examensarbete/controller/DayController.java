@@ -63,9 +63,23 @@ public class DayController {
         return dayService.findDaysReadyForProcessPrimaryUser(userId);
     }
 
+    //THIS IS THE ONE that is working with calculation!!!
+    //TODO: debug
+    //TODO: is processed working?
+    //TODO: is possible changing?
     @GetMapping("/getPlanForProcess/{userId}/{otherParentId}")
     private ResponseEntity<List<Day>> findDaysReadyForProcessBothUser(@PathVariable("userId") long userId, @PathVariable("otherParentId") long otherParentId){
         return dayService.findDaysReadyForProcessBothUser(userId, otherParentId);
+    }
+
+    //THIS MIGHT ALSO WORK.
+    //TODO: debug
+    //TODO: is processed working?
+    //TODO: is possible changing?
+    @GetMapping("/getPlanForProcessUser/{userId}")
+    private ResponseEntity<List<Day>> TRYFORIMPOVEfindDaysReadyForProcessBothUser(@PathVariable("userId") long userId){
+        User otherParent = userService.findOtherParent(userId);
+        return dayService.findDaysReadyForProcessBothUser(userId, otherParent.getOtherParentId());
     }
 
     @GetMapping("/getPlanForProcessSecondaryUser/{userId}")
