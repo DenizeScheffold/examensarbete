@@ -7,7 +7,7 @@ import se.denize.examensarbete.model.User;
 
 import java.util.List;
 
-
+@Service
 public interface UserService {
     ResponseEntity<List<User>> getAllUsers();
 
@@ -15,7 +15,7 @@ public interface UserService {
 
     ResponseEntity<User> deleteUser(long userId);
 
-    ResponseEntity<User> editUser(User user, String username);
+    ResponseEntity<User> editUser(User user, long userId);
 
     User loadUserByUsername(String username);
 

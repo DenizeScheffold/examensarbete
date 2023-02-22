@@ -1,30 +1,29 @@
 package se.denize.examensarbete.serviceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import se.denize.examensarbete.configurations.AppPasswordConfig;
 import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDAO userDao;
-
-    @Autowired
-    public UserServiceImpl(UserDAO userDao) {
-        this.userDao = userDao;
-    }
 
     @Override
     public ResponseEntity<List<User>> getAllUsers() {
@@ -56,12 +55,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-
-
     @Override
-    public ResponseEntity<User> editUser(User user, String username) {
+    public ResponseEntity<User> editUser(User user, long userId) {
 
-        User userInDB = userDao.findUserByUsername(username);
+        User userInDB = userDao.findById(userId).get();
 
         if (Objects.nonNull(user.getEmail()))
             userInDB.setEmail(user.getEmail());

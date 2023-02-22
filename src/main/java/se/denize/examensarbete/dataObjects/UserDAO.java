@@ -40,8 +40,8 @@ public class UserDAO implements IUserDAO<User> {
     }
 
     @Override
-    public User findUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public Optional<User> findById(long userId) {
+        return userRepository.findById(userId);
     }
 
     @Override
