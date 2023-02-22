@@ -30,8 +30,8 @@ public class DayServiceImpl implements DayService {
     private final DayRepository dayRepository;
 
     @Autowired
-    public DayServiceImpl(DayRepository weekRepository) {
-        this.dayRepository = weekRepository;
+    public DayServiceImpl(DayRepository dayRepository) {
+        this.dayRepository = dayRepository;
         calculatePlans = new CalculatePlans();
     }
 
@@ -49,7 +49,7 @@ public class DayServiceImpl implements DayService {
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
-            dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
+            dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible(), day.getProcessed()));
             return new ResponseEntity<>(day, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -60,7 +60,7 @@ public class DayServiceImpl implements DayService {
 
         for (Day day : days) {
             try {
-                dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible()));
+                dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible(), day.getProcessed()));
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -91,7 +91,7 @@ public class DayServiceImpl implements DayService {
 
     @Override
     public ResponseEntity<Day> editDay(Day day, long dayId) {
-        Day dayInDB = dayRepository.findById(dayId).get();
+        Day dayInDB = dayRepository.findDayById(dayId);
 
         if (Objects.nonNull(day.getUserId()))
             dayInDB.setUserId(day.getUserId());
@@ -108,7 +108,10 @@ public class DayServiceImpl implements DayService {
         if (Objects.nonNull(day.getPossible()))
             dayInDB.setPossible(day.getPossible());
 
-        return new ResponseEntity(dayRepository.save(dayInDB), HttpStatus.OK);
+        if (Objects.nonNull(day.getProcessed()))
+            dayInDB.setProcessed(day.getProcessed());
+
+        return new ResponseEntity<>(dayRepository.save(dayInDB), HttpStatus.OK);
     }
 
 
@@ -214,7 +217,9 @@ public class DayServiceImpl implements DayService {
             dayUser2.setPossible(true);
             dayUser1.setPossible(false);
         }
-
+        //Sets days to processed, hence they will be displayed as the set plan in FE.
+        dayUser1.setProcessed(true);
+        dayUser2.setProcessed(true);
         editDay(dayUser1, dayUser1.getDayId());
         editDay(dayUser2, dayUser2.getDayId());
     }
