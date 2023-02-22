@@ -20,12 +20,12 @@ public class DayController {
 
     private final DayServiceImpl dayService;
 
-    @GetMapping("/getDaysNotSet/{userId}")
-    public  List<Day>findDaysWithoutResponse(@PathVariable("userId") long userId){
-        return dayService.findDaysWithoutResponse(userId);
+    @GetMapping("/getDaysNotSet/{weekNumber}/{userId}")
+    public  List<Day>findDaysWithoutResponse(@PathVariable("userId") long userId, @PathVariable("weekNumber")int weekNumber){
+        return dayService.findDaysWithoutResponse(userId, weekNumber);
     }
     @GetMapping("/user/{userId}/plan")
-    public List<Day> getPlanFromUser(@PathVariable("userId") long userId) {
+    public List<Day> getPlanAlreadySetFromUser(@PathVariable("userId") long userId) {
         return dayService.getPlanFromUser(userId);
     }
 
@@ -40,7 +40,7 @@ public class DayController {
     }
 
     @GetMapping("/getPlans")
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     private ResponseEntity<Day> getAllPlanDays() {
         return dayService.getPlanDays();
     }
