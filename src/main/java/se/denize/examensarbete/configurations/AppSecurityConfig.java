@@ -29,7 +29,7 @@ public class AppSecurityConfig {
         http
 
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/error", "/login", "/api/auth/**", "/api/saveUser")
+                .requestMatchers("/", "/error", "/login", "/api/auth/**", "/api/saveUser", "api/**")
                       //  "/api/**", "/rest/**", "/token/**")
                 //   , "localhost:8080/api/editDay/15", "/static/**")
                 .permitAll()

@@ -46,16 +46,36 @@ public class DayServiceImpl implements DayService {
         return dayRepository.findDaysWithoutResponse(userId, weekNumber);
     }
 
+    //TODO: is not working with same input of userId!!
     @Override
     public ResponseEntity<List<Day>>findDaysReadyForProcessPrimaryUser(long userId){
-        List<Day> userPlanDays = new ArrayList<>(dayRepository.findDaysReadyForProcessPrimaryUser(userId));
+        List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
+       // List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessSecondaryUser(userId));
+      //  calculatePlans.setDaysForUser1(primaryUserDays);
+        //calculatePlans.setDaysForUser2(secondaryUserDays);
+       // comparePlans();
 
-        if (userPlanDays.isEmpty())
+        if (primaryUserDays.isEmpty())
+                //&& secondaryUserDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        return new ResponseEntity(userPlanDays, HttpStatus.CREATED);
+        return new ResponseEntity(primaryUserDays, HttpStatus.OK);
 
 }
+
+    @Override
+    public ResponseEntity<List<Day>> findDaysReadyForProcessSecondaryUser(long userId) {
+        List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
+        if (secondaryUserDays.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity(secondaryUserDays, HttpStatus.OK);
+    }
+
+
+//TODO   calculatePlans.setDaysForUser2(userWeek);
+//        comparePlans(weekNumber);
+
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
@@ -158,7 +178,7 @@ public class DayServiceImpl implements DayService {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         calculatePlans.setDaysForUser2(userWeek);
-        comparePlans(weekNumber);
+        comparePlans();
         return new ResponseEntity<>(userWeek, HttpStatus.OK);
     }
 
@@ -169,7 +189,7 @@ public class DayServiceImpl implements DayService {
     }
 
 
-    public void comparePlans(int weekNumber) {
+    public void comparePlans() {
 
         Iterator<Day> user1 = calculatePlans.getDaysForUser1().iterator();
         Iterator<Day> user2 = calculatePlans.getDaysForUser2().iterator();

@@ -34,11 +34,7 @@ public interface DayRepository extends JpaRepository<Day, Long> {
 
 
     @Query(value="SELECT d FROM Day d WHERE d.processed = false AND d.possible IS NOT NULL AND d.userId =?1")
-    List<Day>findDaysReadyForProcessPrimaryUser(long userId);
-
-    @Query(value="SELECT d FROM Day d WHERE d.userId IN(SELECT u FROM User u WHERE u.otherParentId = ?1) AND d.possible IS NOT NULL")
-    List<Day>findDaysReadyForProcessSecondaryUser(long userId);
-
+    List<Day>findDaysReadyForProcessUser(long userId);
 
 
 

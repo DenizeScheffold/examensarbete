@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.Day;
+import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.service.DayService;
 import se.denize.examensarbete.serviceImpl.DayServiceImpl;
+import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.List;
 public class DayController {
 
     private final DayServiceImpl dayService;
+    private final UserServiceImpl userService;
 
     @GetMapping("/getDaysNotSet/{weekNumber}/{userId}")
     public  List<Day>findDaysWithoutResponse(@PathVariable("userId") long userId, @PathVariable("weekNumber")int weekNumber){
@@ -55,11 +58,16 @@ public class DayController {
         return dayService.editDay(day, dayId);
     }
 
-    @GetMapping("getPlanForProcess/{userId}")
+    @GetMapping("/getPlanForProcess/{userId}")
     private ResponseEntity<List<Day>> findDaysReadyForProcessPrimaryUser(@PathVariable("userId") long userId){
         return dayService.findDaysReadyForProcessPrimaryUser(userId);
     }
 
+    @GetMapping("/getPlanForProcessSecondaryUser/{userId}")
+    private ResponseEntity<List<Day>> findDaysReadyForProcessSecondaryUser(@PathVariable("userId") long userId){
+        User otherParent = userService.findOtherParent(userId);
+        return dayService.findDaysReadyForProcessPrimaryUser(otherParent.getUserId());
+    }
 
     @GetMapping("/getFullWeek/{weekNumber}")
     private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") int weekNumber) {

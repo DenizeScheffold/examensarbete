@@ -76,6 +76,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userDao.loadUserByUsername(username);
     }
 
+    public User findOtherParent(long userId){
+        return userDao.findOtherParent(userId);
+    }
+
 }
 
 

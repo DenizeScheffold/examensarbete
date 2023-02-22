@@ -32,5 +32,7 @@ public interface DayService {
     List<Day>findDaysWithoutResponse(long userId, int weekNumber);
 
     ResponseEntity<List<Day>> findDaysReadyForProcessPrimaryUser(long userId);
+
+    ResponseEntity<List<Day>>findDaysReadyForProcessSecondaryUser(long userId);
 }
 

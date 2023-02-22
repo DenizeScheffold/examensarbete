@@ -52,4 +52,6 @@ public class UserDAO implements IUserDAO<User> {
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    public User findOtherParent(long userId){ return userRepository.findOtherParent(userId);}
 }
