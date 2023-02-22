@@ -1,10 +1,12 @@
 package se.denize.examensarbete.controller;
 
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.User;
+import se.denize.examensarbete.repository.UserRepository;
+import se.denize.examensarbete.request.UserRequest;
+import se.denize.examensarbete.service.AuthService;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 import java.util.List;
@@ -13,10 +15,12 @@ import java.util.List;
 public class UserController {
 
     private final UserServiceImpl userService;
+    private final AuthService authService;
 
     @Autowired
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService, AuthService authService) {
         this.userService = userService;
+        this.authService = authService;
     }
 
     @GetMapping("/api/getUsers")
@@ -36,8 +40,8 @@ public class UserController {
 
 
     @PostMapping("/api/saveUser")
-    private ResponseEntity<User> saveUser(@RequestBody User user) {
-        return userService.saveUser(user);
+    private void saveUser(@RequestBody UserRequest userRequest) {
+         authService.createUser(userRequest);
     }
 
     @DeleteMapping("/api/deleteUserById/{userId}")

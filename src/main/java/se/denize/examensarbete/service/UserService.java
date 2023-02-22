@@ -7,11 +7,11 @@ import se.denize.examensarbete.model.User;
 
 import java.util.List;
 
-@Service
+
 public interface UserService {
     ResponseEntity<List<User>> getAllUsers();
 
-    ResponseEntity<User> saveUser(@RequestBody User user);
+    ResponseEntity<User> saveUser(User user);
 
     ResponseEntity<User> deleteUser(long userId);
 

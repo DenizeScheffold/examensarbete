@@ -6,7 +6,7 @@ import se.denize.examensarbete.model.Day;
 
 import java.util.List;
 
-@Service
+
 public interface DayService {
 
     ResponseEntity<Day> savePlan(Day day);

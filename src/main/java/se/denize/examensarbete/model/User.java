@@ -108,6 +108,10 @@ public class User implements UserDetails {
         return password;
     }
 
+    public UserRoles getRole() {
+        return role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
