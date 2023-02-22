@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface DayRepository extends JpaRepository<Day, Long> {
 
+    @Query(value="SELECT d FROM Day d WHERE d.dayId= ?1")
+    Day findDayById(long dayId);
 
     @Query(value = "SELECT d FROM Day d WHERE d.weekNumber = ?1")
     List<Day> findByWeekNumber(int weekNumber);
@@ -22,7 +24,7 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value = "SELECT d from Day d where d.dayDate BETWEEN :startDate AND :endDate")
     List<Day> activitiesFromLast7days(@Param("startDate") Date date7DaysBefore, @Param("endDate") Date date);
 
-    @Query(value="SELECT d FROM Day d WHERE d.userId= ?1 AND d.possible IS NOT NULL")
+    @Query(value="SELECT d FROM Day d WHERE d.userId= ?1")
     List<Day>allDaysFromUser(long userId);
 
     @Query(value="SELECT d FROM Day d WHERE d.possible IS NULL AND d.userId =?1 AND d.weekNumber=?2")

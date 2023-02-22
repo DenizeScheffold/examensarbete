@@ -28,13 +28,17 @@ public class Day {
     @Column(name = "possible")
     private Boolean possible;
 
+    @Column(name = "processed")
+    private Boolean processed;
 
-    public Day(Integer weekNumber, Long userId, Date dayDate, Integer activity, Boolean possible) {
+
+    public Day(Integer weekNumber, Long userId, Date dayDate, Integer activity, Boolean possible, Boolean processed) {
         this.weekNumber = weekNumber;
         this.userId = userId;
         this.dayDate = dayDate;
         this.activity = activity;
         this.possible = possible;
+        this.processed = processed;
     }
 
     public Day() {
@@ -82,6 +86,14 @@ public class Day {
 
     public void setPossible(Boolean possible) {
         this.possible = possible;
+    }
+
+    public Boolean getProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(Boolean processed) {
+        this.processed = processed;
     }
 
     @Override
