@@ -30,4 +30,7 @@ public interface DayService {
     List<Day> getPlanFromUser(long userId);
 
     List<Day>findDaysWithoutResponse(long userId, int weekNumber);
+
+    ResponseEntity<List<Day>> findDaysReadyForProcessPrimaryUser(long userId);
 }
+

@@ -77,12 +77,13 @@ public class ExamensarbeteApplication {
 
 
 
-
+/*
 
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
 
         return (args) -> {
+
             // mockup data
             dayRepository.save(new Day(2, 1L, new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"), 1, true, false));
             dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,true, false));
@@ -131,6 +132,6 @@ public class ExamensarbeteApplication {
         }
 
 
-
+*/
 
 }

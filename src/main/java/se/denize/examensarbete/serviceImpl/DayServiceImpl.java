@@ -47,6 +47,16 @@ public class DayServiceImpl implements DayService {
     }
 
     @Override
+    public ResponseEntity<List<Day>>findDaysReadyForProcessPrimaryUser(long userId){
+        List<Day> userPlanDays = new ArrayList<>(dayRepository.findDaysReadyForProcessPrimaryUser(userId));
+
+        if (userPlanDays.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        return new ResponseEntity(userPlanDays, HttpStatus.CREATED);
+
+}
+    @Override
     public ResponseEntity<Day> savePlan(Day day) {
         try {
             dayRepository.save(new Day(day.getWeekNumber(), day.getUserId(), day.getDayDate(), day.getActivity(), day.getPossible(), day.getProcessed()));

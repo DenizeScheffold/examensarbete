@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import se.denize.examensarbete.model.Day;
+import se.denize.examensarbete.model.User;
 
 import java.util.Date;
 import java.util.List;
@@ -27,8 +28,21 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value="SELECT d FROM Day d WHERE d.userId= ?1")
     List<Day>allDaysFromUser(long userId);
 
+
     @Query(value="SELECT d FROM Day d WHERE d.possible IS NULL AND d.userId =?1 AND d.weekNumber=?2")
-List<Day>findDaysWithoutResponse(long userId, int weekNumber);
+    List<Day>findDaysWithoutResponse(long userId, int weekNumber);
+
+
+    @Query(value="SELECT d FROM Day d WHERE d.processed = false AND d.possible IS NOT NULL AND d.userId =?1")
+    List<Day>findDaysReadyForProcessPrimaryUser(long userId);
+
+    @Query(value="SELECT d FROM Day d WHERE d.userId IN(SELECT u FROM User u WHERE u.otherParentId = ?1) AND d.possible IS NOT NULL")
+    List<Day>findDaysReadyForProcessSecondaryUser(long userId);
+
+
+
+
+
     //TODO: have empty days in db to retrieve to FE and patch from there.
 }
 

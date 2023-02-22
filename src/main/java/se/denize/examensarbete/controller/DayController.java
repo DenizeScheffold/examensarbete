@@ -55,6 +55,12 @@ public class DayController {
         return dayService.editDay(day, dayId);
     }
 
+    @GetMapping("getPlanForProcess/{userId}")
+    private ResponseEntity<List<Day>> findDaysReadyForProcessPrimaryUser(@PathVariable("userId") long userId){
+        return dayService.findDaysReadyForProcessPrimaryUser(userId);
+    }
+
+
     @GetMapping("/getFullWeek/{weekNumber}")
     private ResponseEntity<Day> getFullWeek(@PathVariable("weekNumber") int weekNumber) {
         return dayService.getFullWeek(weekNumber);
