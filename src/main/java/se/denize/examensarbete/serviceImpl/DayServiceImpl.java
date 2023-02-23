@@ -40,7 +40,7 @@ public class DayServiceImpl implements DayService {
         return dayRepository.findDaysWithoutResponse(userId, weekNumber);
     }
 
-
+    @Override
     public ResponseEntity<List<Day>>findDaysReadyForProcessBothUser(long userId, long otherParentId){
         List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
         List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(otherParentId));
@@ -67,7 +67,7 @@ public class DayServiceImpl implements DayService {
         }
     }
 
-@Override
+    @Override
     public ResponseEntity<List<Day>> savePlans(List<Day> days) {
 
         for (Day day : days) {

@@ -20,6 +20,6 @@ public interface UserService {
 
     User loadUserByUsername(String username);
 
-    Long findCurrentUserId();
+    Long findCurrentUserIdFromToken();
 
 }

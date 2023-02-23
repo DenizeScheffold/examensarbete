@@ -22,15 +22,17 @@ public class DayController {
     private final DayServiceImpl dayService;
     private final UserServiceImpl userService;
 
-    @GetMapping("/getDaysNotSet/{weekNumber}/{userId}")
-    public  List<Day>findDaysWithoutResponse(@PathVariable("userId") long userId, @PathVariable("weekNumber")int weekNumber){
-        return dayService.findDaysWithoutResponse(userId, weekNumber);
+    //IS WORKING
+    @GetMapping("/getDaysNotSet/{weekNumber}")
+    public  List<Day>findDaysWithoutResponse(@PathVariable("weekNumber")int weekNumber){
+        return dayService.findDaysWithoutResponse(userService.findCurrentUserIdFromToken(), weekNumber);
     }
 
     //IS WORKING
-    @GetMapping("/getPlanForProcessUser/")
+    @GetMapping("/getPlanForProcessUser")
     public ResponseEntity<List<Day>> findDaysReadyForProcessBothUser(){
-        long userId = userService.findCurrentUserId();
+        //finds userdetails from token
+        long userId = userService.findCurrentUserIdFromToken();
         User otherParent = userService.findOtherParent(userId);
         return dayService.findDaysReadyForProcessBothUser(userId, otherParent.getUserId());
     }

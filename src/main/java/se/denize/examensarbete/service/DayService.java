@@ -16,7 +16,7 @@ public interface DayService {
 
     ResponseEntity<Day> editDay(Day day, long dayId);
 
-
+    ResponseEntity<List<Day>>findDaysReadyForProcessBothUser(long userId, long otherParentId);
 
     List<Day>findDaysWithoutResponse(long userId, int weekNumber);
 
