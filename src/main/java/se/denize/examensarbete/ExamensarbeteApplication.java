@@ -77,7 +77,7 @@ public class ExamensarbeteApplication {
 
 
 
-/*
+
 
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
@@ -90,7 +90,7 @@ public class ExamensarbeteApplication {
             dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,false, false));
             dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,false, false));
             dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),1,true, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),1,false, false));
+            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),1,true, false));
             dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,false, false));
             dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,true, false));
             dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,false, false));
@@ -132,6 +132,7 @@ public class ExamensarbeteApplication {
         }
 
 
-*/
+
+
 
 }

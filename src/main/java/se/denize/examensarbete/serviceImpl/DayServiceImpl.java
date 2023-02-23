@@ -54,9 +54,12 @@ public class DayServiceImpl implements DayService {
         calculatePlans.setDaysForUser2(secondaryUserDays);
         comparePlans();
 
-
         if (primaryUserDays.isEmpty()&& secondaryUserDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        setBooleanTrueProcessed(primaryUserDays);
+        setBooleanTrueProcessed(secondaryUserDays);
+
 
         return new ResponseEntity(primaryUserDays, HttpStatus.OK);
 
@@ -215,6 +218,8 @@ public class DayServiceImpl implements DayService {
             Day dayUser1 = user1.next();
             Day dayUser2 = user2.next();
 
+
+
             //check if there is conflicts. So if both has boolean Possible == true?
             if ((dayUser1.getPossible() && dayUser2.getPossible()
                     || (!dayUser1.getPossible() && !dayUser2.getPossible()))) {
@@ -263,9 +268,7 @@ public class DayServiceImpl implements DayService {
             dayUser2.setPossible(true);
             dayUser1.setPossible(false);
         }
-        //Sets days to processed, hence they will be displayed as the set plan in FE.
-        dayUser1.setProcessed(true);
-        dayUser2.setProcessed(true);
+
         editDay(dayUser1, dayUser1.getDayId());
         editDay(dayUser2, dayUser2.getDayId());
     }
@@ -296,5 +299,14 @@ public class DayServiceImpl implements DayService {
             System.out.println(day);
         }
         return activitiesFromLast7days;
+    }
+
+    public void setBooleanTrueProcessed(List<Day> dayUser){
+        //Sets days to processed, hence they will be displayed as the set plan in FE.
+        for(Day day: dayUser){
+            day.setProcessed(true);
+            editDay(day,day.getDayId());
+        }
+
     }
 }

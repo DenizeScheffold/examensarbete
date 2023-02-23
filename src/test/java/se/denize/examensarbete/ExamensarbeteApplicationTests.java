@@ -6,6 +6,8 @@ import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,8 +24,8 @@ class ExamensarbeteApplicationTests {
 		assertNotNull(user);
 	}
 	@Test
-	void dayCanBeCreated(){
-		Day day = new Day(2,1L, Date.valueOf("2023-01-13"),2,false);
+	void dayCanBeCreated() throws ParseException {
+		Day day = new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-20"),2,false, false);
 		assertNotNull(day);
 	}
 
