@@ -14,6 +14,7 @@ import se.denize.examensarbete.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 
 @Service
@@ -78,6 +79,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     public User findOtherParent(long userId){
         return userDao.findOtherParent(userId);
+    }
+
+    public Optional<User> findUserById(long userId){
+        return userDao.findById(userId);
     }
 
 }

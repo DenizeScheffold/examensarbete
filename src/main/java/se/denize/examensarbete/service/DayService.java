@@ -1,7 +1,6 @@
 package se.denize.examensarbete.service;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import se.denize.examensarbete.model.Day;
 
 import java.util.List;
