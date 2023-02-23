@@ -85,16 +85,16 @@ public class ExamensarbeteApplication {
         return (args) -> {
 
             // mockup data
-            dayRepository.save(new Day(2, 1L, new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"), 1, true, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,true, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,false, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,false, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),1,true, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),1,true, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,false, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,true, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,false, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),1,false, false));
+            dayRepository.save(new Day(2, 1L, new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"), 1, null, false));
+            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,null, false));
+            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,null,false));
+            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,null, false));
+            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),1,null, false));
+            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),1,null, false));
+            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,null, false));
+            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,null, false));
+            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,null, false));
+            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),1,null, false));
             dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),2,false, false));
             dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),2,true, false));
             dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),2,false,false));

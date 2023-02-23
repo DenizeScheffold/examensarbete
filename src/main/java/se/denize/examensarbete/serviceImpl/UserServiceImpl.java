@@ -9,7 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.service.UserService;
