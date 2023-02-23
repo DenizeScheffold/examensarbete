@@ -3,6 +3,9 @@ package se.denize.examensarbete.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.userDao = userDao;
     }
 
+    @Override
+    public Long findCurrentUserId() throws UsernameNotFoundException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+
+            return userDao.loadUserByUsername(currentUserName).getUserId();
+        }
+        return null;
+    }
     @Override
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = new ArrayList<>(userDao.findAllUsers());
@@ -84,6 +97,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public Optional<User> findUserById(long userId){
         return userDao.findById(userId);
     }
+
+
 
 }
 

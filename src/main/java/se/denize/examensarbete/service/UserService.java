@@ -1,6 +1,7 @@
 package se.denize.examensarbete.service;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import se.denize.examensarbete.model.User;
@@ -19,5 +20,6 @@ public interface UserService {
 
     User loadUserByUsername(String username);
 
+    Long findCurrentUserId();
 
 }
