@@ -53,12 +53,13 @@ public class DayServiceImpl implements DayService {
         calculatePlans.setDaysForUser1(primaryUserDays);
         calculatePlans.setDaysForUser2(secondaryUserDays);
         comparePlans();
+        setBooleanTrueProcessed(primaryUserDays);
+        setBooleanTrueProcessed(secondaryUserDays);
 
         if (primaryUserDays.isEmpty()&& secondaryUserDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-        setBooleanTrueProcessed(primaryUserDays);
-        setBooleanTrueProcessed(secondaryUserDays);
+
 
 
         return new ResponseEntity(primaryUserDays, HttpStatus.OK);
