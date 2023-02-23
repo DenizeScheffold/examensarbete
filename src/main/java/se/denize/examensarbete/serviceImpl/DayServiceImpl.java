@@ -35,12 +35,6 @@ public class DayServiceImpl implements DayService {
         calculatePlans = new CalculatePlans();
     }
 
-
-    @Override
-    public List<Day> getPlanFromUser(long userId) {
-       return dayRepository.allDaysFromUser(userId);
-    }
-
     @Override
     public  List<Day>findDaysWithoutResponse(long userId, int weekNumber){
         return dayRepository.findDaysWithoutResponse(userId, weekNumber);
@@ -59,42 +53,9 @@ public class DayServiceImpl implements DayService {
         if (primaryUserDays.isEmpty()&& secondaryUserDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-
-
-
         return new ResponseEntity(primaryUserDays, HttpStatus.OK);
 
     }
-    @Override
-    public ResponseEntity<List<Day>>findDaysReadyForProcessPrimaryUser(long userId){
-        List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
-        //List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessSecondaryUser(userId));
-       calculatePlans.setDaysForUser1(primaryUserDays);
-
-       // comparePlans();
-
-        if (primaryUserDays.isEmpty())
-                //&& secondaryUserDays.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        return new ResponseEntity(primaryUserDays, HttpStatus.OK);
-
-}
-
-    @Override
-    public ResponseEntity<List<Day>> findDaysReadyForProcessSecondaryUser(long userId) {
-        List<Day> secondaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));
-        calculatePlans.setDaysForUser2(secondaryUserDays);
-        comparePlans();
-        if (secondaryUserDays.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        return new ResponseEntity(secondaryUserDays, HttpStatus.OK);
-    }
-
-
-//TODO   calculatePlans.setDaysForUser2(userWeek);
-//        comparePlans(weekNumber);
 
     @Override
     public ResponseEntity<Day> savePlan(Day day) {
@@ -106,6 +67,7 @@ public class DayServiceImpl implements DayService {
         }
     }
 
+@Override
     public ResponseEntity<List<Day>> savePlans(List<Day> days) {
 
         for (Day day : days) {
@@ -117,16 +79,6 @@ public class DayServiceImpl implements DayService {
 
         }
         return new ResponseEntity<>(days, HttpStatus.OK);
-    }
-
-    @Override
-    public ResponseEntity<Day> getPlanDays() {
-        List<Day> userPlanDays = new ArrayList<>(dayRepository.findAll());
-
-        if (userPlanDays.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        return new ResponseEntity(userPlanDays, HttpStatus.CREATED);
     }
 
     @Override
@@ -162,50 +114,6 @@ public class DayServiceImpl implements DayService {
             dayInDB.setProcessed(day.getProcessed());
 
         return new ResponseEntity<>(dayRepository.save(dayInDB), HttpStatus.OK);
-    }
-
-
-    @Override
-    public ResponseEntity<Day> getFullWeek(int weekNumber) {
-        List<Day> userWeek = new ArrayList<>(dayRepository.findByWeekNumber(weekNumber));
-
-        if (userWeek.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        return new ResponseEntity(userWeek, HttpStatus.OK);
-    }
-
-    //TODO: start calculation when both weeks are submitted. Now user 1 has to submit before user2
-    @Override
-    public ResponseEntity<List<Day>> getUser1FullWeek(int weekNumber, long userId) {
-        List<Day> userWeek = new ArrayList<>(dayRepository.findByWeekNumberAndUser(weekNumber, userId));
-
-        if (userWeek.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        try {
-            calculatePlans.setDaysForUser1(userWeek);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(userWeek, HttpStatus.OK);
-    }
-
-    @Override
-    public ResponseEntity<List<Day>> getUser2FullWeek(int weekNumber, long userId) {
-        List<Day> userWeek = new ArrayList<>(dayRepository.findByWeekNumberAndUser(weekNumber, userId));
-        if (userWeek.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        calculatePlans.setDaysForUser2(userWeek);
-        comparePlans();
-        return new ResponseEntity<>(userWeek, HttpStatus.OK);
-    }
-
-    @Override
-    public List<Day> getWeekBeforeFromDB(int weekNumber, long userId) {
-        List<Day> userWeekDB = new ArrayList<>(dayRepository.findByWeekNumberAndUser(weekNumber, userId));
-        return userWeekDB;
     }
 
 

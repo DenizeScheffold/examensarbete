@@ -25,10 +25,6 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value = "SELECT d from Day d where d.dayDate BETWEEN :startDate AND :endDate")
     List<Day> activitiesFromLast7days(@Param("startDate") Date date7DaysBefore, @Param("endDate") Date date);
 
-    @Query(value="SELECT d FROM Day d WHERE d.userId= ?1")
-    List<Day>allDaysFromUser(long userId);
-
-
     @Query(value="SELECT d FROM Day d WHERE d.possible IS NULL AND d.userId =?1 AND d.weekNumber=?2")
     List<Day>findDaysWithoutResponse(long userId, int weekNumber);
 
