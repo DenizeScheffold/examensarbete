@@ -32,8 +32,7 @@ public class DayController {
     public ResponseEntity<List<Day>> findDaysReadyForProcessBothUser(){
         long userId = userService.findCurrentUserId();
         User otherParent = userService.findOtherParent(userId);
-        long otherParentId = otherParent.getUserId();
-        return dayService.findDaysReadyForProcessBothUser(userId, otherParentId );
+        return dayService.findDaysReadyForProcessBothUser(userId, otherParent.getUserId());
     }
 
 
