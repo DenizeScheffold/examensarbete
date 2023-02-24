@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.denize.examensarbete.model.User;
-import se.denize.examensarbete.repository.UserRepository;
-import se.denize.examensarbete.request.UserRequest;
 import se.denize.examensarbete.service.AuthService;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
@@ -36,7 +34,7 @@ public class UserController {
 
 
     @PostMapping("/api/saveUser")
-    private void saveUser(@RequestBody UserRequest userRequest) {
+    private void saveUser(@RequestBody User userRequest) {
         authService.createUser(userRequest);
     }
 

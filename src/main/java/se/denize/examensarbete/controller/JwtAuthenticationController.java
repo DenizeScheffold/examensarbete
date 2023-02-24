@@ -8,10 +8,10 @@ package se.denize.examensarbete.controller;
         import org.springframework.web.bind.annotation.RequestBody;
         import org.springframework.web.bind.annotation.RequestMapping;
         import org.springframework.web.bind.annotation.RestController;
+        import se.denize.examensarbete.model.User;
         import se.denize.examensarbete.request.JwtTokenRequest;
         import se.denize.examensarbete.response.JwtTokenResponse;
         import se.denize.examensarbete.service.JwtTokenService;
-        import se.denize.examensarbete.request.UserRequest;
         import se.denize.examensarbete.service.AuthService;
 
 
@@ -27,7 +27,7 @@ public class JwtAuthenticationController {
 
 
     @PostMapping("/signup")
-    public void createUser(@RequestBody UserRequest userRequest){
+    public void createUser(@RequestBody User userRequest){
          authService.createUser(userRequest);
     }
 

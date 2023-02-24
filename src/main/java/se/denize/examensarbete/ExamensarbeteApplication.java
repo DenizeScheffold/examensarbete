@@ -37,7 +37,7 @@ public class ExamensarbeteApplication {
 
  */
 
- /*
+/*
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
         AppPasswordConfig bcrypt = new AppPasswordConfig();
@@ -64,6 +64,7 @@ public class ExamensarbeteApplication {
                     true,
                     true));
 
+
             repository.save(new User(
                     "Jasmin@jasmin.se",
                     2L,
@@ -76,11 +77,12 @@ public class ExamensarbeteApplication {
                     true));
         };
      }
-    */
+
+          */
 
 
 
-
+/*
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
 
@@ -134,6 +136,8 @@ public class ExamensarbeteApplication {
         }
 
 
+
+ */
 
 
 

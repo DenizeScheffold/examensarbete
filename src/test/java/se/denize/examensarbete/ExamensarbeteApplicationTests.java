@@ -31,7 +31,33 @@ class ExamensarbeteApplicationTests {
 
 	//TODO: add test to solveConflict
 
+/*@Test
+public void withUserDetailsWhenAllEnabled() throws Exception {
+  User expected = new User("rob", "pass", true, true, true, true, ROLE_12);
+  UserDetails actual = User.withUserDetails(expected).build();
+  assertThat(actual.getUsername()).isEqualTo(expected.getUsername());
+  assertThat(actual.getPassword()).isEqualTo(expected.getPassword());
+  assertThat(actual.getAuthorities()).isEqualTo(expected.getAuthorities());
+  assertThat(actual.isAccountNonExpired()).isEqualTo(expected.isAccountNonExpired());
+  assertThat(actual.isAccountNonLocked()).isEqualTo(expected.isAccountNonLocked());
+  assertThat(actual.isCredentialsNonExpired()).isEqualTo(expected.isCredentialsNonExpired());
+  assertThat(actual.isEnabled()).isEqualTo(expected.isEnabled());
+}
 
+@Test
+public void withUserDetailsWhenAllDisabled() throws Exception {
+  User expected = new User("rob", "pass", false, false, false, false, ROLE_12);
+  UserDetails actual = User.withUserDetails(expected).build();
+  assertThat(actual.getUsername()).isEqualTo(expected.getUsername());
+  assertThat(actual.getPassword()).isEqualTo(expected.getPassword());
+  assertThat(actual.getAuthorities()).isEqualTo(expected.getAuthorities());
+  assertThat(actual.isAccountNonExpired()).isEqualTo(expected.isAccountNonExpired());
+  assertThat(actual.isAccountNonLocked()).isEqualTo(expected.isAccountNonLocked());
+  assertThat(actual.isCredentialsNonExpired()).isEqualTo(expected.isCredentialsNonExpired());
+  assertThat(actual.isEnabled()).isEqualTo(expected.isEnabled());
+}
+
+*/
 
 
 	/*
