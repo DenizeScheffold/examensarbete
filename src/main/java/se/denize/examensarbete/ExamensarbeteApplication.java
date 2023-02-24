@@ -36,14 +36,14 @@ public class ExamensarbeteApplication {
 }
 
  */
-/*
 
+ /*
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
         AppPasswordConfig bcrypt = new AppPasswordConfig();
         return (args) -> {
             // mockup data
-           repository.save(new User(
+          repository.save(new User(
                     "Stina@stinis.se",
                     2L,
                     "Stinis",
@@ -63,18 +63,20 @@ public class ExamensarbeteApplication {
                     true,
                     true,
                     true));
+
+            repository.save(new User(
+                    "Jasmin@jasmin.se",
+                    2L,
+                    "Jasmin",
+                    bcrypt.bCryptPasswordEncoder().encode("abb"),
+                    UserRoles.ADMIN,
+                    true,
+                    true,
+                    true,
+                    true));
         };
-
-
-      }
-
-
- */
-
-
-
-
-
+     }
+    */
 
 
 
