@@ -38,7 +38,6 @@ public class UserController {
         authService.createUser(userRequest);
     }
 
-    //TODO: test
     @DeleteMapping("/api/deleteUserById")
     private ResponseEntity<User> deleteUser() {
         return userService.deleteUser(userService.findCurrentUserIdFromToken());
