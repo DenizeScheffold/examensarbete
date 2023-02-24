@@ -2,6 +2,7 @@ package se.denize.examensarbete;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 
@@ -31,33 +32,34 @@ class ExamensarbeteApplicationTests {
 
 	//TODO: add test to solveConflict
 
-/*@Test
-public void withUserDetailsWhenAllEnabled() throws Exception {
-  User expected = new User("rob", "pass", true, true, true, true, ROLE_12);
-  UserDetails actual = User.withUserDetails(expected).build();
-  assertThat(actual.getUsername()).isEqualTo(expected.getUsername());
-  assertThat(actual.getPassword()).isEqualTo(expected.getPassword());
-  assertThat(actual.getAuthorities()).isEqualTo(expected.getAuthorities());
-  assertThat(actual.isAccountNonExpired()).isEqualTo(expected.isAccountNonExpired());
-  assertThat(actual.isAccountNonLocked()).isEqualTo(expected.isAccountNonLocked());
-  assertThat(actual.isCredentialsNonExpired()).isEqualTo(expected.isCredentialsNonExpired());
-  assertThat(actual.isEnabled()).isEqualTo(expected.isEnabled());
+@Test
+public void withUserDetailsWhenAllEnabled(){
+  User testUser = new User("email@email.se", 1L, "rob", "pass", UserRoles.ADMIN, true, true, true, true);
+  assertNotNull(testUser.getUsername());
+  assertNotNull(testUser.getEmail());
+  assertNotNull(testUser.getPassword());
+  assertNotNull(testUser.getRole());
+  assertTrue(testUser.isEnabled());
+  assertTrue(testUser.isAccountNonExpired());
+  assertTrue(testUser.isAccountNonLocked());
+  assertTrue(testUser.isCredentialsNonExpired());
+
 }
 
 @Test
 public void withUserDetailsWhenAllDisabled() throws Exception {
-  User expected = new User("rob", "pass", false, false, false, false, ROLE_12);
-  UserDetails actual = User.withUserDetails(expected).build();
-  assertThat(actual.getUsername()).isEqualTo(expected.getUsername());
-  assertThat(actual.getPassword()).isEqualTo(expected.getPassword());
-  assertThat(actual.getAuthorities()).isEqualTo(expected.getAuthorities());
-  assertThat(actual.isAccountNonExpired()).isEqualTo(expected.isAccountNonExpired());
-  assertThat(actual.isAccountNonLocked()).isEqualTo(expected.isAccountNonLocked());
-  assertThat(actual.isCredentialsNonExpired()).isEqualTo(expected.isCredentialsNonExpired());
-  assertThat(actual.isEnabled()).isEqualTo(expected.isEnabled());
+	User testUser = new User("email@email.se", 1L, "rob", "pass", UserRoles.ADMIN, false, false, false, false);
+	assertNotNull(testUser.getUsername());
+	assertNotNull(testUser.getEmail());
+	assertNotNull(testUser.getPassword());
+	assertNotNull(testUser.getRole());
+	assertFalse(testUser.isEnabled());
+	assertFalse(testUser.isAccountNonExpired());
+	assertFalse(testUser.isAccountNonLocked());
+	assertFalse(testUser.isCredentialsNonExpired());
+
 }
 
-*/
 
 
 	/*

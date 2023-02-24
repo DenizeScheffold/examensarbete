@@ -58,7 +58,8 @@ public class User implements UserDetails {
         this.otherParentId = otherParentId;
     }
 
-    public User(String email, long otherParentId, String username, String password, UserRoles role) {
+    public User(String email, long otherParentId, String username, String password,
+                UserRoles role) {
         this.email = email;
         this.otherParentId = otherParentId;
         this.username = username;
@@ -66,7 +67,9 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    public User(String email, long otherParentId, String username, String password, UserRoles role, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled) {
+    public User(String email, long otherParentId, String username, String password,
+                UserRoles role, boolean isAccountNonExpired, boolean isAccountNonLocked,
+                boolean isCredentialsNonExpired, boolean isEnabled) {
         this.email = email;
         this.otherParentId = otherParentId;
         this.username = username;
