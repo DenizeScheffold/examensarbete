@@ -14,7 +14,7 @@ public class AuthService {
     private final AppPasswordConfig passwordConfig;
 
     public void createUser(User requestBody) {
-         User userToDB = new User();
+         User userToDB;
          userToDB= User.builder()
                 .username(requestBody.getUsername())
                 .otherParentId(requestBody.getOtherParentId())
