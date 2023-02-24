@@ -39,6 +39,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return null;
     }
+
+    public User findCurrentUserFromToken() throws UsernameNotFoundException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+          User user = loadUserByUsername(authentication.getName());
+
+          return user;
+        }
+        return null;
+    }
+
     @Override
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = new ArrayList<>(userDao.findAllUsers());
@@ -48,7 +59,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    //TODO check if user already exists
+
     @Override
     public ResponseEntity<User> saveUser(User user) {
         try {
