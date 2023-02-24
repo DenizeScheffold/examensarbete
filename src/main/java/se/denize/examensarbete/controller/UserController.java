@@ -29,29 +29,26 @@ public class UserController {
     }
 
 
-    //TODO: Not working in postman when Pre- or PostAuthorize or RolesAllowed is in use. error 500
-    @GetMapping("api/getUser/{username}")
-    // @PreAuthorize("hasRole('ADMIN') and #username == authentication.name")
-    //@PostAuthorize("returnObject.username == 'Kattis'")
-    //@RolesAllowed({"ADMIN", "USER"})
-    private User getUserByUsername(@PathVariable("username") String username) {
-        return userService.loadUserByUsername(username);
+    @GetMapping("api/getUser")
+    private User getUserByUsername() {
+        return userService.loadUserByUsername(userService.findCurrentUserFromToken().getUsername());
     }
 
 
     @PostMapping("/api/saveUser")
     private void saveUser(@RequestBody UserRequest userRequest) {
-         authService.createUser(userRequest);
+        authService.createUser(userRequest);
     }
 
-    @DeleteMapping("/api/deleteUserById/{userId}")
-    private ResponseEntity<User> deleteUser(@PathVariable("userId") long userId) {
-        return userService.deleteUser(userId);
+    //TODO: test
+    @DeleteMapping("/api/deleteUserById")
+    private ResponseEntity<User> deleteUser() {
+        return userService.deleteUser(userService.findCurrentUserIdFromToken());
     }
 
-    @PatchMapping("/api/editUser/{userId}")
-    private ResponseEntity<User> editUser(@RequestBody User user, @PathVariable("userId") long userId) {
-        return userService.editUser(user, userId);
+    @PatchMapping("/api/editUser")
+    private ResponseEntity<User> editUser(@RequestBody User user) {
+        return userService.editUser(user, userService.findCurrentUserIdFromToken() );
     }
 
 
