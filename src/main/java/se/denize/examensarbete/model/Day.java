@@ -98,16 +98,5 @@ public class Day {
         this.processed = processed;
     }
 
-    @Override
-    public String toString() {
-        return "Day{" +
-                "dayId=" + dayId +
-                ", weekNumber=" + weekNumber +
-                ", userId=" + userId +
-                ", date='" + dayDate + '\'' +
-                ", activity=" + activity +
-                ", possible=" + possible +
-                '}';
-    }
 }
 
