@@ -40,6 +40,13 @@ public class DayServiceImpl implements DayService {
         return dayRepository.findDaysWithoutResponse(userId, weekNumber);
     }
 
+    public ResponseEntity<List<Day>>findDaysProcessed(long userId){
+        List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysProcessed(userId));
+        if (primaryUserDays.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(primaryUserDays, HttpStatus.OK);
+    }
+
     @Override
     public ResponseEntity<List<Day>>findDaysReadyForProcessBothUser(long userId, long otherParentId){
         List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysReadyForProcessUser(userId));

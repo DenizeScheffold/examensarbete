@@ -81,8 +81,8 @@ public class ExamensarbeteApplication {
           */
 
 
-
 /*
+
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
 
@@ -136,8 +136,10 @@ public class ExamensarbeteApplication {
         }
 
 
-
  */
+
+
+
 
 
 

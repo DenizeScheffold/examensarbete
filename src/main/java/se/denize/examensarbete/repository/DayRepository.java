@@ -32,7 +32,8 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value="SELECT d FROM Day d WHERE d.processed = false AND d.possible IS NOT NULL AND d.userId =?1")
     List<Day>findDaysReadyForProcessUser(long userId);
 
-
+    @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.userId=?1")
+    List<Day>findDaysProcessed(long userId);
 
 
     //TODO: have empty days in db to retrieve to FE and patch from there.

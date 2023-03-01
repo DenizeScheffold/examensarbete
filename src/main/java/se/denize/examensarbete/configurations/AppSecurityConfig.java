@@ -12,7 +12,10 @@ import org.springframework.security.config.annotation.web.configurers.oauth2.ser
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
+
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +32,7 @@ public class AppSecurityConfig {
         http
 
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/error", "/login", "/api/auth/**", "/api/saveUser", "api/**")
+                .requestMatchers("/", "/error", "/login", "/api/auth/**", "/api/saveUser")
                       //  "/api/**", "/rest/**", "/token/**")
                 //   , "localhost:8080/api/editDay/15", "/static/**")
                 .permitAll()
@@ -40,10 +43,15 @@ public class AppSecurityConfig {
 
         http.cors().configurationSource(request -> {
             CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+            corsConfiguration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
             corsConfiguration.addAllowedMethod("DELETE");
             corsConfiguration.addAllowedMethod("POST");
             corsConfiguration.addAllowedMethod("GET");
             corsConfiguration.addAllowedMethod("PATCH");
+
+
+            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+            source.registerCorsConfiguration("/**", corsConfiguration);
             return corsConfiguration;
 
         });
@@ -51,12 +59,17 @@ public class AppSecurityConfig {
         http.sessionManagement(
                 session ->
                         session.sessionCreationPolicy(
-                                SessionCreationPolicy.STATELESS)
+                                SessionCreationPolicy.IF_REQUIRED)
         );
 
-        http.httpBasic();
+
+
+       http.httpBasic();
 
         http.csrf().disable();
+
+        http.logout()
+                .logoutSuccessUrl("/");
 
         http.headers().frameOptions().sameOrigin();
 

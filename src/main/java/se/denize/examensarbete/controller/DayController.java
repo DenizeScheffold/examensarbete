@@ -37,6 +37,20 @@ public class DayController {
         return dayService.findDaysReadyForProcessBothUser(userId, otherParent.getUserId());
     }
 
+@GetMapping("/getCompletePlan")
+    public ResponseEntity<List<Day>> findDaysProcessed(){
+        //finds userdetails from token
+        long userId = userService.findCurrentUserIdFromToken();
+        return dayService.findDaysProcessed(userId);
+}
+
+@GetMapping("/getCompletePlanForOtherParent")
+    public ResponseEntity<List<Day>> findDaysProcessedOtherParent(){
+        //finds userdetails from token
+        long userId = userService.findCurrentUserIdFromToken();
+        User otherParent = userService.findOtherParent(userId);
+        return dayService.findDaysProcessed(otherParent.getUserId());
+}
 
     @PostMapping("/setPlan")
     public ResponseEntity<Day> setPlan(@RequestBody Day day) {
