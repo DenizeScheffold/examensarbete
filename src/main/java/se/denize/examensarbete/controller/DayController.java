@@ -25,7 +25,7 @@ public class DayController {
 
     //IS WORKING
     @GetMapping("/getDaysNotSet/{weekNumber}")
-    public  List<Day>findDaysWithoutResponse(@PathVariable("weekNumber")int weekNumber){
+    public  ResponseEntity<List<Day>>findDaysWithoutResponse(@PathVariable("weekNumber")int weekNumber){
         return dayService.findDaysWithoutResponse(userService.findCurrentUserIdFromToken(), weekNumber);
     }
 
@@ -52,6 +52,7 @@ public class DayController {
         User otherParent = userService.findOtherParent(userId);
         return dayService.findDaysProcessed(otherParent.getUserId());
 }
+
 
 @GetMapping("/getCompletePlanOnlyTrueBothParents/{weekNumber}")
 public ResponseEntity<List<Day>> findDaysBothParentsTrue(@PathVariable("weekNumber") int weekNumber){

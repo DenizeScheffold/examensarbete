@@ -37,8 +37,11 @@ public class DayServiceImpl implements DayService {
     }
 
     @Override
-    public  List<Day>findDaysWithoutResponse(long userId, int weekNumber){
-        return dayRepository.findDaysWithoutResponse(userId, weekNumber);
+    public ResponseEntity<List<Day>>findDaysWithoutResponse(long userId, int weekNumber){
+        List<Day> daysWithoutResponse = dayRepository.findDaysWithoutResponse(userId, weekNumber);
+        if (daysWithoutResponse.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(daysWithoutResponse, HttpStatus.OK);
     }
 
 

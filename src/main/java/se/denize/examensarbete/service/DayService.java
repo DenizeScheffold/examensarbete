@@ -18,6 +18,6 @@ public interface DayService {
 
     ResponseEntity<List<Day>>findDaysReadyForProcessBothUser(long userId, long otherParentId);
 
-    List<Day>findDaysWithoutResponse(long userId, int weekNumber);
+    ResponseEntity<List<Day>>findDaysWithoutResponse(long userId, int weekNumber);
 
 }

@@ -22,5 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query(value= "SELECT u FROM User u WHERE u.otherParentId =?1")
     User findOtherParent(long userId);
+
 }
+
 
