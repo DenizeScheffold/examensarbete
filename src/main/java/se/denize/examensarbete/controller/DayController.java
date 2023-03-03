@@ -1,6 +1,7 @@
 package se.denize.examensarbete.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -52,6 +53,13 @@ public class DayController {
         return dayService.findDaysProcessed(otherParent.getUserId());
 }
 
+@GetMapping("/getCompletePlanOnlyTrueBothParents/{weekNumber}")
+public ResponseEntity<List<Day>> findDaysBothParentsTrue(@PathVariable("weekNumber") int weekNumber){
+    long userId = userService.findCurrentUserIdFromToken();
+    User otherParent = userService.findOtherParent(userId);
+    return dayService.findDaysProcessedBothUserTrue(userId, otherParent.getUserId(), weekNumber);
+
+}
     @PostMapping("/setPlan")
     public ResponseEntity<Day> setPlan(@RequestBody Day day) {
         return dayService.savePlan(day);

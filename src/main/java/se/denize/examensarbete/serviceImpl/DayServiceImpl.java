@@ -9,6 +9,7 @@ import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.repository.DayRepository;
 import se.denize.examensarbete.service.DayService;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,11 +41,19 @@ public class DayServiceImpl implements DayService {
         return dayRepository.findDaysWithoutResponse(userId, weekNumber);
     }
 
+
     public ResponseEntity<List<Day>>findDaysProcessed(long userId){
         List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysProcessed(userId));
         if (primaryUserDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(primaryUserDays, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Day>> findDaysProcessedBothUserTrue(long userId, long otherParentId, int weekNumber){
+        List<Day> bothParentsTrueDays = new ArrayList<>(dayRepository.findDaysProcessedBothUserTrue(userId, otherParentId, weekNumber));
+        if (bothParentsTrueDays.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(bothParentsTrueDays, HttpStatus.OK);
     }
 
     @Override
@@ -191,25 +200,14 @@ public class DayServiceImpl implements DayService {
 
     public List<Day> getLast7Days(Day dayUser1) {
 
-        Date dateUser1 = dayUser1.getDayDate();
+        LocalDate dateUser1 = dayUser1.getDayDate();
 
-        Calendar cal = Calendar.getInstance();
-
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            cal.setTime(sdf.parse(dateUser1.toString()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        cal.add(Calendar.DAY_OF_MONTH, -7);
-        Date date7DaysBefore = cal.getTime();
+        LocalDate date7DaysBefore = dateUser1.minusDays(7);
 
         System.out.println(date7DaysBefore);
 
-        List<Day> activitiesFromLast7days = dayRepository.activitiesFromLast7days(date7DaysBefore, dateUser1);
+        List<Day> activitiesFromLast7days = dayRepository.activitiesFromLast7days(
+                date7DaysBefore, dateUser1);
 
         for (Day day : activitiesFromLast7days) {
             System.out.println(day);

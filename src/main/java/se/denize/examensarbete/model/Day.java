@@ -3,7 +3,7 @@ package se.denize.examensarbete.model;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "days")
@@ -22,7 +22,7 @@ public class Day {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @Column(name = "date")
-    private Date dayDate;
+    private LocalDate dayDate;
 
     @Column(name = "activity")
     private Integer activity;
@@ -34,7 +34,7 @@ public class Day {
     private Boolean processed;
 
 
-    public Day(Integer weekNumber, Long userId, Date dayDate, Integer activity, Boolean possible, Boolean processed) {
+    public Day(Integer weekNumber, Long userId, LocalDate dayDate, Integer activity, Boolean possible, Boolean processed) {
         this.weekNumber = weekNumber;
         this.userId = userId;
         this.dayDate = dayDate;
@@ -66,11 +66,11 @@ public class Day {
         this.userId = userId;
     }
 
-    public Date getDayDate() {
+    public LocalDate getDayDate() {
         return dayDate;
     }
 
-    public void setDayDate(Date dayDate) {
+    public void setDayDate(LocalDate dayDate) {
         this.dayDate = dayDate;
     }
 

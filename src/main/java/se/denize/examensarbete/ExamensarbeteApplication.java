@@ -13,6 +13,7 @@ import se.denize.examensarbete.repository.DayRepository;
 import se.denize.examensarbete.repository.UserRepository;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 @SpringBootApplication
@@ -80,8 +81,8 @@ public class ExamensarbeteApplication {
 
           */
 
-
 /*
+
 
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
@@ -89,54 +90,59 @@ public class ExamensarbeteApplication {
         return (args) -> {
 
             // mockup data
-            dayRepository.save(new Day(2, 1L, new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"), 1, null, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,null, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,null,false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,null, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),1,null, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),1,null, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),1,null, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),1,null, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),1,null, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),1,null, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),2,false, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),2,true, false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),2,false,false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),2,false,false));
-            dayRepository.save(new Day(2,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),2,false, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-09"),2,false, false));
-            dayRepository.save(new Day(2,2L, new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-10"),2,true, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11"),2,false, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-12"),2,false, false));
-            dayRepository.save(new Day(2,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-13"),2,true, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-16"),1,true, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-17"),1,false, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-18"),1,true, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-19"),1,false, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-20"),1,false, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-16"),1,true, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-17"),1,false, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-18"),1,false, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-19"),1,true, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-20"),1,false, false));
-            dayRepository.save(new Day(3,1L, new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-16"),2,false, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-17"),2,true, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-18"),2,false, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-19"),2,true, false));
-            dayRepository.save(new Day(3,1L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-20"),2,false, false));
-            dayRepository.save(new Day(3,2L, new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-16"),2,true, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-17"),2,false, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-18"),2,true, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-19"),2,false, false));
-            dayRepository.save(new Day(3,2L,new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-20"),2,false, false));
+            dayRepository.save(new Day(2, 1L, LocalDate.of(2023,1,9), 1, false, false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,10),1,false, false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,11),1,false,false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,12),1,true, false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,13),1,false, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,9),1,true, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,10),1,false, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,11),1,false, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,12),1,true, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,13),1,false, false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,9),2,false, false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,10),2,true, false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,11),2,false,false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,12),2,false,false));
+            dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,13),2,false, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,9),2,false, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,10),2,true, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,11),2,false, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,12),2,false, false));
+            dayRepository.save(new Day(2,2L,LocalDate.of(2023,1,13),2,true, false));
+
+
+
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,16),1,true, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,17),1,false, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,18),1,true, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,19),1,false, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,20),1,false, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,16),1,true, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,17),1,false, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,18),1,false, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,19),1,true, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,20),1,false, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,16),2,null, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,17),2,null, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,18),2,null, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,19),2,null, false));
+            dayRepository.save(new Day(3,1L,LocalDate.of(2023,1,20),2,null, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,16),2,null, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,17),2,null, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,18),2,null, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,19),2,null, false));
+            dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,20),2,null, false));
 
 
 
 };
         }
 
+             */
 
- */
+
+
 
 
 
