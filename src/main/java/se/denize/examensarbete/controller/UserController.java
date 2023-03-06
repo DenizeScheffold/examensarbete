@@ -8,6 +8,7 @@ import se.denize.examensarbete.service.AuthService;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -26,13 +27,29 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/api/getUserName")
+    private String getUserName(){
+        User user = userService.loadUserByUsername(userService.findCurrentUserFromToken().getUsername());
+        return user.getUsername();
+    }
+
+    @GetMapping("/api/getCoParentName")
+    private String getCoParentName(){
+        long userId = userService.findCurrentUserIdFromToken();
+        User otherParent = userService.findOtherParent(userId);
+       return otherParent.getUsername();
+    }
 
     @GetMapping("api/getUser")
     private User getUserByUsername() {
         return userService.loadUserByUsername(userService.findCurrentUserFromToken().getUsername());
     }
 
-
+    @GetMapping("api/getUsernameFromId/{userId}")
+        private String getUsernameById(@PathVariable("userId") long userId){
+        Optional<User> user = userService.findUserById(userId);
+        return user.get().getUsername();
+    }
     @PostMapping("/api/saveUser")
     private void saveUser(@RequestBody User userRequest) {
         authService.createUser(userRequest);
