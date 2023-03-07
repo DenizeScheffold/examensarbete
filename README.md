@@ -21,6 +21,8 @@ https://github.com/DenizeScheffold/kindi.git
 
 In cmd: 
 npm install
+npm install axios
+npm start
 
 to run: 
 npm start
