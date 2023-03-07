@@ -16,12 +16,17 @@ mysql -uroot -proot
 create database examensarbete;
 
 
-
-
 To run frontend: 
 https://github.com/DenizeScheffold/kindi.git
 
+In cmd: 
+npm install
+
+to run: 
+npm start
+
 To login: 
+in browser: localhost:3000
 username: Kattis 
 password: abb
 
