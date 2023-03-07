@@ -19,9 +19,12 @@ create database examensarbete;
 
 
 To run frontend: 
-https://github.com/DenizeScheffold/frontend-examensarbete
+https://github.com/DenizeScheffold/kindi.git
 
 To login: 
+username: Kattis 
+password: abb
 
-To set week: 
+Weeks prepared in the database: 
+2,3,4 - use those when you play around in the application 
 
