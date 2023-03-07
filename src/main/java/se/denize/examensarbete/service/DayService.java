@@ -20,4 +20,8 @@ public interface DayService {
 
     ResponseEntity<List<Day>>findDaysWithoutResponse(long userId, int weekNumber);
 
+    ResponseEntity<List<Day>>findDaysProcessed(long userId);
+
+    ResponseEntity<List<Day>> findDaysProcessedBothUserTrue(long userId, long otherParentId, int weekNumber);
+
 }

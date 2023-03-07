@@ -50,6 +50,7 @@ public class UserController {
         Optional<User> user = userService.findUserById(userId);
         return user.get().getUsername();
     }
+
     @PostMapping("/api/saveUser")
     private void saveUser(@RequestBody User userRequest) {
         authService.createUser(userRequest);

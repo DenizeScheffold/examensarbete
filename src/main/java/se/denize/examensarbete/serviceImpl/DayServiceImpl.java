@@ -10,11 +10,6 @@ import se.denize.examensarbete.repository.DayRepository;
 import se.denize.examensarbete.service.DayService;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.text.ParseException;
-
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,8 +20,6 @@ import java.util.function.Predicate;
 @Service
 public class DayServiceImpl implements DayService {
 
-
-    //TODO: see if this is convention?
     private final CalculatePlans calculatePlans;
     private final DayRepository dayRepository;
 
@@ -44,7 +37,7 @@ public class DayServiceImpl implements DayService {
         return new ResponseEntity<>(daysWithoutResponse, HttpStatus.OK);
     }
 
-
+    @Override
     public ResponseEntity<List<Day>>findDaysProcessed(long userId){
         List<Day> primaryUserDays = new ArrayList<>(dayRepository.findDaysProcessed(userId));
         if (primaryUserDays.isEmpty())
@@ -52,6 +45,7 @@ public class DayServiceImpl implements DayService {
         return new ResponseEntity<>(primaryUserDays, HttpStatus.OK);
     }
 
+    @Override
     public ResponseEntity<List<Day>> findDaysProcessedBothUserTrue(long userId, long otherParentId, int weekNumber){
         List<Day> bothParentsTrueDays = new ArrayList<>(dayRepository.findDaysProcessedBothUserTrue(userId, otherParentId, weekNumber));
         if (bothParentsTrueDays.isEmpty())
