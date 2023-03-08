@@ -81,15 +81,15 @@ public class ExamensarbeteApplication {
 
           */
 
-/*
+
 
 
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
 
         return (args) -> {
-
-            // mockup data
+            dayRepository.deleteAll();
+           // mockup data
             dayRepository.save(new Day(2, 1L, LocalDate.of(2023,1,9), 1, false, false));
             dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,10),1,false, false));
             dayRepository.save(new Day(2,1L,LocalDate.of(2023,1,11),1,false,false));
@@ -134,12 +134,29 @@ public class ExamensarbeteApplication {
             dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,19),2,null, false));
             dayRepository.save(new Day(3,2L,LocalDate.of(2023,1,20),2,null, false));
 
-
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,23),1,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,24),1,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,25),1,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,26),1,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,27),1,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,23),1,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,24),1,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,25),1,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,26),1,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,27),1,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,23),2,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,24),2,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,25),2,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,26),2,null, null));
+            dayRepository.save(new Day(4,1L,LocalDate.of(2023,1,27),2,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,23),2,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,24),2,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,25),2,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,26),2,null, null));
+            dayRepository.save(new Day(4,2L,LocalDate.of(2023,1,27),2,null, null));
 
 };
         }
-
-             */
 
 
 
