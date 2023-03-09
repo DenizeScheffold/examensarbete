@@ -31,7 +31,7 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     List<Day>findDaysWithoutResponse(long userId, int weekNumber);
 
 
-    @Query(value="SELECT d FROM Day d WHERE d.processed = false AND d.possible IS NOT NULL AND d.userId =?1")
+    @Query(value="SELECT d FROM Day d WHERE (d.processed = false OR d.processed IS NULL) AND d.possible IS NOT NULL AND d.userId =?1")
     List<Day>findDaysReadyForProcessUser(long userId);
 
     @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.userId=?1")
