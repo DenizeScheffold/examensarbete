@@ -25,6 +25,7 @@ create database examensarbete;
 
 https://github.com/DenizeScheffold/kindi.git
 
+--
 
 *To set up in commandprompt:* 
 
@@ -36,6 +37,7 @@ npm install @mui/material @mui/styled-engine-sc styled-components
 
 npm start
 
+--
 
 
 *To Run:* 
@@ -50,7 +52,7 @@ username: Kattis
 
 password: abb
 
-
+--
 
 Weeks prepared in the database: 
 
