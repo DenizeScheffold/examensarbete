@@ -6,15 +6,21 @@
 Kanban board: https://trello.com/b/EErJuPSK/examensarbete
 
 
+
 To run: set up Mysql database or use Docker via cmd:
+
 
 docker pull mysql/mysql-server:latest
 
+
 docker run --name examensarbetedb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
+
 
 docker exec -it examensarbetedb bash
 
+
 mysql -uroot -proot
+
 
 create database examensarbete;
 
@@ -23,11 +29,13 @@ create database examensarbete;
 
 *To run frontend:* 
 
+clone repo: 
+
 https://github.com/DenizeScheffold/kindi.git
 
 --
 
-*To set up in commandprompt:* 
+*To set up in command prompt:* 
 
 npm install
 
