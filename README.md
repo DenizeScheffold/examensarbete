@@ -3,11 +3,21 @@
 
 **Examensarbete in Spring Boot 3.** 
 
+
+**GET STARTED**
+
 Kanban board: https://trello.com/b/EErJuPSK/examensarbete
 
+----------------------------
+
+**To run backend:**
+
+Clone repo: 
+
+https://github.com/DenizeScheffold/examensarbete
 
 
-To run: set up Mysql database or use Docker via cmd:
+*To set up via command propt* (Mysql database in Docker):
 
 
 docker pull mysql/mysql-server:latest
@@ -24,10 +34,13 @@ mysql -uroot -proot
 
 create database examensarbete;
 
+
+In IDE: *Build and Run application*
+
 -----------------------
 
 
-*To run frontend:* 
+**To run frontend:** 
 
 clone repo: 
 
@@ -35,7 +48,7 @@ https://github.com/DenizeScheffold/kindi.git
 
 --
 
-*To set up in command prompt:* 
+*To set up via command prompt:* 
 
 npm install
 
@@ -52,7 +65,8 @@ npm start
 
 npm start
 
-To login: 
+
+*To login:* 
 
 in browser: localhost:3000
 
@@ -65,4 +79,3 @@ password: abb
 Weeks prepared in the database: 
 
 2-8 - use those when you play around in the application 
-
