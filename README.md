@@ -17,6 +17,9 @@ Clone repo:
 https://github.com/DenizeScheffold/examensarbete
 
 
+This project runs on Java 17 and Gradle. Make sure to have those installed. 
+
+
 *To set up via command propt* (Mysql database in Docker):
 
 
