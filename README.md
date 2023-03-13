@@ -3,6 +3,9 @@
 
 **Examensarbete in Spring Boot 3.** 
 
+Kanban board: https://trello.com/b/EErJuPSK/examensarbete
+
+
 To run: set up Mysql database or use Docker via cmd:
 
 docker pull mysql/mysql-server:latest
@@ -15,23 +18,41 @@ mysql -uroot -proot
 
 create database examensarbete;
 
+-----------------------
 
-To run frontend: 
+
+*To run frontend:* 
+
 https://github.com/DenizeScheffold/kindi.git
 
-In cmd: 
+
+*To set up in commandprompt:* 
+
 npm install
+
 npm install axios
+
+npm install @mui/material @mui/styled-engine-sc styled-components
+
 npm start
 
-to run: 
+
+
+*To Run:* 
+
 npm start
 
 To login: 
+
 in browser: localhost:3000
+
 username: Kattis 
+
 password: abb
 
+
+
 Weeks prepared in the database: 
-2,3,4 - use those when you play around in the application 
+
+2-8 - use those when you play around in the application 
 
