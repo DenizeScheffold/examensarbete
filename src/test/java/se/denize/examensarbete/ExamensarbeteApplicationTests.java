@@ -1,18 +1,20 @@
 package se.denize.examensarbete;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
+import se.denize.examensarbete.repository.UserRepository;
 
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Transactional
 @SpringBootTest
 class ExamensarbeteApplicationTests {
 
@@ -60,23 +62,15 @@ public void withUserDetailsWhenAllDisabled() throws Exception {
 	assertFalse(testUser.isCredentialsNonExpired());
 
 }
-
-
-
-	/*
-@ExtendWith(SpringExtension.class)
-@Transactional
-@SpringBootTest(classes = SprintBootH2Application.class)
-public class EmployeeRepositoryTest {
-   @Autowired
-   private EmployeeRepository employeeRepository;
    @Test
    public void testFindById() {
-      Employee employee = getEmployee();
-      employeeRepository.save(employee);
-      Employee result = employeeRepository.findById(employee.getId()).get();
-      assertEquals(employee.getId(), result.getId());
+	   User testUser = new User("email@email.se", 1L, "rob", "pass", UserRoles.ADMIN, false, false, false, false);
+
+   //   User result = userRepo.findById(employee.getId()).get();
+      //assertEquals(employee.getId(), result.getId());
    }
+
+   /*
    @Test
    public void testFindAll() {
       Employee employee = getEmployee();
