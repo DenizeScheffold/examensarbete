@@ -4,10 +4,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import se.denize.examensarbete.authorities.UserRoles;
+import se.denize.examensarbete.configurations.AppPasswordConfig;
 import se.denize.examensarbete.model.Day;
+import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.DayRepository;
+import se.denize.examensarbete.repository.UserRepository;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 @SpringBootApplication
 public class ExamensarbeteApplication {
@@ -31,13 +38,14 @@ public class ExamensarbeteApplication {
 
  */
 
-/*
+
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
         AppPasswordConfig bcrypt = new AppPasswordConfig();
         return (args) -> {
+            repository.deleteAll();
             // mockup data
-          repository.save(new User(
+          User parent = repository.save(new User(
                     "Stina@stinis.se",
                     2L,
                     "Stinis",
@@ -47,8 +55,9 @@ public class ExamensarbeteApplication {
                     true,
                     true,
                     true));
-          repository.save(new User(
-                    "Kattis@gmail.com",
+
+          User coParent = repository.save(new User(
+                  "Kattis@gmail.com",
                     1L,
                     "Kattis",
                     bcrypt.bCryptPasswordEncoder().encode("abb"),
@@ -58,21 +67,15 @@ public class ExamensarbeteApplication {
                     true,
                     true));
 
+          coParent.setOtherParentId(parent.getUserId());
+          repository.save(coParent);
 
-            repository.save(new User(
-                    "Jasmin@jasmin.se",
-                    2L,
-                    "Jasmin",
-                    bcrypt.bCryptPasswordEncoder().encode("abb"),
-                    UserRoles.ADMIN,
-                    true,
-                    true,
-                    true,
-                    true));
-        };
+          parent.setOtherParentId(coParent.getUserId());
+          repository.save(parent);
+
+    };
      }
 
-          */
 
 
 
