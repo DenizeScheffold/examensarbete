@@ -27,8 +27,8 @@ public class JwtAuthenticationController {
 
 
     @PostMapping("/signup")
-    public void createUser(@RequestBody User userRequest){
-         authService.createUser(userRequest);
+    public ResponseEntity<User> createUser(@RequestBody User userRequest){
+        return authService.createUser(userRequest);
     }
 
     @PostMapping("/authenticate")

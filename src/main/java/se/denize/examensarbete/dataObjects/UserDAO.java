@@ -1,16 +1,12 @@
 package se.denize.examensarbete.dataObjects;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
 
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Optional;
 
 @Component

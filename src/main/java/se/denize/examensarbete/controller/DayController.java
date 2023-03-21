@@ -75,7 +75,4 @@ public class DayController {
         return dayService.editDay(day, dayId);
     }
 
-
-
-
 }

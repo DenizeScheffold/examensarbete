@@ -1,22 +1,28 @@
 package se.denize.examensarbete;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 import se.denize.examensarbete.authorities.UserRoles;
+import se.denize.examensarbete.controller.UserController;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
+import se.denize.examensarbete.service.AuthService;
+import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 import java.text.ParseException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Transactional
 @SpringBootTest
 class ExamensarbeteApplicationTests {
+
+
+
 
 	@Test
 	void contextLoads() {
@@ -62,6 +68,19 @@ public void withUserDetailsWhenAllDisabled() throws Exception {
 	assertFalse(testUser.isCredentialsNonExpired());
 
 }
+	@Test
+	public void whenValidUsername_thenUsernameShouldFound(){
+		UserServiceImpl userService = Mockito.mock(UserServiceImpl.class);
+		//AuthService authService = Mockito.mock(AuthService.class);
+		//UserController userController = new UserController(userService, authService);
+		String username = "Stinis";
+		User found = userService.loadUserByUsername(username);
+		assertEquals(username,found.getUsername());
+	}
+
+
+
+   /*
    @Test
    public void testFindById() {
 	   User testUser = new User("email@email.se", 1L, "rob", "pass", UserRoles.ADMIN, false, false, false, false);
@@ -70,7 +89,6 @@ public void withUserDetailsWhenAllDisabled() throws Exception {
       //assertEquals(employee.getId(), result.getId());
    }
 
-   /*
    @Test
    public void testFindAll() {
       Employee employee = getEmployee();

@@ -4,10 +4,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.configurations.AppPasswordConfig;
+import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.DayRepository;
@@ -24,6 +26,19 @@ public class ExamensarbeteApplication {
     }
 
 
+    //FOR TESTING:
+/*
+    @Bean(name = "userDao")
+    UserDAO getUserDao(){
+        return new UserDAO()
+    }
+
+ */
+    @Bean(name = "user")
+    @Scope(value = "prototype")
+    User getUser(){
+        return new User();
+    }
 /*
     @Bean
     public WebMvcConfigurer corsConfigurer() {

@@ -1,6 +1,8 @@
 package se.denize.examensarbete.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.configurations.AppPasswordConfig;
@@ -13,7 +15,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final AppPasswordConfig passwordConfig;
 
-    public void createUser(User requestBody) {
+    public  ResponseEntity<User> createUser(User requestBody) {
          User userToDB;
          userToDB= User.builder()
                 .username(requestBody.getUsername())
@@ -26,7 +28,11 @@ public class AuthService {
                  .isCredentialsNonExpired(true)
                  .isEnabled(true)
                 .build();
-        userRepository.save(userToDB).getUserId();
-
+        try {
+            userRepository.save(userToDB).getUserId();
+            return new ResponseEntity( HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity( HttpStatus.NOT_FOUND);
+        }
     }
 }

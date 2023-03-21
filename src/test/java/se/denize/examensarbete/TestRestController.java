@@ -55,6 +55,9 @@ public class TestRestController {
         return userRepository.save(rut);
     }
 
+
+
+
     @GetMapping("/encode")
     public String testEncoding() {
         return bcrypt.bCryptPasswordEncoder().encode("password");
@@ -76,7 +79,5 @@ public class TestRestController {
     public String testUnknownPermission(){
         return "this should never work";
     }
-
-
 
 }
