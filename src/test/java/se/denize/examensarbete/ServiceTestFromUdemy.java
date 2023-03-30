@@ -1,5 +1,6 @@
 package se.denize.examensarbete;
 
+import org.apache.coyote.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,15 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.util.ReflectionTestUtils;
 import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-
+//TODO 1 test is working
 @SpringBootTest(classes = ExamensarbeteApplication.class)
 public class ServiceTestFromUdemy {
 
@@ -62,11 +68,18 @@ public class ServiceTestFromUdemy {
     }
 
     @Test
-    public void getOtherParentId(){
-        assertEquals(2L, userDAO.findOtherParent(user1.getUserId()).getUserId());
+    public void getUserFromUserNameReflection(){
+        assertEquals(user1, ReflectionTestUtils.invokeMethod(user1.getUsername(),"loadUserByUsername"));
     }
 
+    @Test
+    public void getOtherParentId(){
+        assertEquals(user2.getUserId(),
+                (Long) ReflectionTestUtils.invokeMethod(user1.getUserId(), "findOtherParent", "pass if found"));
+    }
 
+    List<String> list = new ArrayList<>(Arrays.asList("1","2","3"));
+    String first = list.get(0);
 
     /*
     @DisplayName("get other parent")

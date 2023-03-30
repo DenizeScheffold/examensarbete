@@ -4,9 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.controller.UserController;
+import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
@@ -17,11 +19,19 @@ import java.text.ParseException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+//TODO: 5 test funkar
 @SpringBootTest
 class ExamensarbeteApplicationTests {
 
 
+	@Autowired
+	private UserServiceImpl userService;
+
+	@Autowired
+	private User user;
+
+	@MockBean
+	private UserDAO userDAO;
 
 
 	@Test
@@ -68,9 +78,10 @@ public void withUserDetailsWhenAllDisabled() throws Exception {
 	assertFalse(testUser.isCredentialsNonExpired());
 
 }
+	//TODO: funkar inte
 	@Test
 	public void whenValidUsername_thenUsernameShouldFound(){
-		UserServiceImpl userService = Mockito.mock(UserServiceImpl.class);
+		//UserServiceImpl userService = Mockito.mock(UserServiceImpl.class);
 		//AuthService authService = Mockito.mock(AuthService.class);
 		//UserController userController = new UserController(userService, authService);
 		String username = "Stinis";

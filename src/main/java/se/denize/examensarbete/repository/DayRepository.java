@@ -37,7 +37,7 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.userId=?1")
     List<Day>findDaysProcessed(long userId);
 
-    @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.possible=true AND d.weekNumber=?3 AND(d.userId=?1 OR d.userId=?2)")
+    @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.possible=true AND d.weekNumber=?3 AND (d.userId=?1 OR d.userId=?2)")
     List<Day>findDaysProcessedBothUserTrue(long userId, long otherParentId, int weekNumber);
 
 

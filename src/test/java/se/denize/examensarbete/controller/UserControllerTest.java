@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -13,6 +14,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import se.denize.examensarbete.authorities.UserRoles;
+import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.UserRepository;
 import se.denize.examensarbete.service.AuthService;
@@ -26,7 +28,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+//TODO: not working
 //@AutoConfigureMockMvc
 @WebMvcTest(UserController.class)
 class UserControllerTest {
@@ -38,12 +40,16 @@ class UserControllerTest {
         private UserRepository userRepository;
 
         @MockBean
+        private UserDAO userDAO;
+
+        @MockBean
         private UserServiceImpl userService;
 
         @MockBean
         private AuthService authService;
 
-    private User user;
+        @Autowired
+        private User user;
 
     @BeforeEach
     void setUp() {
