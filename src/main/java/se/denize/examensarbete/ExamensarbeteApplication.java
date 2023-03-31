@@ -118,26 +118,26 @@ public class ExamensarbeteApplication {
 
             dayRepository.deleteAll();
            // mockup data
-            dayRepository.save(new Day(2, parent1, LocalDate.of(2023,1,9), 1, false, false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,10),1,false, false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,11),1,false,false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,12),1,true, false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,13),1,false, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,9),1,true, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,10),1,false, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,11),1,false, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,12),1,true, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,13),1,false, false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,9),2,false, false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,10),2,true, false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,11),2,false,false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,12),2,false,false));
-            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,13),2,false, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,9),2,false, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,10),2,true, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,11),2,false, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,12),2,false, false));
-            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,13),2,true, false));
+            dayRepository.save(new Day(2, parent1, LocalDate.of(2023,1,9), 1, true, true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,10),1,true, true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,11),1,true,true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,12),1,true, true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,13),1,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,9),1,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,10),1,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,11),1,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,12),1,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,13),1,true, true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,9),2,true, true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,10),2,true, true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,11),2,true,true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,12),2,false,true));
+            dayRepository.save(new Day(2,parent1,LocalDate.of(2023,1,13),2,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,9),2,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,10),2,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,11),2,false, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,12),2,true, true));
+            dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,13),2,true, true));
 
 
 
@@ -151,38 +151,39 @@ public class ExamensarbeteApplication {
             dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,18),1,false, false));
             dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,19),1,true, false));
             dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,20),1,false, false));
-            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,16),2,null, null));
-            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,17),2,null, null));
-            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,18),2,null, null));
-            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,19),2,null, null));
-            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,20),2,null, null));
-            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,16),2,null, null));
-            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,17),2,null, null));
-            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,18),2,null, null));
-            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,19),2,null, null));
-            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,20),2,null, null));
+            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,16),2,true, false));
+            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,17),2,true, false));
+            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,18),2,false, false));
+            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,19),2,false, false));
+            dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,20),2,false, false));
+            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,16),2,true, false));
+            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,17),2,true, false));
+            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,18),2,false, false));
+            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,19),2,true, false));
+            dayRepository.save(new Day(3,parent2,LocalDate.of(2023,1,20),2,true, false));
 
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,23),1,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,24),1,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,25),1,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,26),1,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,27),1,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,23),1,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,24),1,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,25),1,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,26),1,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,27),1,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,23),2,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,24),2,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,25),2,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,26),2,null, null));
-            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,27),2,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,23),2,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,24),2,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,25),2,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,26),2,null, null));
-            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,27),2,null, null));
-
+            /*
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,23),1,true, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,24),1,false, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,25),1,false, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,26),1,true, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,27),1,false, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,23),1,true, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,24),1,true, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,25),1,false, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,26),1,true, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,27),1,true, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,23),2,false, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,24),2,false, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,25),2,false, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,26),2,true, false));
+            dayRepository.save(new Day(4,parent1,LocalDate.of(2023,1,27),2,true, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,23),2,false, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,24),2,false, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,25),2,true, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,26),2,true, false));
+            dayRepository.save(new Day(4,parent2,LocalDate.of(2023,1,27),2,true, false));
+*/
 
         dayRepository.save(new Day(5,parent1,LocalDate.of(2023,1,30),1,null, null));
         dayRepository.save(new Day(5,parent1,LocalDate.of(2023,1,31),1,null, null));

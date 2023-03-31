@@ -19,8 +19,8 @@ public class Day {
 
     @Column(name = "userid")
     private Long userId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@Temporal(TemporalType.DATE)
     @Column(name = "date")
     private LocalDate dayDate;
 

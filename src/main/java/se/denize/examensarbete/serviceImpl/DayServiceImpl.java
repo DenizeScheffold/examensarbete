@@ -11,10 +11,7 @@ import se.denize.examensarbete.service.DayService;
 
 import java.time.LocalDate;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
 
 @Service
@@ -48,6 +45,8 @@ public class DayServiceImpl implements DayService {
     @Override
     public ResponseEntity<List<Day>> findDaysProcessedBothUserTrue(long userId, long otherParentId, int weekNumber){
         List<Day> bothParentsTrueDays = new ArrayList<>(dayRepository.findDaysProcessedBothUserTrue(userId, otherParentId, weekNumber));
+        for(Day day: bothParentsTrueDays)
+            System.out.println("list in findProcssedBothUserTrue: " + day.getDayDate() + " and userId: " + day.getUserId());
         if (bothParentsTrueDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(bothParentsTrueDays, HttpStatus.OK);
@@ -156,16 +155,20 @@ public class DayServiceImpl implements DayService {
 
 
     public void solveConflict(Day dayUser1, Day dayUser2) {
+        Random random = new Random();
+        long parent1 = dayUser1.getUserId();
+
         int count1 = 0;
         int count2 = 0;
 
         List<Day> activitiesFromLast7days = getLast7Days(dayUser1);
 
-        Predicate<Long> d = userId -> userId == 1;
+        Predicate<Long> d = userId -> userId == parent1;
         Iterator<Day> days = activitiesFromLast7days.iterator();
 
         while (days.hasNext()) {
             Day dayDB = days.next();
+        //    System.out.println("in activites from last 7 days " + dayDB);
 
             //IF possible (-> did an activity) set to true
             if (dayDB.getPossible()) {
@@ -186,9 +189,30 @@ public class DayServiceImpl implements DayService {
             System.out.println("User2 has more activities. Set false on Possible");
             dayUser1.setPossible(true);
             dayUser2.setPossible(false);
-        } else {
+            dayUser1.setProcessed(true);
+            dayUser2.setProcessed(true);
+        } else if (count1 > count2) {
+            System.out.println("User1 has more activities. Set false on Possible");
             dayUser2.setPossible(true);
             dayUser1.setPossible(false);
+            dayUser1.setProcessed(true);
+            dayUser2.setProcessed(true);
+        } else {
+            int randomUser = random.nextInt(2);
+            if(randomUser==0){
+                System.out.println("Same number of activities. User 2 randomly selected. Set false on Possible");
+                dayUser2.setPossible(false);
+                dayUser1.setPossible(true);
+                dayUser1.setProcessed(true);
+                dayUser2.setProcessed(true);
+            } else {
+                System.out.println("Same number of activities. User 1 randomly selected. Set false on Possible");
+                dayUser1.setPossible(false);
+                dayUser2.setPossible(true);
+                dayUser1.setProcessed(true);
+                dayUser2.setProcessed(true);
+
+            }
         }
 
         editDay(dayUser1, dayUser1.getDayId());
@@ -206,9 +230,9 @@ public class DayServiceImpl implements DayService {
         List<Day> activitiesFromLast7days = dayRepository.activitiesFromLast7days(
                 date7DaysBefore, dateUser1);
 
-        for (Day day : activitiesFromLast7days) {
-            System.out.println(day);
-        }
+       // for (Day day : activitiesFromLast7days) {
+         //   System.out.println("days from 7 days before inside getLat7Days: " + day);
+        //}
         return activitiesFromLast7days;
     }
 
