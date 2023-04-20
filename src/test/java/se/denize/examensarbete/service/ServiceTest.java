@@ -1,4 +1,4 @@
-package se.denize.examensarbete;
+package se.denize.examensarbete.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.util.ReflectionTestUtils;
+import se.denize.examensarbete.ExamensarbeteApplication;
 import se.denize.examensarbete.dataObjects.UserDAO;
-import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest(classes = ExamensarbeteApplication.class)
-public class ServiceTestFromUdemy {
+public class ServiceTest {
 
 
     @Autowired

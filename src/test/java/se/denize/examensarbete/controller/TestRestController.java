@@ -1,4 +1,4 @@
-package se.denize.examensarbete;
+package se.denize.examensarbete.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
