@@ -230,9 +230,6 @@ public class DayServiceImpl implements DayService {
         List<Day> activitiesFromLast7days = dayRepository.activitiesFromLast7days(
                 date7DaysBefore, dateUser1);
 
-       // for (Day day : activitiesFromLast7days) {
-         //   System.out.println("days from 7 days before inside getLat7Days: " + day);
-        //}
         return activitiesFromLast7days;
     }
 

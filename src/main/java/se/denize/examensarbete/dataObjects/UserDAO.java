@@ -14,8 +14,6 @@ public class UserDAO implements IUserDAO<User> {
 
     private final UserRepository userRepository;
 
-
-    //TODO: går det att autowire utan en constructor?? För att underlätta testning
     @Autowired
     public UserDAO(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -46,10 +44,6 @@ public class UserDAO implements IUserDAO<User> {
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
-    }
-
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
     }
 
     public User findOtherParent(long userId){ return userRepository.findOtherParent(userId);}

@@ -25,4 +25,5 @@ public interface UserService {
     User findOtherParent(long userId);
 
     Optional<User> findUserById(long userId);
+
 }

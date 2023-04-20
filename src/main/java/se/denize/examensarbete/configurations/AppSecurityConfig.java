@@ -33,8 +33,6 @@ public class AppSecurityConfig {
 
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/error", "/login", "/api/auth/**", "/api/saveUser")
-                      //  "/api/**", "/rest/**", "/token/**")
-                //   , "localhost:8080/api/editDay/15", "/static/**")
                 .permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

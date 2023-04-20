@@ -5,19 +5,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.configurations.AppPasswordConfig;
-import se.denize.examensarbete.dataObjects.UserDAO;
 import se.denize.examensarbete.model.Day;
 import se.denize.examensarbete.model.User;
 import se.denize.examensarbete.repository.DayRepository;
 import se.denize.examensarbete.repository.UserRepository;
-import se.denize.examensarbete.serviceImpl.UserServiceImpl;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @SpringBootApplication
 public class ExamensarbeteApplication {
@@ -69,10 +64,10 @@ public class ExamensarbeteApplication {
 
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
+        //Populates db with two users. Everytime application is started db re-populates.
         AppPasswordConfig bcrypt = new AppPasswordConfig();
         return (args) -> {
             repository.deleteAll();
-            // mockup data
           User parent = repository.save(new User(
                     "Stina@stinis.se",
                     2L,
@@ -110,7 +105,7 @@ public class ExamensarbeteApplication {
 
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
-
+        //Populates db with days for the two users. Everytime application is started db re-populates.
         return (args) -> {
             Long parent1 = userRepository.findByUsername("Stinis").getUserId();
             Long parent2 = userRepository.findByUsername("Kattis").getUserId();
