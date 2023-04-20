@@ -14,6 +14,8 @@ public class UserDAO implements IUserDAO<User> {
 
     private final UserRepository userRepository;
 
+
+    //TODO: går det att autowire utan en constructor?? För att underlätta testning
     @Autowired
     public UserDAO(UserRepository userRepository) {
         this.userRepository = userRepository;

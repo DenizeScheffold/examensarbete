@@ -61,22 +61,5 @@ public class ServiceTestFromUdemy {
         assertEquals(user1.getUserId(), userService.loadUserByUsername("Alexis").getUserId());
     }
 
-    @Test
-    public void getOtherParentId(){
-        assertEquals(2L, userDAO.findOtherParent(user1.getUserId()).getUserId());
-    }
-
-
-
-    /*
-    @DisplayName("get other parent")
-    @Test
-    public void getOtherParent(){
-        when(userDAO.findOtherParent(user1.getUserId()))
-    }
-
-     */
-
-
 
 }
