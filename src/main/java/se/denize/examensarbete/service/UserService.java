@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import se.denize.examensarbete.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,4 +21,8 @@ public interface UserService {
     Long findCurrentUserIdFromToken();
 
     User findCurrentUserFromToken();
+
+    User findOtherParent(long userId);
+
+    Optional<User> findUserById(long userId);
 }

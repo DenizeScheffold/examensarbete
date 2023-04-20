@@ -88,10 +88,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userDao.loadUserByUsername(username);
     }
 
+    @Override
     public User findOtherParent(long userId){
         return userDao.findOtherParent(userId);
     }
 
+    @Override
     public Optional<User> findUserById(long userId){
         return userDao.findById(userId);
     }
