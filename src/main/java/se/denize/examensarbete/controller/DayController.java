@@ -21,7 +21,8 @@ public class DayController {
 
     @GetMapping("/getDaysNotSet/{weekNumber}")
     public  ResponseEntity<List<Day>>findDaysWithoutResponse(@PathVariable("weekNumber")int weekNumber){
-        return dayService.findDaysWithoutResponse(userService.findCurrentUserIdFromToken(), weekNumber);
+        long userId = userService.findCurrentUserIdFromToken();
+        return dayService.findDaysWithoutResponse(userId, weekNumber);
     }
 
     @GetMapping("/getPlanForProcessUser")

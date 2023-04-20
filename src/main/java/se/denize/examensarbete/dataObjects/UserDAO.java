@@ -21,6 +21,7 @@ public class UserDAO implements IUserDAO<User> {
         this.userRepository = userRepository;
     }
 
+
     @Override
     public Collection<User> findAllUsers() {
         return userRepository.findAll();

@@ -61,5 +61,29 @@ public class ServiceTestFromUdemy {
         assertEquals(user1.getUserId(), userService.loadUserByUsername("Alexis").getUserId());
     }
 
+    @Test
+    public void getUserFromUserNameReflection(){
+        assertEquals(user1, ReflectionTestUtils.invokeMethod(user1.getUsername(),"loadUserByUsername"));
+    }
+
+    @Test
+    public void getOtherParentId(){
+        assertEquals(user2.getUserId(),
+                (Long) ReflectionTestUtils.invokeMethod(user1.getUserId(), "findOtherParent", "pass if found"));
+    }
+
+    List<String> list = new ArrayList<>(Arrays.asList("1","2","3"));
+    String first = list.get(0);
+
+    /*
+    @DisplayName("get other parent")
+    @Test
+    public void getOtherParent(){
+        when(userDAO.findOtherParent(user1.getUserId()))
+    }
+
+     */
+
+
 
 }

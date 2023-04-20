@@ -24,7 +24,12 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value = "SELECT d FROM Day d WHERE d.weekNumber = ?1 AND d.userId = ?2 ")
     List<Day> findByWeekNumberAndUser(int weekNumber, long userId);
 
+
+    //@Query(value = "SELECT d from Day d where d.processed=true AND d.dayDate >= ?1")
+    //List<Day> activitiesFromLast7days(LocalDate date7DaysBefore, LocalDate date);
+
     @Query(value = "SELECT d from Day d where d.processed=true AND d.dayDate BETWEEN :startDate AND :endDate")
+    //@Query(value = "SELECT d from Day d where d.dayDate BETWEEN :startDate AND :endDate")
     List<Day> activitiesFromLast7days(@Param("startDate") LocalDate date7DaysBefore, @Param("endDate") LocalDate date);
 
     @Query(value="SELECT d FROM Day d WHERE d.possible IS NULL AND d.userId =?1 AND d.weekNumber=?2")
@@ -37,7 +42,7 @@ public interface DayRepository extends JpaRepository<Day, Long> {
     @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.userId=?1")
     List<Day>findDaysProcessed(long userId);
 
-    @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.possible=true AND d.weekNumber=?3 AND(d.userId=?1 OR d.userId=?2)")
+    @Query(value="SELECT d FROM Day d WHERE d.processed=true AND d.possible=true AND (d.userId=?1 OR d.userId=?2) AND d.weekNumber=?3 ORDER BY DATE(d.dayDate) ASC")
     List<Day>findDaysProcessedBothUserTrue(long userId, long otherParentId, int weekNumber);
 
 
