@@ -72,9 +72,6 @@ public class ServiceTestFromUdemy {
                 (Long) ReflectionTestUtils.invokeMethod(user1.getUserId(), "findOtherParent", "pass if found"));
     }
 
-    List<String> list = new ArrayList<>(Arrays.asList("1","2","3"));
-    String first = list.get(0);
-
     /*
     @DisplayName("get other parent")
     @Test
