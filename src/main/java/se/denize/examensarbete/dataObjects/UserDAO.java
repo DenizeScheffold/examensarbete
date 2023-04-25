@@ -39,10 +39,9 @@ public class UserDAO implements IUserDAO<User> {
     }
 
     @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username);
-    }
+    public User loadUserByUsername(String username) throws UsernameNotFoundException { return userRepository.findByUsername(username); }
 
+    @Override
     public User findOtherParent(long userId){ return userRepository.findOtherParent(userId);}
 
 }

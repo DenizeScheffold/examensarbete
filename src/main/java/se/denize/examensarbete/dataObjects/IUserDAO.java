@@ -1,6 +1,5 @@
 package se.denize.examensarbete.dataObjects;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import se.denize.examensarbete.model.User;
 
@@ -18,4 +17,5 @@ public interface IUserDAO<T> {
 
     UserDetails loadUserByUsername(String username);
 
+    User findOtherParent(long userId);
 }
