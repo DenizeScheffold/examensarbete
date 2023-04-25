@@ -4,7 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import se.denize.examensarbete.authorities.UserRoles;
 import se.denize.examensarbete.configurations.AppPasswordConfig;
 import se.denize.examensarbete.model.Day;
@@ -27,26 +26,6 @@ public class ExamensarbeteApplication {
     }
 
 
-    //FOR TESTING:
-/*
-    @Bean(name = "userDao")
-    UserDAO getUserDao(){
-        return new UserDAO(userRepository);
-    }
-
-    @Bean(name = "userService")
-    UserServiceImpl getUserService(){
-        return new UserServiceImpl(getUserDao());
-    }
-
- */
-    @Bean(name = "user")
-    @Scope(value = "prototype")
-    User getUser(){
-        return new User();
-    }
-
-
 /*
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -58,9 +37,7 @@ public class ExamensarbeteApplication {
             }
         };
 }
-
  */
-
 
     @Bean
     public CommandLineRunner usersMockup(UserRepository repository) {
@@ -100,16 +77,12 @@ public class ExamensarbeteApplication {
      }
 
 
-
-
-
     @Bean
     public CommandLineRunner weekMockup(DayRepository dayRepository) {
         //Populates db with days for the two users. Everytime application is started db re-populates.
         return (args) -> {
             Long parent1 = userRepository.findByUsername("Stinis").getUserId();
             Long parent2 = userRepository.findByUsername("Kattis").getUserId();
-
 
             dayRepository.deleteAll();
            // mockup data
@@ -133,7 +106,6 @@ public class ExamensarbeteApplication {
             dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,11),2,false, true));
             dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,12),2,true, true));
             dayRepository.save(new Day(2,parent2,LocalDate.of(2023,1,13),2,true, true));
-
 
 
             dayRepository.save(new Day(3,parent1,LocalDate.of(2023,1,16),1,true, false));
@@ -224,7 +196,6 @@ public class ExamensarbeteApplication {
             dayRepository.save(new Day(6,parent2,LocalDate.of(2023,2,10),2,null, null));
 
 
-
             dayRepository.save(new Day(7,parent1,LocalDate.of(2023,2,13),1,null, null));
             dayRepository.save(new Day(7,parent1,LocalDate.of(2023,2,14),1,null, null));
             dayRepository.save(new Day(7,parent1,LocalDate.of(2023,2,15),1,null, null));
@@ -245,8 +216,6 @@ public class ExamensarbeteApplication {
             dayRepository.save(new Day(7,parent2,LocalDate.of(2023,2,15),2,null, null));
             dayRepository.save(new Day(7,parent2,LocalDate.of(2023,2,16),2,null, null));
             dayRepository.save(new Day(7,parent2,LocalDate.of(2023,2,17),2,null, null));
-
-
 
 
             dayRepository.save(new Day(8,parent1,LocalDate.of(2023,2,20),1,null, null));
@@ -273,10 +242,29 @@ public class ExamensarbeteApplication {
 
         };
 
-
-
     }
 
+    //FOR TESTING:
+/*
+    @Bean(name = "userDao")
+    UserDAO getUserDao(){
+        return new UserDAO(userRepository);
+    }
+
+    @Bean(name = "userService")
+    UserServiceImpl getUserService(){
+        return new UserServiceImpl(getUserDao());
+    }
+
+ */
+/*
+    @Bean(name = "user")
+    @Scope(value = "prototype")
+    User getUser(){
+        return new User();
+    }
+
+ */
 
 
 
