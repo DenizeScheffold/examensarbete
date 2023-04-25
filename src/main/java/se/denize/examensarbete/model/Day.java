@@ -1,7 +1,6 @@
 package se.denize.examensarbete.model;
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 

@@ -46,7 +46,7 @@ public class DayServiceImpl implements DayService {
     public ResponseEntity<List<Day>> findDaysProcessedBothUserTrue(long userId, long otherParentId, int weekNumber){
         List<Day> bothParentsTrueDays = new ArrayList<>(dayRepository.findDaysProcessedBothUserTrue(userId, otherParentId, weekNumber));
         for(Day day: bothParentsTrueDays)
-            System.out.println("list in findProcssedBothUserTrue: " + day.getDayDate() + " and userId: " + day.getUserId());
+            System.out.println("list in findProcessedBothUserTrue: " + day.getDayDate() + " and userId: " + day.getUserId());
         if (bothParentsTrueDays.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(bothParentsTrueDays, HttpStatus.OK);
@@ -168,7 +168,7 @@ public class DayServiceImpl implements DayService {
 
         while (days.hasNext()) {
             Day dayDB = days.next();
-        //    System.out.println("in activites from last 7 days " + dayDB);
+        //    System.out.println("in activities from last 7 days " + dayDB);
 
             //IF possible (-> did an activity) set to true
             if (dayDB.getPossible()) {

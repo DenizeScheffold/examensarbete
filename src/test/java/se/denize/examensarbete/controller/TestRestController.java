@@ -65,7 +65,7 @@ public class TestRestController {
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String testAdminPermission() {
-        return "only andmins can enter";
+        return "only admins can enter";
     }
 
     @GetMapping("/user")

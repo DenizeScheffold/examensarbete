@@ -26,10 +26,7 @@ public class UserDAO implements IUserDAO<User> {
     }
 
     @Override
-    public User save(User user) {
-        return userRepository.save(user);
-
-    }
+    public User save(User user) { return userRepository.save(user); }
 
     @Override
     public void deleteById(long userId) {
@@ -47,4 +44,5 @@ public class UserDAO implements IUserDAO<User> {
     }
 
     public User findOtherParent(long userId){ return userRepository.findOtherParent(userId);}
+
 }

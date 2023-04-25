@@ -30,9 +30,9 @@ public class AuthService {
                 .build();
         try {
             userRepository.save(userToDB).getUserId();
-            return new ResponseEntity( HttpStatus.OK);
+            return new ResponseEntity<>( HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity( HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
         }
     }
 }
